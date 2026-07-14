@@ -38,15 +38,6 @@
 ```
 
 ---
-
-## 🎬 3D Doctor Animation
-
-<p align="center">
-  <img src="./medical-animation.svg" width="100%" alt="3D Medical Animation" />
-</p>
-
----
-
 ## 🚀 Live Projects
 
 <table>
