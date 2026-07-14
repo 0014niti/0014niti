@@ -3,126 +3,307 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr.N | Code & Cure</title>
+    <title>Dr.N | Code & Cure — Full-Stack Developer & Medical Innovator</title>
 
-    <!-- Social Media Meta Tags -->
-    <meta property="og:title" content="Dr.N | Full-Stack Developer & Medical Innovator">
-    <meta property="og:description" content="Doctor by profession. Developer by passion. Building p2pcompanion.com, Med Reminder & Med Assist. Bridging Medicine & Technology.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/0014niti/0014niti/main/medical-animation.svg">
+    <!-- Social Meta -->
+    <meta property="og:title" content="Dr.N | Developer & Medical Innovator">
+    <meta property="og:description" content="Doctor by profession. Developer by passion. Building p2pcompanion.com, Med Reminder & Med Assist.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/0014niti/0014niti/main/drn_avatar.png">
     <meta property="og:url" content="https://0014niti.github.io">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Dr.N | Cure & Code">
     <meta name="twitter:description" content="Doctor by profession. Developer by passion. Building HealthTech & Web3 solutions.">
-    <meta name="twitter:image" content="https://raw.githubusercontent.com/0014niti/0014niti/main/medical-animation.svg">
+    <meta name="twitter:creator" content="@14itishD">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg: #0A0A0A;
-            --bg-card: #111111;
-            --bg-hover: #1a1a1a;
+            --bg-deep: #050508;
+            --bg-glass: rgba(255, 255, 255, 0.03);
+            --bg-glass-hover: rgba(255, 255, 255, 0.08);
+            --border-glass: rgba(255, 255, 255, 0.06);
+            --border-glass-hover: rgba(0, 212, 255, 0.25);
             --cyan: #00D4FF;
-            --purple: #7B2FF7;
-            --red: #FF6B6B;
-            --gold: #FFD700;
-            --text: #FFFFFF;
-            --text-muted: #888888;
-            --border: #222222;
+            --cyan-glow: rgba(0, 212, 255, 0.3);
+            --purple: #A855F7;
+            --purple-glow: rgba(168, 85, 247, 0.3);
+            --rose: #F43F5E;
+            --rose-glow: rgba(244, 63, 94, 0.3);
+            --amber: #FBBF24;
+            --green: #22C55E;
+            --text: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
+            font-family: var(--font-body);
+            background: var(--bg-deep);
             color: var(--text);
-            line-height: 1.6;
+            min-height: 100vh;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* Animated Background Grid */
-        .bg-grid {
+        /* ========== INTERACTIVE PARTICLE CANVAS ========== */
+        #particle-canvas {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: 0;
-            opacity: 0.03;
-            background-image: 
-                linear-gradient(var(--cyan) 1px, transparent 1px),
-                linear-gradient(90deg, var(--cyan) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridMove 20s linear infinite;
+            pointer-events: none;
         }
 
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        /* Floating Orbs */
+        /* ========== GRADIENT ORBS ========== */
         .orb {
             position: fixed;
             border-radius: 50%;
-            filter: blur(80px);
+            filter: blur(120px);
             pointer-events: none;
-            z-index: 0;
-        }
-        .orb-1 { width: 300px; height: 300px; background: var(--purple); top: 10%; left: 10%; animation: float 8s ease-in-out infinite; }
-        .orb-2 { width: 250px; height: 250px; background: var(--cyan); top: 60%; right: 10%; animation: float 10s ease-in-out infinite reverse; }
-        .orb-3 { width: 200px; height: 200px; background: var(--red); bottom: 10%; left: 40%; animation: float 12s ease-in-out infinite; }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -30px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            position: relative;
             z-index: 1;
+            opacity: 0.4;
+            mix-blend-mode: screen;
+        }
+        .orb-cyan {
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, var(--cyan-glow) 0%, transparent 70%);
+            top: -15%; left: -10%;
+            animation: orbFloat1 20s ease-in-out infinite;
+        }
+        .orb-purple {
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, var(--purple-glow) 0%, transparent 70%);
+            bottom: -25%; right: -15%;
+            animation: orbFloat2 25s ease-in-out infinite;
+        }
+        .orb-rose {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, var(--rose-glow) 0%, transparent 70%);
+            top: 45%; left: 25%;
+            animation: orbFloat3 22s ease-in-out infinite;
         }
 
-        /* Header */
-        .header {
-            text-align: center;
-            padding: 60px 0 40px;
+        @keyframes orbFloat1 {
+            0%, 100% { transform: translate(0,0) scale(1); }
+            33% { transform: translate(80px, 50px) scale(1.15); }
+            66% { transform: translate(-40px, -60px) scale(0.9); }
+        }
+        @keyframes orbFloat2 {
+            0%, 100% { transform: translate(0,0) scale(1); }
+            33% { transform: translate(-60px, -40px) scale(1.2); }
+            66% { transform: translate(50px, 80px) scale(0.85); }
+        }
+        @keyframes orbFloat3 {
+            0%, 100% { transform: translate(0,0) scale(1); }
+            50% { transform: translate(100px, -50px) scale(1.25); }
         }
 
-        .avatar-wrapper {
+        /* ========== NOISE TEXTURE OVERLAY ========== */
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0.025;
+            z-index: 2;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* ========== APPLE-STYLE GLASSMORPHISM ========== */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 4px 30px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-hover {
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .glass-hover:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(0, 212, 255, 0.2);
+            box-shadow: 
+                0 8px 40px rgba(0, 212, 255, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform: translateY(-6px) scale(1.01);
+        }
+
+        .glass-strong {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(60px) saturate(200%);
+            -webkit-backdrop-filter: blur(60px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        /* ========== LAYOUT ========== */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
             position: relative;
-            display: inline-block;
-            margin-bottom: 30px;
+            z-index: 10;
         }
 
-        .avatar {
-            width: 150px;
-            height: 150px;
+        /* ========== APPLE-STYLE DOCK NAV ========== */
+        .nav-dock {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            padding: 12px 24px;
+            border-radius: 24px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .nav-dock:hover {
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        .dock-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 16px;
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .dock-item:hover {
+            color: var(--text);
+            transform: translateY(-8px) scale(1.1);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .dock-item::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            width: 4px; height: 4px;
             border-radius: 50%;
-            border: 3px solid var(--cyan);
+            background: var(--cyan);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .dock-item:hover::after {
+            opacity: 1;
+        }
+
+        .dock-icon {
+            font-size: 1.4rem;
+            transition: transform 0.3s;
+        }
+
+        .dock-label {
+            font-size: 0.65rem;
+            opacity: 0;
+            transform: translateY(4px);
+            transition: all 0.3s;
+        }
+
+        .nav-dock:hover .dock-label {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 0 80px;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(168,85,247,0.08));
+            border: 1px solid rgba(0,212,255,0.15);
+            color: var(--cyan);
+            animation: fadeInUp 1s ease forwards;
+            opacity: 0;
+        }
+
+        .hero-avatar-wrap {
+            position: relative;
+            width: 180px; height: 180px;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s 0.1s ease forwards;
+            opacity: 0;
+        }
+
+        .hero-avatar {
+            width: 100%; height: 100%;
+            border-radius: 50%;
             object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.1);
             position: relative;
             z-index: 2;
+            box-shadow: 0 0 80px rgba(0,212,255,0.15);
+            filter: saturate(1.1) contrast(1.05);
+        }
+
+        .avatar-glow {
+            position: absolute;
+            top: -15px; left: -15px; right: -15px; bottom: -15px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, var(--cyan), var(--purple), var(--rose), var(--cyan));
+            animation: spin 6s linear infinite;
+            opacity: 0.5;
+            filter: blur(12px);
         }
 
         .avatar-ring {
             position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
+            top: -8px; left: -8px; right: -8px; bottom: -8px;
             border-radius: 50%;
             border: 2px solid transparent;
             border-top-color: var(--cyan);
@@ -132,501 +313,730 @@
 
         .avatar-ring-2 {
             position: absolute;
-            top: -20px;
-            left: -20px;
-            right: -20px;
-            bottom: -20px;
+            top: -18px; left: -18px; right: -18px; bottom: -18px;
             border-radius: 50%;
-            border: 2px solid transparent;
-            border-bottom-color: var(--red);
+            border: 1.5px solid transparent;
+            border-bottom-color: var(--rose);
             border-left-color: var(--cyan);
-            animation: spin 6s linear infinite reverse;
+            animation: spin 7s linear infinite reverse;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-        .title {
-            font-size: 3rem;
+        .hero-title {
+            font-size: clamp(3rem, 7vw, 5.5rem);
             font-weight: 800;
-            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--red));
+            line-height: 1.05;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--text) 0%, var(--cyan) 40%, var(--purple) 80%, var(--rose) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
+            animation: fadeInUp 1s 0.2s ease forwards;
+            opacity: 0;
+            letter-spacing: -3px;
         }
 
-        .subtitle {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 25px;
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s 0.3s ease forwards;
+            opacity: 0;
         }
 
-        .typing-text {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.2rem;
+        .hero-typing {
+            font-family: var(--font-mono);
+            font-size: 1rem;
             color: var(--cyan);
-            height: 30px;
-            overflow: hidden;
+            min-height: 28px;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s 0.4s ease forwards;
+            opacity: 0;
         }
-
-        .typing-text::after {
+        .hero-typing::after {
             content: '|';
-            animation: blink 1s infinite;
+            animation: blink 1s step-end infinite;
+            color: var(--cyan);
         }
+        @keyframes blink { 50% { opacity: 0; } }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        /* Badges */
-        .badges {
+        .hero-cta {
             display: flex;
+            gap: 16px;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 12px;
-            margin: 30px 0;
+            animation: fadeInUp 1s 0.5s ease forwards;
+            opacity: 0;
         }
 
-        .badge {
+        .btn {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            padding: 8px 16px;
-            border-radius: 20px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            font-size: 0.9rem;
+            gap: 8px;
+            padding: 14px 32px;
+            border-radius: 16px;
             font-weight: 600;
-            transition: all 0.3s ease;
+            font-size: 0.95rem;
             text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-body);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            color: var(--bg-deep);
+            box-shadow: 0 4px 30px rgba(0, 212, 255, 0.25);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-glass {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--text);
         }
-
-        .badge:hover {
-            transform: translateY(-2px);
-            border-color: var(--cyan);
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 212, 255, 0.3);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.1);
         }
 
-        .badge-website { border-color: var(--cyan); color: var(--cyan); }
-        .badge-views { border-color: var(--purple); color: var(--purple); }
-        .badge-stars { border-color: var(--gold); color: var(--gold); }
-        .badge-followers { border-color: var(--cyan); color: var(--cyan); }
+        .scroll-hint {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
 
-        /* Cards */
+        /* ========== SECTIONS ========== */
         .section {
-            margin: 50px 0;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 100px;
+            background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(168,85,247,0.08));
+            border: 1px solid rgba(0,212,255,0.12);
+            color: var(--cyan);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
         }
 
         .section-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1.5px;
         }
 
-        .section-title span {
-            font-size: 1.8rem;
+        .section-desc {
+            color: var(--text-secondary);
+            max-width: 520px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            line-height: 1.7;
         }
 
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+        /* ========== ABOUT CARD ========== */
+        .about-card {
+            border-radius: 32px;
+            padding: 48px;
         }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--cyan), var(--purple), var(--red));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--purple);
-            box-shadow: 0 10px 40px rgba(123, 47, 247, 0.15);
-        }
-
-        /* About Card */
         .about-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
         }
 
         .about-item {
             display: flex;
             align-items: flex-start;
-            gap: 10px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
+            gap: 14px;
+            padding: 20px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .about-item:hover {
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(0,212,255,0.1);
+            transform: translateX(4px);
         }
 
-        .about-item .key {
-            color: var(--cyan);
-            min-width: 120px;
+        .about-icon {
+            font-size: 1.4rem;
             flex-shrink: 0;
+            margin-top: 2px;
         }
 
-        .about-item .value {
-            color: var(--text-muted);
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
 
-        .about-item a {
+        .about-key {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .about-value {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .about-value a {
             color: var(--cyan);
             text-decoration: none;
+            border-bottom: 1px dotted rgba(0,212,255,0.4);
+            transition: all 0.3s;
+        }
+        .about-value a:hover {
+            color: var(--text);
+            border-bottom-style: solid;
         }
 
-        .about-item a:hover {
-            text-decoration: underline;
-        }
-
-        /* Projects Grid */
+        /* ========== PROJECTS ========== */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 24px;
         }
 
         .project-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 25px;
-            transition: all 0.3s ease;
+            border-radius: 28px;
+            padding: 36px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--cyan);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyan), var(--purple), var(--rose));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card.live::after {
+            content: '';
+            position: absolute;
+            top: 24px; right: 24px;
+            width: 10px; height: 10px;
+            background: var(--green);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--green);
+            animation: livePulse 2.5s infinite;
+        }
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--green); }
+            50% { opacity: 0.4; box-shadow: 0 0 25px var(--green); }
         }
 
         .project-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .project-icon-main {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
         }
 
         .project-title {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            color: var(--cyan);
+            margin-bottom: 6px;
         }
 
         .project-status {
-            font-size: 0.75rem;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
         }
 
         .status-live {
-            background: rgba(0, 212, 255, 0.15);
-            color: var(--cyan);
-            border: 1px solid var(--cyan);
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--green);
+            border: 1px solid rgba(34, 197, 94, 0.2);
         }
-
         .status-dev {
-            background: rgba(255, 215, 0, 0.15);
-            color: var(--gold);
-            border: 1px solid var(--gold);
+            background: rgba(251, 191, 36, 0.1);
+            color: var(--amber);
+            border: 1px solid rgba(251, 191, 36, 0.2);
         }
 
         .project-desc {
-            color: var(--text-muted);
+            color: var(--text-secondary);
             font-size: 0.95rem;
-            margin-bottom: 15px;
-            line-height: 1.6;
+            line-height: 1.7;
+            margin-bottom: 24px;
         }
 
         .project-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 15px;
+            margin-bottom: 28px;
         }
 
         .tag {
+            padding: 6px 14px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
             font-size: 0.75rem;
-            padding: 4px 10px;
-            border-radius: 6px;
-            background: var(--bg-hover);
+            font-family: var(--font-mono);
             color: var(--text-muted);
-            font-family: 'JetBrains Mono', monospace;
+            transition: all 0.3s;
+        }
+        .tag:hover {
+            background: rgba(0,212,255,0.06);
+            border-color: rgba(0,212,255,0.15);
+            color: var(--cyan);
         }
 
         .project-links {
             display: flex;
-            gap: 10px;
+            gap: 12px;
         }
 
         .project-link {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            padding: 8px 14px;
-            border-radius: 8px;
-            background: var(--bg-hover);
+            gap: 6px;
+            padding: 10px 20px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
             color: var(--text);
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 600;
-            transition: all 0.3s ease;
-            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
-
         .project-link:hover {
-            background: var(--cyan);
-            color: var(--bg);
-            border-color: var(--cyan);
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            color: var(--bg-deep);
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.2);
         }
 
-        /* Coming Soon Banner */
-        .coming-soon-banner {
+        /* ========== COMING SOON BANNER ========== */
+        .coming-banner {
             text-align: center;
-            padding: 20px;
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(123, 47, 247, 0.1));
-            border: 1px solid var(--cyan);
-            border-radius: 12px;
-            margin-bottom: 25px;
+            padding: 18px 40px;
+            border-radius: 20px;
+            margin-bottom: 32px;
+            background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(168,85,247,0.06));
+            border: 1px solid rgba(0,212,255,0.12);
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
-            font-size: 0.9rem;
-            animation: pulse 2s ease-in-out infinite;
+            font-size: 0.85rem;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(0,212,255,0.05); }
+            50% { box-shadow: 0 0 50px rgba(0,212,255,0.12); }
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        /* Tech Stack */
+        /* ========== TECH STACK ========== */
         .tech-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-            gap: 15px;
-            justify-items: center;
+            grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+            gap: 16px;
         }
 
         .tech-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
-            padding: 15px;
-            border-radius: 12px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-            width: 100%;
+            gap: 10px;
+            padding: 24px 12px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.04);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: default;
         }
-
         .tech-item:hover {
-            transform: translateY(-5px) scale(1.05);
-            border-color: var(--cyan);
-            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.15);
+            background: rgba(0,212,255,0.04);
+            border-color: rgba(0,212,255,0.15);
+            transform: translateY(-8px) scale(1.08);
+            box-shadow: 0 15px 40px rgba(0,212,255,0.08);
         }
 
-        .tech-icon {
+        .tech-icon-img {
             width: 40px;
             height: 40px;
             object-fit: contain;
+            filter: grayscale(0.2) brightness(1.1);
+            transition: all 0.4s;
+        }
+        .tech-item:hover .tech-icon-img {
+            filter: grayscale(0) brightness(1.2);
+            transform: scale(1.1);
         }
 
         .tech-name {
             font-size: 0.7rem;
             color: var(--text-muted);
-            font-family: 'JetBrains Mono', monospace;
+            font-family: var(--font-mono);
+            font-weight: 500;
         }
 
-        /* Connect Section */
+        /* ========== CONNECT ========== */
         .connect-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .connect-card {
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .connect-btn {
-            display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border-radius: 12px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            color: var(--text);
+            gap: 16px;
+            padding: 24px 28px;
+            border-radius: 20px;
             text-decoration: none;
+            color: var(--text);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .connect-card:hover {
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .connect-icon-box {
+            width: 48px; height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.4s;
+        }
+
+        .connect-card:hover .connect-icon-box {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .connect-text {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .connect-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
             font-weight: 600;
-            transition: all 0.3s ease;
         }
 
-        .connect-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.2);
+        .connect-name {
+            font-weight: 700;
+            font-size: 1.05rem;
         }
 
-        .connect-btn.website:hover { border-color: var(--cyan); color: var(--cyan); }
-        .connect-btn.github:hover { border-color: #fff; }
+        .connect-arrow {
+            margin-left: auto;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        .connect-card:hover .connect-arrow {
+            color: var(--cyan);
+            transform: translateX(4px);
+        }
 
-        /* Footer */
+        /* ========== FOOTER ========== */
         .footer {
             text-align: center;
-            padding: 40px 0;
-            margin-top: 50px;
-            border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            padding: 80px 0 120px;
+            border-top: 1px solid rgba(255,255,255,0.04);
+            margin-top: 60px;
         }
 
         .footer-quote {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--text), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
             font-style: italic;
-            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .footer-tagline {
+            color: var(--text-secondary);
             font-size: 1rem;
-            color: var(--text);
+            margin-bottom: 24px;
         }
 
-        /* Animations on scroll */
-        .fade-in {
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            animation: fadeIn 0.8s ease forwards;
+            transform: translateY(50px);
+            transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        .delay-5 { animation-delay: 0.5s; }
-
-        /* Responsive */
-        @media (max-width: 600px) {
-            .title { font-size: 2rem; }
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .nav-dock { padding: 10px 16px; gap: 4px; }
+            .dock-item { padding: 6px 10px; }
+            .dock-label { display: none; }
+            .hero { padding: 80px 0 60px; }
             .projects-grid { grid-template-columns: 1fr; }
             .about-grid { grid-template-columns: 1fr; }
-            .tech-grid { grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); }
+            .tech-grid { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); }
+            .connect-grid { grid-template-columns: 1fr; }
+            .section { padding: 60px 0; }
         }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
+        /* ========== SCROLLBAR ========== */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(var(--purple), var(--cyan)); border-radius: 3px; }
     </style>
 </head>
 <body>
-    <div class="bg-grid"></div>
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+    <!-- Interactive Particle Canvas -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Gradient Orbs -->
+    <div class="orb orb-cyan"></div>
+    <div class="orb orb-purple"></div>
+    <div class="orb orb-rose"></div>
+
+    <!-- Noise Texture -->
+    <div class="noise-overlay"></div>
+
+    <!-- Apple-Style Dock Navigation -->
+    <nav class="nav-dock" id="navdock">
+        <a href="#hero" class="dock-item">
+            <span class="dock-icon">🏠</span>
+            <span class="dock-label">Home</span>
+        </a>
+        <a href="#about" class="dock-item">
+            <span class="dock-icon">🩺</span>
+            <span class="dock-label">About</span>
+        </a>
+        <a href="#projects" class="dock-item">
+            <span class="dock-icon">🚀</span>
+            <span class="dock-label">Projects</span>
+        </a>
+        <a href="#tech" class="dock-item">
+            <span class="dock-icon">🛠️</span>
+            <span class="dock-label">Tech</span>
+        </a>
+        <a href="#connect" class="dock-item">
+            <span class="dock-icon">🌐</span>
+            <span class="dock-label">Connect</span>
+        </a>
+    </nav>
 
     <div class="container">
-        <!-- Header -->
-        <header class="header fade-in">
-            <div class="avatar-wrapper">
+        <!-- Hero -->
+        <section class="hero" id="hero">
+            <div class="hero-badge">
+                <span>🩺</span> Doctor by Profession · Developer by Passion
+            </div>
+
+            <div class="hero-avatar-wrap">
+                <div class="avatar-glow"></div>
                 <div class="avatar-ring"></div>
                 <div class="avatar-ring-2"></div>
-                <img src="https://avatars.githubusercontent.com/u/0014niti" alt="Dr.N" class="avatar" onerror="this.src='https://ui-avatars.com/api/?name=Dr+N&background=00D4FF&color=fff&size=150'">
+                <img src="https://raw.githubusercontent.com/0014niti/0014niti/main/drn_avatar.png" alt="Dr.N" class="hero-avatar">
             </div>
 
-            <h1 class="title">Dr.N</h1>
-            <p class="subtitle">Cure & Code | Developer & Medical Innovator</p>
-            <div class="typing-text" id="typing"></div>
+            <h1 class="hero-title">Dr.N</h1>
+            <p class="hero-subtitle">Developer & Medical Innovator</p>
+            <div class="hero-typing" id="typing"></div>
 
-            <div class="badges">
-                <a href="https://p2pcompanion.com" class="badge badge-website" target="_blank">
-                    <span>🌐</span> p2pcompanion.com
+            <div class="hero-cta">
+                <a href="https://p2pcompanion.com" class="btn btn-primary" target="_blank">
+                    <span>🚀</span> Visit p2pcompanion.com
                 </a>
-               
+                <a href="https://github.com/0014niti" class="btn btn-glass" target="_blank">
+                    <span>⚡</span> GitHub Profile
+                </a>
+                <a href="https://in.linkedin.com/in/drnitz" class="connect-card glass glass-hover" target="_blank">
+                    <span>🚀</span> Visit LinkedIn 
+                </a>
             </div>
-        </header>
+
+            <div class="scroll-hint">
+                <span>Scroll to explore</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 5v14M5 12l7 7 7-7"/>
+                </svg>
+            </div>
+        </section>
 
         <!-- About -->
-        <section class="section fade-in delay-1">
-            <h2 class="section-title"><span>🩺</span> About Dr.N</h2>
-            <div class="card">
+        <section class="section" id="about">
+            <div class="section-header reveal">
+                <div class="section-label">Identity</div>
+                <h2 class="section-title">About Dr.N</h2>
+                <p class="section-desc">Bridging the gap between medicine and technology to build solutions that heal and empower.</p>
+            </div>
+
+            <div class="about-card glass glass-hover reveal">
                 <div class="about-grid">
                     <div class="about-item">
-                        <span class="key">👤 name:</span>
-                        <span class="value">Dr.N (Niti)</span>
+                        <span class="about-icon">👤</span>
+                        <div class="about-content">
+                            <span class="about-key">Name</span>
+                            <span class="about-value">Dr.N (Niti)</span>
+                        </div>
                     </div>
                     <div class="about-item">
-                        <span class="key">🎓 profession:</span>
-                        <span class="value">Doctor by profession</span>
+                        <span class="about-icon">🎓</span>
+                        <div class="about-content">
+                            <span class="about-key">Profession</span>
+                            <span class="about-value">Doctor by profession</span>
+                        </div>
                     </div>
                     <div class="about-item">
-                        <span class="key">💻 passion:</span>
-                        <span class="value">Developer & Web3 Builder</span>
+                        <span class="about-icon">💻</span>
+                        <div class="about-content">
+                            <span class="about-key">Passion</span>
+                            <span class="about-value">Developer & Web3 Builder</span>
+                        </div>
                     </div>
                     <div class="about-item">
-                        <span class="key">🌍 location:</span>
-                        <span class="value">Earth</span>
+                        <span class="about-icon">🌍</span>
+                        <div class="about-content">
+                            <span class="about-key">Location</span>
+                            <span class="about-value">Earth</span>
+                        </div>
                     </div>
                     <div class="about-item">
-                        <span class="key">🌐 website:</span>
-                        <span class="value"><a href="https://p2pcompanion.com/about" target="_blank">p2pcompanion.com</a></span>
+                        <span class="about-icon">🌐</span>
+                        <div class="about-content">
+                            <span class="about-key">Website</span>
+                            <span class="about-value"><a href="https://p2pcompanion.com/about" target="_blank">p2pcompanion</a></span>
+                        </div>
                     </div>
                     <div class="about-item">
-                        <span class="key">🎯 mission:</span>
-                        <span class="value">"Healing through medicine, empowering through code"</span>
+                        <span class="about-icon">🎯</span>
+                        <div class="about-content">
+                            <span class="about-key">Mission</span>
+                            <span class="about-value">"Healing through medicine, empowering through code"</span>
+                        </div>
                     </div>
                     <div class="about-item">
-                        <span class="key">🔭 building:</span>
-                        <span class="value">p2pcompanion.com, Med Reminder, Med Assist</span>
+                        <span class="about-icon">🔭</span>
+                        <div class="about-content">
+                            <span class="about-key">Building</span>
+                            <span class="about-value">p2pcompanion.com, Med Reminder, Med Assist</span>
+                        </div>
                     </div>
                     <div class="about-item">
-                        <span class="key">⚡ interests:</span>
-                        <span class="value">[HealthTech, Web3, Open Source, P2P, Medical Innovation]</span>
+                        <span class="about-icon">⚡</span>
+                        <div class="about-content">
+                            <span class="about-key">Interests</span>
+                            <span class="about-value">HealthTech, Web3, Open Source, P2P, Medical Innovation</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Live Projects -->
-        <section class="section fade-in delay-2">
-            <h2 class="section-title"><span>🚀</span> Live Projects</h2>
+        <section class="section" id="projects">
+            <div class="section-header reveal">
+                <div class="section-label">Portfolio</div>
+                <h2 class="section-title">Live Projects</h2>
+                <p class="section-desc">Real-world applications built with modern technologies and deployed to production.</p>
+            </div>
+
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card glass glass-hover live reveal">
                     <div class="project-header">
-                        <span class="project-title">🌐 p2pcompanion.com</span>
+                        <div>
+                            <div class="project-icon-main">🌐</div>
+                            <div class="project-title">p2pcompanion.com</div>
+                        </div>
                         <span class="project-status status-live">Live</span>
                     </div>
-                    <p class="project-desc">A peer-to-peer companion platform connecting people through decentralized networks. Built with modern web technologies and Web3 integration.</p>
+                    <p class="project-desc">A peer-to-peer companion Terminal helping crypto P2P traders and connecting people through decentralized networks. Built with modern Nostr and future Web3 integration.</p>
                     <div class="project-tags">
                         <span class="tag">Next.js</span>
                         <span class="tag">TypeScript</span>
@@ -639,9 +1049,12 @@
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card glass glass-hover live reveal">
                     <div class="project-header">
-                        <span class="project-title">📱 p2p-mobile</span>
+                        <div>
+                            <div class="project-icon-main">📱</div>
+                            <div class="project-title">p2p-mobile</div>
+                        </div>
                         <span class="project-status status-live">Live</span>
                     </div>
                     <p class="project-desc">Mobile version of p2pcompanion.com — bringing P2P connectivity to your pocket. Cross-platform mobile experience.</p>
@@ -651,7 +1064,7 @@
                         <span class="tag">Mobile</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://play.google.com/store/apps/details?id=p2p.mobile" class="project-link" target="_blank">🚀 Visit Site</a>
+                        <a href="https://play.google.com/store/apps/details?id=p2p.mobile" class="project-link" target="_blank">🚀 Playstore</a>
                         <a href="https://github.com/0014niti/p2p-mobile" class="project-link" target="_blank">📁 Repo</a>
                     </div>
                 </div>
@@ -659,14 +1072,23 @@
         </section>
 
         <!-- Coming Soon -->
-        <section class="section fade-in delay-3">
-            <h2 class="section-title"><span>🔮</span> Coming Soon — HealthTech Suite</h2>
-            <div class="coming-soon-banner">🚧 Building the Future of HealthTech</div>
+        <section class="section">
+            <div class="section-header reveal">
+                <div class="section-label">Roadmap</div>
+                <h2 class="section-title">HealthTech Suite</h2>
+                <p class="section-desc">The next generation of medical applications designed by a doctor who understands real patient needs.</p>
+            </div>
+
+            <div class="coming-banner reveal">🚧 Building the Future of HealthTech</div>
+
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card glass glass-hover reveal">
                     <div class="project-header">
-                        <span class="project-title">💊 Med Reminder</span>
-                        <span class="project-status status-dev">In Development</span>
+                        <div>
+                            <div class="project-icon-main">💊</div>
+                            <div class="project-title">Med Reminder</div>
+                        </div>
+                        <span class="project-status status-dev">In Dev</span>
                     </div>
                     <p class="project-desc">Smart medication tracking & reminder system designed by a doctor who truly understands patient needs. Never miss a dose again.</p>
                     <div class="project-tags">
@@ -675,13 +1097,18 @@
                         <span class="tag">Schedule</span>
                         <span class="tag">Caregiver Alerts</span>
                     </div>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">🩺 Intelligent scheduling, dosage tracking, and caregiver alerts.</p>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.04);">
+                        🩺 Intelligent scheduling, dosage tracking, and caregiver alerts.
+                    </p>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card glass glass-hover reveal">
                     <div class="project-header">
-                        <span class="project-title">🏥 Med Assist</span>
-                        <span class="project-status status-dev">In Development</span>
+                        <div>
+                            <div class="project-icon-main">🏥</div>
+                            <div class="project-title">Med Assist</div>
+                        </div>
+                        <span class="project-status status-dev">In Dev</span>
                     </div>
                     <p class="project-desc">AI-powered medical assistant for preliminary diagnostics, symptom checking, and health guidance. Your pocket doctor.</p>
                     <div class="project-tags">
@@ -690,120 +1117,291 @@
                         <span class="tag">Diagnostics</span>
                         <span class="tag">Health Records</span>
                     </div>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">🤖 Symptom analysis, health records, and smart recommendations.</p>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.04);">
+                        🤖 Symptom analysis, health records, and smart recommendations.
+                    </p>
                 </div>
             </div>
         </section>
 
         <!-- Tech Stack -->
-        <section class="section fade-in delay-4">
-            <h2 class="section-title"><span>🛠️</span> Tech Arsenal</h2>
-            <div class="card">
+        <section class="section" id="tech">
+            <div class="section-header reveal">
+                <div class="section-label">Toolkit</div>
+                <h2 class="section-title">Tech Arsenal</h2>
+                <p class="section-desc">The technologies and tools I use to bring ideas to life.</p>
+            </div>
+
+            <div class="glass glass-hover reveal" style="border-radius: 32px; padding: 48px;">
                 <div class="tech-grid">
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="tech-icon" alt="HTML"><span class="tech-name">HTML</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="tech-icon" alt="CSS"><span class="tech-name">CSS</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="tech-icon" alt="JS"><span class="tech-name">JS</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" class="tech-icon" alt="TS"><span class="tech-name">TS</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="tech-icon" alt="React"><span class="tech-name">React</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" class="tech-icon" alt="Next.js"><span class="tech-name">Next.js</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="tech-icon" alt="Node"><span class="tech-name">Node</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="tech-icon" alt="Python"><span class="tech-name">Python</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="tech-icon" alt="Git"><span class="tech-name">Git</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" class="tech-icon" alt="GitHub"><span class="tech-name">GitHub</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" class="tech-icon" alt="VSCode"><span class="tech-name">VSCode</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="tech-icon" alt="Docker"><span class="tech-name">Docker</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" class="tech-icon" alt="Linux"><span class="tech-name">Linux</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" class="tech-icon" alt="MongoDB"><span class="tech-name">MongoDB</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="tech-icon" alt="PostgreSQL"><span class="tech-name">PostgreSQL</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" class="tech-icon" alt="Figma"><span class="tech-name">Figma</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="tech-icon" alt="Tailwind"><span class="tech-name">Tailwind</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ethereum/ethereum-original.svg" class="tech-icon" alt="Ethereum"><span class="tech-name">Web3</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="tech-icon-img" alt="HTML"><span class="tech-name">HTML</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="tech-icon-img" alt="CSS"><span class="tech-name">CSS</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="tech-icon-img" alt="JS"><span class="tech-name">JS</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" class="tech-icon-img" alt="TS"><span class="tech-name">TS</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="tech-icon-img" alt="React"><span class="tech-name">React</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" class="tech-icon-img" alt="Next.js"><span class="tech-name">Next.js</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="tech-icon-img" alt="Node"><span class="tech-name">Node</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="tech-icon-img" alt="Python"><span class="tech-name">Python</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="tech-icon-img" alt="Git"><span class="tech-name">Git</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" class="tech-icon-img" alt="GitHub"><span class="tech-name">GitHub</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" class="tech-icon-img" alt="VSCode"><span class="tech-name">VSCode</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="tech-icon-img" alt="Docker"><span class="tech-name">Docker</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" class="tech-icon-img" alt="Linux"><span class="tech-name">Linux</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" class="tech-icon-img" alt="MongoDB"><span class="tech-name">MongoDB</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="tech-icon-img" alt="PostgreSQL"><span class="tech-name">PostgreSQL</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" class="tech-icon-img" alt="Figma"><span class="tech-name">Figma</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="tech-icon-img" alt="Tailwind"><span class="tech-name">Tailwind</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ethereum/ethereum-original.svg" class="tech-icon-img" alt="Web3"><span class="tech-name">Web3</span></div>
                 </div>
             </div>
         </section>
 
         <!-- Connect -->
-        <section class="section fade-in delay-5">
-            <h2 class="section-title"><span>🌐</span> Connect With Me</h2>
-            <div class="connect-grid">
-                <a href="https://p2pcompanion.com" class="connect-btn website" target="_blank">
-                    <span>🌐</span> p2pcompanion.com
+        <section class="section" id="connect">
+            <div class="section-header reveal">
+                <div class="section-label">Let's Talk</div>
+                <h2 class="section-title">Connect With Me</h2>
+                <p class="section-desc">Open to collaborations, HealthTech discussions, and Web3 opportunities.</p>
+            </div>
+
+            <div class="connect-grid reveal">
+                <a href="https://p2pcompanion.com" class="connect-card glass glass-hover" target="_blank">
+                    <div class="connect-icon-box">🌐</div>
+                    <div class="connect-text">
+                        <span class="connect-label">Website</span>
+                        <span class="connect-name">p2pcompanion.com</span>
+                    </div>
+                    <span class="connect-arrow">→</span>
                 </a>
-                <a href="https://github.com/0014niti" class="connect-btn github" target="_blank">
-                    <span>⚡</span> GitHub
+                <a href="https://github.com/0014niti" class="connect-card glass glass-hover" target="_blank">
+                    <div class="connect-icon-box">⚡</div>
+                    <div class="connect-text">
+                        <span class="connect-label">Code</span>
+                        <span class="connect-name">GitHub</span>
+                    </div>
+                    <span class="connect-arrow">→</span>
+                </a>
+                <a href="https://in.linkedin.com/in/drnitz" class="connect-card glass glass-hover" target="_blank">
+                    <div class="connect-icon-box">💼</div>
+                    <div class="connect-text">
+                        <span class="connect-label">Professional</span>
+                        <span class="connect-name">LinkedIn</span>
+                    </div>
+                    <span class="connect-arrow">→</span>
+                </a>
+                <a href="https://x.com/14itishD" class="connect-card glass glass-hover" target="_blank">
+                    <div class="connect-icon-box">🐦</div>
+                    <div class="connect-text">
+                        <span class="connect-label">Social</span>
+                        <span class="connect-name">Twitter / X</span>
+                    </div>
+                    <span class="connect-arrow">→</span>
                 </a>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="footer fade-in delay-5">
+        <footer class="footer reveal">
             <p class="footer-quote">"Healing through medicine, empowering through code"</p>
-            <p>Cure. Code. Create. 🚀</p>
-            <p style="margin-top: 15px; font-size: 0.8rem;">© 2026 Dr.N | Built with 💙 & ☕</p>
+            <p class="footer-tagline">Cure. Code. Create. 🚀</p>
+            <p class="footer-copy">© 2026 Dr.N · Built with precision & passion</p>
         </footer>
     </div>
 
     <script>
-        // Typing Animation
+        // ========== TYPING ANIMATION ==========
         const texts = [
             "Building p2pcompanion.com 🚀",
             "Crafting Med Reminder & Med Assist 🩺",
             "Bridging Medicine & Technology 💻",
             "Open Source | Web3 | HealthTech 🌟"
         ];
-        let textIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingElement = document.getElementById('typing');
+        let textIndex = 0, charIndex = 0, isDeleting = false;
+        const typingEl = document.getElementById('typing');
 
         function type() {
-            const currentText = texts[textIndex];
+            const current = texts[textIndex];
+            typingEl.textContent = isDeleting 
+                ? current.substring(0, charIndex - 1) 
+                : current.substring(0, charIndex + 1);
 
-            if (isDeleting) {
-                typingElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-            }
+            let speed = isDeleting ? 40 : 90;
 
-            let typeSpeed = isDeleting ? 50 : 100;
-
-            if (!isDeleting && charIndex === currentText.length) {
-                typeSpeed = 2000;
+            if (!isDeleting && charIndex === current.length) {
+                speed = 2000;
                 isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 textIndex = (textIndex + 1) % texts.length;
-                typeSpeed = 500;
+                speed = 400;
             }
 
-            setTimeout(type, typeSpeed);
+            charIndex += isDeleting ? -1 : 1;
+            setTimeout(type, speed);
         }
-
         type();
 
-        // Smooth scroll animation for cards
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // ========== INTERACTIVE PARTICLE CANVAS ==========
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: null, y: null };
 
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.color = Math.random() > 0.5 ? 'rgba(0, 212, 255, ' : 'rgba(168, 85, 247, ';
+                this.opacity = Math.random() * 0.4 + 0.1;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (mouse.x != null) {
+                    const dx = mouse.x - this.x;
+                    const dy = mouse.y - this.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 180) {
+                        const force = (180 - distance) / 180;
+                        this.x -= dx * force * 0.015;
+                        this.y -= dy * force * 0.015;
+                    }
+                }
+
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color + this.opacity + ')';
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.min(window.innerWidth / 10, 100);
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function connectParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 140) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(0, 212, 255, ${0.06 * (1 - distance / 140)})`;
+                        ctx.lineWidth = 0.4;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+
+                if (mouse.x != null) {
+                    const dx = particles[i].x - mouse.x;
+                    const dy = particles[i].y - mouse.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 220) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(168, 85, 247, ${0.12 * (1 - distance / 220)})`;
+                        ctx.lineWidth = 0.6;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            connectParticles();
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // ========== SCROLL REVEAL ==========
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('active');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
 
-        document.querySelectorAll('.card, .project-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s ease';
-            observer.observe(el);
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // ========== SMOOTH SCROLL FOR DOCK ==========
+        document.querySelectorAll('.dock-item').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ========== DOCK MAGNIFICATION EFFECT ==========
+        const dock = document.getElementById('navdock');
+        const dockItems = dock.querySelectorAll('.dock-item');
+
+        dock.addEventListener('mousemove', (e) => {
+            const dockRect = dock.getBoundingClientRect();
+            const mouseX = e.clientX - dockRect.left;
+
+            dockItems.forEach(item => {
+                const itemRect = item.getBoundingClientRect();
+                const itemCenter = itemRect.left + itemRect.width / 2 - dockRect.left;
+                const distance = Math.abs(mouseX - itemCenter);
+                const maxDist = 150;
+
+                if (distance < maxDist) {
+                    const scale = 1 + (1 - distance / maxDist) * 0.3;
+                    item.style.transform = `scale(${scale})`;
+                } else {
+                    item.style.transform = 'scale(1)';
+                }
+            });
+        });
+
+        dock.addEventListener('mouseleave', () => {
+            dockItems.forEach(item => {
+                item.style.transform = 'scale(1)';
+            });
         });
     </script>
 </body>
-                          </html>
+</html>
