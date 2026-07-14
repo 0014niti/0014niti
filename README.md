@@ -1,7 +1,8 @@
 <!-- 3D ANIMATED HEADER -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:FF6B6B,50:7B2FF7,100:00D4FF&height=250&section=header&text=Dr.N%20%7C%20Code%20%26%20Cure&fontSize=45&fontColor=ffffff&animation=twinkling&fontAlignY=35&desc=Full-Stack%20Developer%20%7C%20Medical%20Innovator%20%7C%20Web3%20Builder&descSize=18&descAlignY=55&descAlign=50" />
+  <img src="https://raw.githubusercontent.com/0014niti/0014niti/main/medical-animation.svg" width="100%" alt="3D Medical Animation" />
 </p>
+
 
 <!-- TYPING ANIMATION -->
 <p align="center">
