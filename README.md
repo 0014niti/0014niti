@@ -6,7 +6,7 @@
 
 <!-- TYPING ANIMATION -->
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=28&duration=3000&pause=800&color=FF6B6B&center=true&vCenter=true&width=700&lines=Building+p2pcompanion.com+%F0%9F%9A%80;Crafting+Med+Reminder+%26+Med+Assist+%F0%9F%A9%BA;Bridging+Medicine+%26+Technology+%F0%9F%92%BB;Open+Source+%7C+Web3+%7C+HealthTech+%F0%9F%8C%9F" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=28&duration=3000&pause=800&color=FF6B6B&center=true&vCenter=true&width=700&lines=Building+p2pcompanion.com;Full-Stack+Developer;Web3+Builder;Healthcare+Innovation" alt="Typing Animation" />
 </p>
 
 <!-- BADGES ROW -->
@@ -131,12 +131,12 @@
 ## 📊 GitHub Analytics
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=0014niti&show_icons=true&theme=radical&hide_border=true&count_private=true&include_all_commits=true&bg_color=0A0A0A&title_color=FF6B6B&icon_color=7B2FF7&text_color=FFFFFF" width="49%" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=0014niti&theme=radical&hide_border=true&background=0A0A0A&stroke=00D4FF&ring=7B2FF7&fire=FF6B6B&currStreakNum=00D4FF&sideNums=7B2FF7&currStreakLabel=00D4FF&sideLabels=FFFFFF" width="49%" />
+  <img src="https://github-readme-stats.vercel.app/api?username=0014niti&show_icons=true&theme=radical&hide_border=true&count_private=true&include_all_commits=true&bg_color=0A0A0A&title_color=FF6B6B&text_color=FFFFFF&icon_color=00D4FF" alt="GitHub Stats" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=0014niti&theme=radical&hide_border=true&background=0A0A0A&stroke=00D4FF&ring=7B2FF7&fire=FF6B6B&currStreakNum=00D4FF&sideNums=7B2FF7" alt="Streak Stats" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=0014niti&layout=compact&theme=radical&hide_border=true&bg_color=0A0A0A&title_color=FF6B6B&text_color=FFFFFF&langs_count=10" width="49%" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=0014niti&layout=compact&theme=radical&hide_border=true&bg_color=0A0A0A&title_color=FF6B6B&text_color=FFFFFF&langs_count=10" alt="Top Languages" width="49%" />
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=0014niti&theme=react-dark&hide_border=true&bg_color=0A0A0A&color=00D4FF&line=7B2FF7&point=FF6B6B" width="49%" />
 </p>
 
@@ -177,5 +177,5 @@
 
 <!-- FOOTER WAVE -->
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:7B2FF7,50:FF6B6B,100:00D4FF&height=150&section=footer&text=Code.%20Cure.%20Create.&fontSize=24&fontColor=ffffff&animation=twinkling" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:7B2FF7,50:FF6B6B,100:00D4FF&height=150&section=footer&text=Code.%20Cure.%20Create.&fontSize=24&fontColor=ffffff&animation=twinkling" alt="Footer Wave" />
 </p>
