@@ -15,8 +15,6 @@
     <img src="https://img.shields.io/badge/🌐_p2pcompanion.com-00D4FF?style=for-the-badge&logo=google-chrome&logoColor=white&labelColor=0A0A0A" alt="Website" />
   </a>
   <img src="https://komarev.com/ghpvc/?username=0014niti&label=👁️%20Profile%20Views&color=7B2FF7&style=for-the-badge" alt="Profile Views" />
-  <img src="https://img.shields.io/github/stars/0014niti?label=⭐%20Stars&color=FFD700&style=for-the-badge&labelColor=0A0A0A" alt="Stars" />
-  <img src="https://img.shields.io/github/followers/0014niti?label=👥%20Followers&color=00D4FF&style=for-the-badge&labelColor=0A0A0A" alt="Followers" />
 </p>
 
 ---
@@ -26,7 +24,7 @@
 ```yaml
 👤 name: Dr.N (Niti)
 🎓 profession: Doctor by profession
-💻 passion: Full-Stack Developer & Web3 Builder
+💻 passion: GP, Developer & Web3 Builder
 🌍 location: Earth
 🌐 website: https://p2pcompanion.com
 🎯 mission: "Healing through medicine, empowering through code"
@@ -117,15 +115,6 @@
     </td>
   </tr>
 </table>
-
----
-
-## 🎮 3D Contribution Graph
-
-<p align="center">
-  <img src="./profile-3d-contrib/profile-night-rainbow.svg" width="100%" alt="3D Contribution Graph" />
-</p>
-
 ---
 
 ## 📊 GitHub Analytics
@@ -139,15 +128,6 @@
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=0014niti&layout=compact&theme=radical&hide_border=true&bg_color=0A0A0A&title_color=FF6B6B&text_color=FFFFFF&langs_count=10" alt="Top Languages" width="49%" />
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=0014niti&theme=react-dark&hide_border=true&bg_color=0A0A0A&color=00D4FF&line=7B2FF7&point=FF6B6B" width="49%" />
 </p>
-
----
-
-## 🏆 Achievements & Trophies
-
-<p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=0014niti&theme=radical&no-frame=true&margin-w=15&margin-h=15&column=7&bg_color=0A0A0A" alt="GitHub Trophies" />
-</p>
-
 ---
 
 ## 🛠️ Tech Arsenal
