@@ -1,0 +1,134 @@
+<svg width="800" height="300" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 3D Gradient for medical cross -->
+    <linearGradient id="cross3d" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FF4444;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#CC0000;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- 3D shadow -->
+    <filter id="shadow3d">
+      <feDropShadow dx="3" dy="3" stdDeviation="2" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="300" fill="#0A0A0A" rx="15"/>
+
+  <!-- Animated grid lines -->
+  <g opacity="0.1">
+    <line x1="0" y1="50" x2="800" y2="50" stroke="#00D4FF" stroke-width="1">
+      <animate attributeName="x1" from="-800" to="0" dur="4s" repeatCount="indefinite"/>
+      <animate attributeName="x2" from="0" to="800" dur="4s" repeatCount="indefinite"/>
+    </line>
+    <line x1="0" y1="150" x2="800" y2="150" stroke="#7B2FF7" stroke-width="1">
+      <animate attributeName="x1" from="0" to="800" dur="5s" repeatCount="indefinite"/>
+      <animate attributeName="x2" from="800" to="1600" dur="5s" repeatCount="indefinite"/>
+    </line>
+    <line x1="0" y1="250" x2="800" y2="250" stroke="#00D4FF" stroke-width="1">
+      <animate attributeName="x1" from="-800" to="0" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="x2" from="0" to="800" dur="6s" repeatCount="indefinite"/>
+    </line>
+  </g>
+
+  <!-- 3D Rotating Medical Cross -->
+  <g transform="translate(150, 150)">
+    <!-- Outer glow ring -->
+    <circle r="70" fill="none" stroke="#FF6B6B" stroke-width="2" opacity="0.3">
+      <animate attributeName="r" values="70;75;70" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- 3D Cross -->
+    <g filter="url(#shadow3d)">
+      <!-- Vertical bar -->
+      <rect x="-15" y="-50" width="30" height="100" rx="5" fill="url(#cross3d)">
+        <animateTransform attributeName="transform" type="scale" values="1,1;1.05,1.05;1,1" dur="1.5s" repeatCount="indefinite"/>
+      </rect>
+      <!-- Horizontal bar -->
+      <rect x="-50" y="-15" width="100" height="30" rx="5" fill="url(#cross3d)">
+        <animateTransform attributeName="transform" type="scale" values="1,1;1.05,1.05;1,1" dur="1.5s" repeatCount="indefinite"/>
+      </rect>
+      <!-- Shine effect -->
+      <rect x="-10" y="-45" width="20" height="40" rx="3" fill="white" opacity="0.3">
+        <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+
+    <!-- Rotating orbit ring -->
+    <ellipse rx="85" ry="25" fill="none" stroke="#00D4FF" stroke-width="2" opacity="0.5">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="8s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse rx="85" ry="25" fill="none" stroke="#7B2FF7" stroke-width="2" opacity="0.5">
+      <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="6s" repeatCount="indefinite"/>
+    </ellipse>
+  </g>
+
+  <!-- Animated ECG / Heartbeat Line -->
+  <g transform="translate(300, 150)" filter="url(#glow)">
+    <path d="M0,0 L30,0 L40,-30 L50,30 L60,-15 L70,0 L100,0 L110,-40 L120,40 L130,-20 L140,0 L200,0 L210,-35 L220,35 L230,-15 L240,0 L300,0" 
+          fill="none" 
+          stroke="#00D4FF" 
+          stroke-width="3" 
+          stroke-linecap="round"
+          stroke-dasharray="300"
+          stroke-dashoffset="300">
+      <animate attributeName="stroke-dashoffset" from="300" to="0" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <path d="M0,0 L30,0 L40,-30 L50,30 L60,-15 L70,0 L100,0 L110,-40 L120,40 L130,-20 L140,0 L200,0 L210,-35 L220,35 L230,-15 L240,0 L300,0" 
+          fill="none" 
+          stroke="#7B2FF7" 
+          stroke-width="1" 
+          stroke-linecap="round"
+          opacity="0.5"
+          transform="translate(0, 5)">
+      <animate attributeName="stroke-dashoffset" from="300" to="0" dur="2s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- Floating Medical Icons -->
+  <g transform="translate(650, 80)">
+    <text font-size="40" fill="#00D4FF" filter="url(#shadow3d)">🩺
+      <animateTransform attributeName="transform" type="translate" values="0,0; 0,-10; 0,0" dur="3s" repeatCount="indefinite"/>
+    </text>
+  </g>
+  <g transform="translate(700, 200)">
+    <text font-size="35" fill="#7B2FF7" filter="url(#shadow3d)">💊
+      <animateTransform attributeName="transform" type="translate" values="0,0; 0,8; 0,0" dur="2.5s" repeatCount="indefinite"/>
+    </text>
+  </g>
+  <g transform="translate(620, 220)">
+    <text font-size="30" fill="#FF6B6B" filter="url(#shadow3d)">🧬
+      <animateTransform attributeName="transform" type="translate" values="0,0; 0,-6; 0,0" dur="3.5s" repeatCount="indefinite"/>
+    </text>
+  </g>
+
+  <!-- Dr.N Text with 3D effect -->
+  <g transform="translate(400, 260)">
+    <text x="0" y="0" font-family="monospace" font-size="24" font-weight="bold" fill="#7B2FF7" text-anchor="middle" filter="url(#shadow3d)">Dr.N</text>
+    <text x="2" y="2" font-family="monospace" font-size="24" font-weight="bold" fill="#00D4FF" text-anchor="middle" opacity="0.8">Dr.N</text>
+    <text x="0" y="0" font-family="monospace" font-size="24" font-weight="bold" fill="white" text-anchor="middle">Dr.N</text>
+  </g>
+
+  <!-- Pulse rings from center -->
+  <g transform="translate(150, 150)">
+    <circle r="20" fill="none" stroke="#FF6B6B" stroke-width="2" opacity="0">
+      <animate attributeName="r" values="20;100" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;0" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle r="20" fill="none" stroke="#00D4FF" stroke-width="2" opacity="0">
+      <animate attributeName="r" values="20;100" dur="2s" begin="1s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;0" dur="2s" begin="1s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>
