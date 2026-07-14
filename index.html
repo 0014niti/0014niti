@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr.N | Code & Cure</title>
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="Dr.N | Full-Stack Developer & Medical Innovator">
+    <meta property="og:description" content="Doctor by profession. Developer by passion. Building p2pcompanion.com, Med Reminder & Med Assist. Bridging Medicine & Technology.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/0014niti/0014niti/main/medical-animation.svg">
+    <meta property="og:url" content="https://0014niti.github.io">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dr.N | Cure & Code">
+    <meta name="twitter:description" content="Doctor by profession. Developer by passion. Building HealthTech & Web3 solutions.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/0014niti/0014niti/main/medical-animation.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0A0A0A;
+            --bg-card: #111111;
+            --bg-hover: #1a1a1a;
+            --cyan: #00D4FF;
+            --purple: #7B2FF7;
+            --red: #FF6B6B;
+            --gold: #FFD700;
+            --text: #FFFFFF;
+            --text-muted: #888888;
+            --border: #222222;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.03;
+            background-image: 
+                linear-gradient(var(--cyan) 1px, transparent 1px),
+                linear-gradient(90deg, var(--cyan) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Floating Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .orb-1 { width: 300px; height: 300px; background: var(--purple); top: 10%; left: 10%; animation: float 8s ease-in-out infinite; }
+        .orb-2 { width: 250px; height: 250px; background: var(--cyan); top: 60%; right: 10%; animation: float 10s ease-in-out infinite reverse; }
+        .orb-3 { width: 200px; height: 200px; background: var(--red); bottom: 10%; left: 40%; animation: float 12s ease-in-out infinite; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--cyan);
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+        }
+
+        .avatar-ring {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: var(--cyan);
+            border-right-color: var(--purple);
+            animation: spin 4s linear infinite;
+        }
+
+        .avatar-ring-2 {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-bottom-color: var(--red);
+            border-left-color: var(--cyan);
+            animation: spin 6s linear infinite reverse;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--cyan), var(--purple), var(--red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .typing-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            color: var(--cyan);
+            height: 30px;
+            overflow: hidden;
+        }
+
+        .typing-text::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Badges */
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin: 30px 0;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .badge:hover {
+            transform: translateY(-2px);
+            border-color: var(--cyan);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .badge-website { border-color: var(--cyan); color: var(--cyan); }
+        .badge-views { border-color: var(--purple); color: var(--purple); }
+        .badge-stars { border-color: var(--gold); color: var(--gold); }
+        .badge-followers { border-color: var(--cyan); color: var(--cyan); }
+
+        /* Cards */
+        .section {
+            margin: 50px 0;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title span {
+            font-size: 1.8rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyan), var(--purple), var(--red));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--purple);
+            box-shadow: 0 10px 40px rgba(123, 47, 247, 0.15);
+        }
+
+        /* About Card */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .about-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .about-item .key {
+            color: var(--cyan);
+            min-width: 120px;
+            flex-shrink: 0;
+        }
+
+        .about-item .value {
+            color: var(--text-muted);
+        }
+
+        .about-item a {
+            color: var(--cyan);
+            text-decoration: none;
+        }
+
+        .about-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--cyan);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.1);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--cyan);
+        }
+
+        .project-status {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-live {
+            background: rgba(0, 212, 255, 0.15);
+            color: var(--cyan);
+            border: 1px solid var(--cyan);
+        }
+
+        .status-dev {
+            background: rgba(255, 215, 0, 0.15);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: var(--bg-hover);
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            background: var(--bg-hover);
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .project-link:hover {
+            background: var(--cyan);
+            color: var(--bg);
+            border-color: var(--cyan);
+        }
+
+        /* Coming Soon Banner */
+        .coming-soon-banner {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(123, 47, 247, 0.1));
+            border: 1px solid var(--cyan);
+            border-radius: 12px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Tech Stack */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            gap: 15px;
+            justify-items: center;
+        }
+
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 15px;
+            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px) scale(1.05);
+            border-color: var(--cyan);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.15);
+        }
+
+        .tech-icon {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .tech-name {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Connect Section */
+        .connect-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .connect-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .connect-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .connect-btn.website:hover { border-color: var(--cyan); color: var(--cyan); }
+        .connect-btn.github:hover { border-color: #fff; }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 50px;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-quote {
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            color: var(--text);
+        }
+
+        /* Animations on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .title { font-size: 2rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .about-grid { grid-template-columns: 1fr; }
+            .tech-grid { grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header fade-in">
+            <div class="avatar-wrapper">
+                <div class="avatar-ring"></div>
+                <div class="avatar-ring-2"></div>
+                <img src="https://avatars.githubusercontent.com/u/0014niti" alt="Dr.N" class="avatar" onerror="this.src='https://ui-avatars.com/api/?name=Dr+N&background=00D4FF&color=fff&size=150'">
+            </div>
+
+            <h1 class="title">Dr.N</h1>
+            <p class="subtitle">Cure & Code | Developer & Medical Innovator</p>
+            <div class="typing-text" id="typing"></div>
+
+            <div class="badges">
+                <a href="https://p2pcompanion.com" class="badge badge-website" target="_blank">
+                    <span>🌐</span> p2pcompanion.com
+                </a>
+               
+            </div>
+        </header>
+
+        <!-- About -->
+        <section class="section fade-in delay-1">
+            <h2 class="section-title"><span>🩺</span> About Dr.N</h2>
+            <div class="card">
+                <div class="about-grid">
+                    <div class="about-item">
+                        <span class="key">👤 name:</span>
+                        <span class="value">Dr.N (Niti)</span>
+                    </div>
+                    <div class="about-item">
+                        <span class="key">🎓 profession:</span>
+                        <span class="value">Doctor by profession</span>
+                    </div>
+                    <div class="about-item">
+                        <span class="key">💻 passion:</span>
+                        <span class="value">Developer & Web3 Builder</span>
+                    </div>
+                    <div class="about-item">
+                        <span class="key">🌍 location:</span>
+                        <span class="value">Earth</span>
+                    </div>
+                    <div class="about-item">
+                        <span class="key">🌐 website:</span>
+                        <span class="value"><a href="https://p2pcompanion.com/about" target="_blank">p2pcompanion.com</a></span>
+                    </div>
+                    <div class="about-item">
+                        <span class="key">🎯 mission:</span>
+                        <span class="value">"Healing through medicine, empowering through code"</span>
+                    </div>
+                    <div class="about-item">
+                        <span class="key">🔭 building:</span>
+                        <span class="value">p2pcompanion.com, Med Reminder, Med Assist</span>
+                    </div>
+                    <div class="about-item">
+                        <span class="key">⚡ interests:</span>
+                        <span class="value">[HealthTech, Web3, Open Source, P2P, Medical Innovation]</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Projects -->
+        <section class="section fade-in delay-2">
+            <h2 class="section-title"><span>🚀</span> Live Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-title">🌐 p2pcompanion.com</span>
+                        <span class="project-status status-live">Live</span>
+                    </div>
+                    <p class="project-desc">A peer-to-peer companion platform connecting people through decentralized networks. Built with modern web technologies and Web3 integration.</p>
+                    <div class="project-tags">
+                        <span class="tag">Next.js</span>
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">Web3</span>
+                        <span class="tag">P2P</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://p2pcompanion.com" class="project-link" target="_blank">🚀 Visit Site</a>
+                        <a href="https://github.com/0014niti/web" class="project-link" target="_blank">📁 Repo</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-title">📱 p2p-mobile</span>
+                        <span class="project-status status-live">Live</span>
+                    </div>
+                    <p class="project-desc">Mobile version of p2pcompanion.com — bringing P2P connectivity to your pocket. Cross-platform mobile experience.</p>
+                    <div class="project-tags">
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">React Native</span>
+                        <span class="tag">Mobile</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://play.google.com/store/apps/details?id=p2p.mobile" class="project-link" target="_blank">🚀 Visit Site</a>
+                        <a href="https://github.com/0014niti/p2p-mobile" class="project-link" target="_blank">📁 Repo</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coming Soon -->
+        <section class="section fade-in delay-3">
+            <h2 class="section-title"><span>🔮</span> Coming Soon — HealthTech Suite</h2>
+            <div class="coming-soon-banner">🚧 Building the Future of HealthTech</div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-title">💊 Med Reminder</span>
+                        <span class="project-status status-dev">In Development</span>
+                    </div>
+                    <p class="project-desc">Smart medication tracking & reminder system designed by a doctor who truly understands patient needs. Never miss a dose again.</p>
+                    <div class="project-tags">
+                        <span class="tag">HealthTech</span>
+                        <span class="tag">Notifications</span>
+                        <span class="tag">Schedule</span>
+                        <span class="tag">Caregiver Alerts</span>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">🩺 Intelligent scheduling, dosage tracking, and caregiver alerts.</p>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-title">🏥 Med Assist</span>
+                        <span class="project-status status-dev">In Development</span>
+                    </div>
+                    <p class="project-desc">AI-powered medical assistant for preliminary diagnostics, symptom checking, and health guidance. Your pocket doctor.</p>
+                    <div class="project-tags">
+                        <span class="tag">AI</span>
+                        <span class="tag">Chatbot</span>
+                        <span class="tag">Diagnostics</span>
+                        <span class="tag">Health Records</span>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">🤖 Symptom analysis, health records, and smart recommendations.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack -->
+        <section class="section fade-in delay-4">
+            <h2 class="section-title"><span>🛠️</span> Tech Arsenal</h2>
+            <div class="card">
+                <div class="tech-grid">
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="tech-icon" alt="HTML"><span class="tech-name">HTML</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="tech-icon" alt="CSS"><span class="tech-name">CSS</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="tech-icon" alt="JS"><span class="tech-name">JS</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" class="tech-icon" alt="TS"><span class="tech-name">TS</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="tech-icon" alt="React"><span class="tech-name">React</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" class="tech-icon" alt="Next.js"><span class="tech-name">Next.js</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="tech-icon" alt="Node"><span class="tech-name">Node</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="tech-icon" alt="Python"><span class="tech-name">Python</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="tech-icon" alt="Git"><span class="tech-name">Git</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" class="tech-icon" alt="GitHub"><span class="tech-name">GitHub</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" class="tech-icon" alt="VSCode"><span class="tech-name">VSCode</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="tech-icon" alt="Docker"><span class="tech-name">Docker</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" class="tech-icon" alt="Linux"><span class="tech-name">Linux</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" class="tech-icon" alt="MongoDB"><span class="tech-name">MongoDB</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="tech-icon" alt="PostgreSQL"><span class="tech-name">PostgreSQL</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" class="tech-icon" alt="Figma"><span class="tech-name">Figma</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="tech-icon" alt="Tailwind"><span class="tech-name">Tailwind</span></div>
+                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ethereum/ethereum-original.svg" class="tech-icon" alt="Ethereum"><span class="tech-name">Web3</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Connect -->
+        <section class="section fade-in delay-5">
+            <h2 class="section-title"><span>🌐</span> Connect With Me</h2>
+            <div class="connect-grid">
+                <a href="https://p2pcompanion.com" class="connect-btn website" target="_blank">
+                    <span>🌐</span> p2pcompanion.com
+                </a>
+                <a href="https://github.com/0014niti" class="connect-btn github" target="_blank">
+                    <span>⚡</span> GitHub
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer fade-in delay-5">
+            <p class="footer-quote">"Healing through medicine, empowering through code"</p>
+            <p>Cure. Code. Create. 🚀</p>
+            <p style="margin-top: 15px; font-size: 0.8rem;">© 2026 Dr.N | Built with 💙 & ☕</p>
+        </footer>
+    </div>
+
+    <script>
+        // Typing Animation
+        const texts = [
+            "Building p2pcompanion.com 🚀",
+            "Crafting Med Reminder & Med Assist 🩺",
+            "Bridging Medicine & Technology 💻",
+            "Open Source | Web3 | HealthTech 🌟"
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById('typing');
+
+        function type() {
+            const currentText = texts[textIndex];
+
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        type();
+
+        // Smooth scroll animation for cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .project-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+                          </html>
