@@ -6,7 +6,7 @@
 
 <!-- TYPING ANIMATION -->
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=28&duration=3000&pause=800&color=FF6B6B&center=true&vCenter=true&width=700&lines=Building+p2pcompanion.com;Full-Stack+Developer;Web3+Builder;Healthcare+Innovation" alt="Typing Animation" />
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=28&duration=3000&pause=800&color=FF6B6B&center=true&vCenter=true&width=700&lines=Building+p2pcompanion.com;Full-Stack+Developer;Web3+Builder;HealthTech+Innovator" alt="Typing Animation" />
 </p>
 
 <!-- BADGES ROW -->
@@ -115,19 +115,21 @@
     </td>
   </tr>
 </table>
+
 ---
 
 ## 📊 GitHub Analytics
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=0014niti&show_icons=true&theme=radical&hide_border=true&count_private=true&include_all_commits=true&bg_color=0A0A0A&title_color=FF6B6B&text_color=FFFFFF&icon_color=00D4FF" alt="GitHub Stats" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=0014niti&theme=radical&hide_border=true&background=0A0A0A&stroke=00D4FF&ring=7B2FF7&fire=FF6B6B&currStreakNum=00D4FF&sideNums=7B2FF7" alt="Streak Stats" />
+  <img src="https://github-readme-stats.vercel.app/api?username=0014niti&show_icons=true&theme=radical&hide_border=true&count_private=true&include_all_commits=true&bg_color=0A0A0A&title_color=FF6B6B&text_color=FFFFFF" alt="GitHub Stats" width="48%" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=0014niti&theme=radical&hide_border=true&background=0A0A0A&stroke=00D4FF&ring=7B2FF7&fire=FF6B6B&currStreakNum=00D4FF&sideNums=7B2FF7" alt="GitHub Streak" width="48%" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=0014niti&layout=compact&theme=radical&hide_border=true&bg_color=0A0A0A&title_color=FF6B6B&text_color=FFFFFF&langs_count=10" alt="Top Languages" width="49%" />
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=0014niti&theme=react-dark&hide_border=true&bg_color=0A0A0A&color=00D4FF&line=7B2FF7&point=FF6B6B" width="49%" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=0014niti&layout=compact&theme=radical&hide_border=true&bg_color=0A0A0A&title_color=FF6B6B&text_color=FFFFFF&langs_count=10" alt="Top Languages" width="48%" />
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=0014niti&theme=react-dark&hide_border=true&bg_color=0A0A0A&color=00D4FF&line=7B2FF7&point=FF6B6B" alt="Activity Graph" width="48%" />
 </p>
+
 ---
 
 ## 🛠️ Tech Arsenal
