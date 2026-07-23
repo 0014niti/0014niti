@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nnotes | Modern Collaborative Note-Taking App</title>
+    <title>Nnotes | Handwriting & Stylus Notebook for Android</title>
 
     <!-- Social Meta -->
-    <meta property="og:title" content="Nnotes - Collaborative Note-Taking Reimagined">
-    <meta property="og:description" content="A powerful, local-first collaborative note-taking application built with C & Kotlin. Seamless syncing, real-time collaboration, and memory efficiency.">
+    <meta property="og:title" content="Nnotes - Handwriting-First Android Notebook">
+    <meta property="og:description" content="A handwriting-first, vector stroke notebook for Android built for stylus & pen. Powered by Kotlin, Jetpack Compose, and a high-performance C/C++ native engine.">
     <meta property="og:url" content="https://0014niti.github.io/nnotes.html">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Nnotes - Collaborative Note-Taking">
-    <meta name="twitter:description" content="A powerful collaborative note-taking application with real-time sync.">
+    <meta name="twitter:title" content="Nnotes - Handwriting-First Stylus Notebook">
+    <meta name="twitter:description" content="Handwriting-first notebook for Android built for pen and stylus with C/C++ vector stroke rendering.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -206,7 +206,7 @@
             font-size: 1.2rem;
             color: var(--text-secondary);
             margin-bottom: 36px;
-            max-width: 650px;
+            max-width: 680px;
             line-height: 1.7;
         }
 
@@ -255,7 +255,7 @@
             transform: translateY(-3px) scale(1.02);
         }
 
-        /* ========== INTERACTIVE APP DEMO SIMULATOR ========== */
+        /* ========== INTERACTIVE VECTOR CANVAS SIMULATOR ========== */
         .demo-section {
             margin: 20px 0 80px;
         }
@@ -305,112 +305,65 @@
             box-shadow: 0 0 10px var(--green);
         }
 
-        .demo-body {
-            display: grid;
-            grid-template-columns: 240px 1fr;
+        .demo-canvas-area {
+            position: relative;
+            background: #09090D;
             min-height: 380px;
-            background: rgba(5, 5, 8, 0.7);
-        }
-
-        .demo-sidebar {
-            background: rgba(255, 255, 255, 0.02);
-            border-right: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 16px;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            padding: 24px;
+        }
+
+        .canvas-toolbar {
+            display: flex;
             gap: 12px;
-        }
-
-        .sidebar-search {
-            width: 100%;
-            padding: 8px 12px;
-            border-radius: 10px;
+            align-items: center;
             background: rgba(255, 255, 255, 0.04);
+            padding: 8px 16px;
+            border-radius: 14px;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            color: var(--text);
-            font-size: 0.8rem;
-            outline: none;
+            width: fit-content;
         }
 
-        .note-item {
-            padding: 10px 14px;
-            border-radius: 12px;
+        .tool-btn {
+            padding: 6px 14px;
+            border-radius: 8px;
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
             cursor: pointer;
             transition: all 0.2s;
-            border: 1px solid transparent;
-        }
-        .note-item:hover, .note-item.active {
-            background: rgba(0, 212, 255, 0.08);
-            border-color: rgba(0, 212, 255, 0.2);
-        }
-
-        .note-item-title {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 2px;
-        }
-
-        .note-item-preview {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .demo-editor {
-            padding: 24px;
             display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .editor-header {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-        }
-
-        .editor-title-input {
-            font-size: 1.4rem;
-            font-weight: 700;
-            background: transparent;
-            border: none;
-            color: var(--text);
-            outline: none;
-            width: 100%;
-        }
-
-        .editor-textarea {
-            width: 100%;
-            height: 220px;
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            outline: none;
-            resize: none;
+            gap: 6px;
             font-family: var(--font-body);
         }
-
-        .editor-toolbar {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            padding-top: 12px;
-            font-size: 0.75rem;
-            color: var(--text-muted);
+        .tool-btn.active, .tool-btn:hover {
+            background: rgba(0, 212, 255, 0.12);
+            color: var(--cyan);
+            border-color: rgba(0, 212, 255, 0.25);
         }
 
-        .tool-badge {
-            padding: 4px 10px;
-            border-radius: 6px;
-            background: rgba(0, 212, 255, 0.1);
-            color: var(--cyan);
+        .canvas-interactive {
+            width: 100%;
+            height: 240px;
+            border-radius: 16px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.03) 0%, transparent 80%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: crosshair;
+        }
+
+        .canvas-hint {
             font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            pointer-events: none;
         }
 
         /* Features */
@@ -558,8 +511,6 @@
 
         @media (max-width: 768px) {
             .hero { min-height: 45vh; padding: 30px 0; }
-            .demo-body { grid-template-columns: 1fr; }
-            .demo-sidebar { display: none; }
             .features-grid { grid-template-columns: 1fr; }
             .tech-section { grid-template-columns: 1fr; }
             header { flex-direction: column; gap: 16px; }
@@ -589,22 +540,22 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-badge">
-                <span>✨</span> Collaborative Note-Taking Reimagined
+                <span>🖊️</span> Handwriting-First Android Notebook
             </div>
             <h1 class="hero-title">Nnotes</h1>
             <p class="hero-subtitle">
-                A high-performance, local-first collaborative note-taking application engineered with C for memory efficiency and Kotlin for a fluid mobile experience.
+                A handwriting-first notebook app for Android built for pen & stylus. Engineered with Jetpack Compose, Kotlin, and a high-performance C/C++ vector engine for infinite deep zoom.
             </p>
             <div class="cta-buttons">
-                <a href="#interactive-demo" class="btn btn-primary">⚡ Try Live Sandbox</a>
-                <a href="nnotes-privacy.html" class="btn btn-glass">🛡️ View Privacy Policy</a>
+                <a href="#interactive-demo" class="btn btn-primary">⚡ Try Vector Canvas Demo</a>
+                <a href="nnotes-privacy.html" class="btn btn-glass">🛡️ Read Privacy Policy</a>
                 <a href="https://github.com/0014niti" target="_blank" class="btn btn-glass">📁 GitHub Repo</a>
             </div>
         </section>
 
-        <!-- Interactive App Sandbox Simulator -->
+        <!-- Interactive Vector Canvas Simulator -->
         <section id="interactive-demo" class="demo-section">
-            <h2 class="section-title">Interactive App Preview</h2>
+            <h2 class="section-title">Interactive Vector Stroke Sandbox</h2>
             <div class="demo-window glass">
                 <div class="demo-header-bar">
                     <div class="window-controls">
@@ -614,44 +565,24 @@
                     </div>
                     <div class="demo-title-bar">
                         <span class="status-indicator"></span>
-                        Nnotes Mobile & Desktop Core Engine (Simulated)
+                        C/C++ Off-Main-Thread Vector Ink Renderer (Simulated Canvas)
                     </div>
-                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--cyan);">P2P Sync: Active</div>
+                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--cyan);">Vector Format: .nnote</div>
                 </div>
-                <div class="demo-body">
-                    <div class="demo-sidebar">
-                        <input type="text" class="sidebar-search" placeholder="🔍 Search notes..." oninput="filterDemoNotes(this.value)">
-                        <div id="note-list">
-                            <div class="note-item active" onclick="loadNote(0)">
-                                <div class="note-item-title">Medical Rounds Notes</div>
-                                <div class="note-item-preview">Patient vitals, diagnostic checklist...</div>
-                            </div>
-                            <div class="note-item" onclick="loadNote(1)">
-                                <div class="note-item-title">C Core Memory Benchmarks</div>
-                                <div class="note-item-preview">Buffer allocation 0.4ms latency...</div>
-                            </div>
-                            <div class="note-item" onclick="loadNote(2)">
-                                <div class="note-item-title">Web3 & HealthTech Ideas</div>
-                                <div class="note-item-preview">Decentralized record verification...</div>
-                            </div>
-                        </div>
+                <div class="demo-canvas-area">
+                    <div class="canvas-toolbar">
+                        <button class="tool-btn active" onclick="setTool('pen', this)">✒️ Fountain Pen</button>
+                        <button class="tool-btn" onclick="setTool('highlighter', this)">🖍️ Multiply Highlighter</button>
+                        <button class="tool-btn" onclick="setTool('neon', this)">💡 Luminous Neon Pen</button>
+                        <button class="tool-btn" onclick="clearCanvas()">🗑️ Clear</button>
                     </div>
-                    <div class="demo-editor">
-                        <div class="editor-header">
-                            <input type="text" id="demo-title" class="editor-title-input" value="Medical Rounds Notes">
-                        </div>
-                        <textarea id="demo-content" class="editor-textarea">
-• Patient ID: #88204
-• Vitals: BP 120/80 mmHg | Heart Rate: 72 bpm
-• Symptoms: Mild fever, prescribed hydration & rest
-• Action Items: Review labs in 24 hours via Med Assist AI module
-• Syncing securely via Nnotes P2P protocol...
-                        </textarea>
-                        <div class="editor-toolbar">
-                            <span class="tool-badge">C Memory Pool: Safe</span>
-                            <span class="tool-badge">Local Storage Encrypted</span>
-                            <span style="margin-left: auto;">Last saved: Just now</span>
-                        </div>
+                    <div class="canvas-interactive" id="canvas-area" onmousedown="startDraw(event)" onmousemove="draw(event)" onmouseup="stopDraw()">
+                        <svg id="svg-canvas" style="position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;"></svg>
+                        <div class="canvas-hint" id="canvas-hint">✏️ Click & drag inside canvas to sketch vector ink strokes</div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">
+                        <span>Stylus Pressure: Simulated (100%)</span>
+                        <span>Off-Thread Zoom Redraw: Crisp Vector</span>
                     </div>
                 </div>
             </div>
@@ -662,60 +593,60 @@
             <h2 class="section-title">Key Features</h2>
             <div class="features-grid">
                 <div class="feature-card glass glass-hover">
-                    <div class="feature-icon">🔄</div>
-                    <div class="feature-title">Real-Time Sync</div>
-                    <p class="feature-desc">Seamlessly synchronize notes across devices with custom peer-to-peer protocols. Never lose critical notes.</p>
+                    <div class="feature-icon">🔍</div>
+                    <div class="feature-title">Off-Main-Thread Deep Zoom</div>
+                    <p class="feature-desc">A background C/C++ engine redraws high-resolution viewports off the UI thread. Zoom in endlessly and ink strokes stay razor sharp.</p>
                 </div>
 
                 <div class="feature-card glass glass-hover">
-                    <div class="feature-icon">👥</div>
-                    <div class="feature-title">Collaboration</div>
-                    <p class="feature-desc">Work together with teammates on shared medical notes and technical documents in real time.</p>
+                    <div class="feature-icon">🖊️</div>
+                    <div class="feature-title">Stylus & Touch Aware</div>
+                    <p class="feature-desc">Pen and finger inputs are processed separately. Pan and pinch-zoom with your finger while drawing smoothly with your stylus.</p>
                 </div>
 
                 <div class="feature-card glass glass-hover">
-                    <div class="feature-icon">⚡</div>
-                    <div class="feature-title">Lightning Fast C-Engine</div>
-                    <p class="feature-desc">Built with C for ultra-low latency memory management and Kotlin for mobile UI efficiency.</p>
+                    <div class="feature-icon">🖍️</div>
+                    <div class="feature-title">Real Multiply Highlighting</div>
+                    <p class="feature-desc">Highlighters composite live every frame with true multiply blending, so overlapping strokes deepen naturally like real ink.</p>
                 </div>
 
                 <div class="feature-card glass glass-hover">
-                    <div class="feature-icon">🏷️</div>
-                    <div class="feature-title">Smart Organization</div>
-                    <p class="feature-desc">Organize notes effortlessly with dynamic tags, instant search, and folder categories.</p>
+                    <div class="feature-icon">📄</div>
+                    <div class="feature-title">Smart PDF Dark Mode</div>
+                    <p class="feature-desc">Annotate PDFs with ease and invert page colors for comfortable night reading while leaving embedded photos untouched.</p>
                 </div>
 
                 <div class="feature-card glass glass-hover">
                     <div class="feature-icon">🔒</div>
-                    <div class="feature-title">Local-First Security</div>
-                    <p class="feature-desc">Your notes are stored locally and encrypted. Read our <a href="nnotes-privacy.html" style="color: var(--cyan);">Privacy Policy</a> for full details.</p>
+                    <div class="feature-title">Local Storage (SAF) Privacy</div>
+                    <p class="feature-desc">No accounts, no cloud tracking, and zero telemetry. Uses Android's Storage Access Framework for complete file privacy.</p>
                 </div>
 
                 <div class="feature-card glass glass-hover">
-                    <div class="feature-icon">📱</div>
-                    <div class="feature-title">Multi-Platform</div>
-                    <p class="feature-desc">Cross-platform readiness designed for desktop and Android devices.</p>
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-title">Open Vector (.nnote) Format</div>
+                    <p class="feature-desc">Strokes remain editable vector objects. Re-select, move, recolor, or erase any mark at any time without flattening to bitmaps.</p>
                 </div>
             </div>
         </section>
 
         <!-- Tech Stack Section -->
         <section class="section">
-            <h2 class="section-title">Technology Stack</h2>
+            <h2 class="section-title">Technical Architecture</h2>
             <div class="tech-section">
                 <div class="tech-item glass">
-                    <div class="tech-name">C Core Engine</div>
-                    <div class="tech-desc">Handles memory allocation, custom byte-level note serialization, and lightning-fast search indexing.</div>
+                    <div class="tech-name">C / C++ Native Engine (NDK)</div>
+                    <div class="tech-desc">Custom C++ stroke trees, CMake build integration, and off-thread viewport rendering for low-latency ink response.</div>
                 </div>
 
                 <div class="tech-item glass">
-                    <div class="tech-name">Kotlin / Android</div>
-                    <div class="tech-desc">Provides a modern, reactive user interface with native Android integration and smooth touch gestures.</div>
+                    <div class="tech-name">Kotlin & Jetpack Compose</div>
+                    <div class="tech-desc">Modern declarative UI for Android 8.0+ targeting SDK 36, delivering smooth touch gestures and dark mode UI.</div>
                 </div>
 
                 <div class="tech-item glass">
-                    <div class="tech-name">P2P Sync Protocol</div>
-                    <div class="tech-desc">Encrypted socket stream synchronization ensuring data integrity without centralized data mining.</div>
+                    <div class="tech-name">PDFBox Android</div>
+                    <div class="tech-desc">On-device PDF rendering, vector layer compositing, and night-mode page color inversion.</div>
                 </div>
             </div>
         </section>
@@ -753,42 +684,69 @@
         </footer>
     </div>
 
-    <!-- Interactive Demo JS -->
+    <!-- Interactive Drawing Canvas Script -->
     <script>
-        const sampleNotes = [
-            {
-                title: "Medical Rounds Notes",
-                content: "• Patient ID: #88204\n• Vitals: BP 120/80 mmHg | Heart Rate: 72 bpm\n• Symptoms: Mild fever, prescribed hydration & rest\n• Action Items: Review labs in 24 hours via Med Assist AI module\n• Syncing securely via Nnotes P2P protocol..."
-            },
-            {
-                title: "C Core Memory Benchmarks",
-                content: "• Buffer allocation time: 0.38ms\n• Search query index scan: 10,000 notes in 1.2ms\n• Memory footprint: < 12MB RAM on mobile\n• Encryption overhead: Negligible via AES-256 primitives"
-            },
-            {
-                title: "Web3 & HealthTech Ideas",
-                content: "• Cryptographic verification of patient records\n• Decentralized data storage options\n• Companion sync between desktop & mobile companions\n• Open source health records privacy compliance"
-            }
-        ];
+        let currentTool = 'pen';
+        let isDrawing = false;
+        const svg = document.getElementById('svg-canvas');
+        let currentPath = null;
 
-        function loadNote(index) {
-            document.querySelectorAll('.note-item').forEach((item, idx) => {
-                if (idx === index) item.classList.add('active');
-                else item.classList.remove('active');
-            });
-            document.getElementById('demo-title').value = sampleNotes[index].title;
-            document.getElementById('demo-content').value = sampleNotes[index].content;
+        function setTool(tool, btn) {
+            currentTool = tool;
+            document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
         }
 
-        function filterDemoNotes(query) {
-            const items = document.querySelectorAll('.note-item');
-            items.forEach((item, idx) => {
-                const text = sampleNotes[idx].title.toLowerCase() + " " + sampleNotes[idx].content.toLowerCase();
-                if (text.includes(query.toLowerCase())) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
+        function startDraw(e) {
+            isDrawing = true;
+            document.getElementById('canvas-hint').style.display = 'none';
+            const rect = e.currentTarget.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            currentPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            let color = '#00D4FF';
+            let strokeWidth = '3';
+            let opacity = '1';
+
+            if (currentTool === 'highlighter') {
+                color = '#A855F7';
+                strokeWidth = '14';
+                opacity = '0.4';
+            } else if (currentTool === 'neon') {
+                color = '#22C55E';
+                strokeWidth = '4';
+                opacity = '1';
+                currentPath.setAttribute('filter', 'drop-shadow(0 0 6px #22C55E)');
+            }
+
+            currentPath.setAttribute('stroke', color);
+            currentPath.setAttribute('stroke-width', strokeWidth);
+            currentPath.setAttribute('stroke-linecap', 'round');
+            currentPath.setAttribute('stroke-linejoin', 'round');
+            currentPath.setAttribute('fill', 'none');
+            currentPath.setAttribute('opacity', opacity);
+            currentPath.setAttribute('d', `M ${x} ${y}`);
+            svg.appendChild(currentPath);
+        }
+
+        function draw(e) {
+            if (!isDrawing || !currentPath) return;
+            const rect = e.currentTarget.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const d = currentPath.getAttribute('d');
+            currentPath.setAttribute('d', `${d} L ${x} ${y}`);
+        }
+
+        function stopDraw() {
+            isDrawing = false;
+            currentPath = null;
+        }
+
+        function clearCanvas() {
+            svg.innerHTML = '';
+            document.getElementById('canvas-hint').style.display = 'block';
         }
     </script>
 </body>
