@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy & Terms of Service | Nnotes App</title>
+    
+    <!-- Meta & Social tags -->
+    <meta name="description" content="Privacy Policy and Terms of Service for Nnotes - Collaborative Note-Taking Application built with C and Kotlin.">
+    <meta property="og:title" content="Nnotes App | Privacy Policy & Terms of Service">
+    <meta property="og:description" content="Transparent data privacy, local-first storage, and terms of use for Nnotes.">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-deep: #050508;
+            --bg-glass: rgba(255, 255, 255, 0.03);
+            --bg-glass-hover: rgba(255, 255, 255, 0.06);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(0, 212, 255, 0.25);
+            --cyan: #00D4FF;
+            --cyan-glow: rgba(0, 212, 255, 0.3);
+            --purple: #A855F7;
+            --purple-glow: rgba(168, 85, 247, 0.3);
+            --rose: #F43F5E;
+            --rose-glow: rgba(244, 63, 94, 0.3);
+            --green: #22C55E;
+            --amber: #FBBF24;
+            --text: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-deep);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* Ambient Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.35;
+            mix-blend-mode: screen;
+        }
+        .orb-cyan {
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, var(--cyan-glow) 0%, transparent 70%);
+            top: -15%; left: -10%;
+            animation: orbFloat1 22s ease-in-out infinite;
+        }
+        .orb-purple {
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, var(--purple-glow) 0%, transparent 70%);
+            bottom: -20%; right: -15%;
+            animation: orbFloat2 26s ease-in-out infinite;
+        }
+
+        @keyframes orbFloat1 {
+            0%, 100% { transform: translate(0,0) scale(1); }
+            50% { transform: translate(60px, 40px) scale(1.1); }
+        }
+        @keyframes orbFloat2 {
+            0%, 100% { transform: translate(0,0) scale(1); }
+            50% { transform: translate(-50px, -60px) scale(1.15); }
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0.025;
+            z-index: 2;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='256' height='256' fill='%23fff' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo-badge {
+            font-size: 0.65rem;
+            padding: 4px 10px;
+            border-radius: 100px;
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--cyan);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            font-family: var(--font-mono);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            padding: 10px 18px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .nav-btn:hover {
+            color: var(--text);
+            background: rgba(0, 212, 255, 0.08);
+            border-color: rgba(0, 212, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 50px 0 30px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(168,85,247,0.08));
+            border: 1px solid rgba(0,212,255,0.2);
+            color: var(--cyan);
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--text) 0%, var(--cyan) 50%, var(--purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1.5px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 680px;
+            margin: 0 auto 30px;
+        }
+
+        .meta-pills {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .meta-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+        }
+
+        /* Tab Switcher */
+        .tab-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 50px;
+        }
+
+        .tab-btn {
+            padding: 12px 28px;
+            border-radius: 14px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: var(--font-body);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            color: var(--bg-deep);
+            border-color: transparent;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text);
+        }
+
+        /* Layout Grid with Sidebar TOC */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        /* Sticky Sidebar */
+        .toc-sidebar {
+            position: sticky;
+            top: 40px;
+            height: fit-content;
+            padding: 24px;
+            border-radius: 20px;
+        }
+
+        .toc-title {
+            font-size: 0.8rem;
+            font-family: var(--font-mono);
+            color: var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .toc-link {
+            display: block;
+            padding: 8px 12px;
+            border-radius: 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            border-left: 2px solid transparent;
+        }
+
+        .toc-link:hover, .toc-link.active {
+            color: var(--cyan);
+            background: rgba(0, 212, 255, 0.05);
+            border-left-color: var(--cyan);
+        }
+
+        /* Main Legal Content */
+        .legal-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .legal-card {
+            padding: 36px;
+            border-radius: 24px;
+            transition: border-color 0.3s;
+        }
+
+        .legal-card:hover {
+            border-color: rgba(0, 212, 255, 0.2);
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            background: rgba(0, 212, 255, 0.08);
+            color: var(--cyan);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+        }
+
+        .section-tag.terms-tag {
+            background: rgba(168, 85, 247, 0.08);
+            color: var(--purple);
+            border-color: rgba(168, 85, 247, 0.15);
+        }
+
+        .legal-card h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text);
+            letter-spacing: -0.5px;
+        }
+
+        .legal-card p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.75;
+        }
+
+        .legal-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .legal-card ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        .legal-card li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            padding: 18px 24px;
+            border-radius: 16px;
+            background: rgba(0, 212, 255, 0.04);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            margin: 20px 0;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .highlight-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .highlight-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .highlight-text strong {
+            color: var(--text);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--cyan);
+        }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .toc-sidebar {
+                display: none;
+            }
+            header {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Gradient Orbs -->
+    <div class="orb orb-cyan"></div>
+    <div class="orb orb-purple"></div>
+
+    <!-- Noise Texture -->
+    <div class="noise-overlay"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <a href="nnotes.html" class="logo-wrap">
+                <span class="logo">📝 Nnotes</span>
+                <span class="logo-badge">Privacy & Terms</span>
+            </a>
+            <nav class="nav-links">
+                <a href="nnotes.html" class="nav-btn">← Nnotes Overview</a>
+                <a href="index.html" class="nav-btn">🌐 Portfolio Home</a>
+            </nav>
+        </header>
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-badge">
+                <span>🛡️</span> Transparent & Local-First Privacy
+            </div>
+            <h1 class="hero-title">Privacy Policy & Terms of Service</h1>
+            <p class="hero-subtitle">
+                Clear, developer-friendly documentation outlining how your data is protected, stored, and managed when using the Nnotes collaborative note-taking platform.
+            </p>
+            <div class="meta-pills">
+                <span class="meta-pill">📅 Effective Date: July 23, 2026</span>
+                <span class="meta-pill">⚡ Core Engine: C & Kotlin</span>
+                <span class="meta-pill">🔒 Encryption: Local & P2P End-to-End</span>
+            </div>
+        </section>
+
+        <!-- Tab Switcher -->
+        <div class="tab-switcher">
+            <button class="tab-btn active" onclick="switchTab('all')">All Documentation</button>
+            <button class="tab-btn" onclick="switchTab('privacy')">Privacy Policy</button>
+            <button class="tab-btn" onclick="switchTab('terms')">Terms of Service</button>
+        </div>
+
+        <!-- Main Grid Layout -->
+        <div class="content-grid">
+            <!-- Sidebar Table of Contents -->
+            <aside class="toc-sidebar glass">
+                <div class="toc-title">Table of Contents</div>
+                <ul class="toc-list">
+                    <li><a href="#privacy-overview" class="toc-link">1. Privacy Philosophy</a></li>
+                    <li><a href="#data-collection" class="toc-link">2. Information Collection</a></li>
+                    <li><a href="#storage-encryption" class="toc-link">3. Storage & Encryption</a></li>
+                    <li><a href="#realtime-sync" class="toc-link">4. Real-Time Collaboration</a></li>
+                    <li><a href="#device-permissions" class="toc-link">5. App Permissions</a></li>
+                    <li><a href="#user-rights" class="toc-link">6. Your Data Control</a></li>
+                    <li><a href="#terms-acceptable-use" class="toc-link">7. Acceptable Use</a></li>
+                    <li><a href="#terms-intellectual-property" class="toc-link">8. Intellectual Property</a></li>
+                    <li><a href="#terms-disclaimer" class="toc-link">9. Disclaimer & Liability</a></li>
+                    <li><a href="#contact-info" class="toc-link">10. Contact & Support</a></li>
+                </ul>
+            </aside>
+
+            <!-- Main Legal Content -->
+            <main class="legal-content">
+                
+                <!-- Section 1: Privacy Overview -->
+                <article id="privacy-overview" class="legal-card glass privacy-doc">
+                    <span class="section-tag">Privacy Policy • Section 1</span>
+                    <h2>1. Privacy Philosophy & Commitment</h2>
+                    <p>
+                        At Nnotes, we believe that your thoughts, notes, and collaborative documents belong solely to you. Designed and engineered by Dr.N (Niti) and Harshita Doddagoudar, Nnotes is built with a <strong>local-first, privacy-respecting architecture</strong>.
+                    </p>
+                    <div class="highlight-box">
+                        <span class="highlight-icon">🔒</span>
+                        <div class="highlight-text">
+                            <strong>Zero Monetization of Personal Data:</strong> We do not track your behavior, sell your personal information, or monetize your note data to advertisers or third-party brokers.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Section 2: Data Collection -->
+                <article id="data-collection" class="legal-card glass privacy-doc">
+                    <span class="section-tag">Privacy Policy • Section 2</span>
+                    <h2>2. Information We Collect (and Don't Collect)</h2>
+                    <p>Nnotes strictly limits data processing to what is functionally required for note-taking and peer synchronization:</p>
+                    <ul>
+                        <li><strong>Note Contents & Attachments:</strong> Stored locally on your device. We do not store or read your note content on remote central servers unless you explicitly trigger collaborative cloud sync services.</li>
+                        <li><strong>No Personal Identity Tracking:</strong> You can create and edit notes without revealing your real identity, email, or telephone number.</li>
+                        <li><strong>Diagnostics & Crash Reports (Optional):</strong> Minimal, non-identifiable error logs (such as OS version and memory allocation stack traces from our C-engine) may be processed strictly for bug fixing.</li>
+                    </ul>
+                </article>
+
+                <!-- Section 3: Storage & Encryption -->
+                <article id="storage-encryption" class="legal-card glass privacy-doc">
+                    <span class="section-tag">Privacy Policy • Section 3</span>
+                    <h2>3. Storage, C Engine & Memory Protection</h2>
+                    <p>
+                        Nnotes utilizes a high-performance C core for lightning-fast text processing and Kotlin for Android integration. Data stored locally on device benefits from:
+                    </p>
+                    <ul>
+                        <li>AES-256 local database encryption for sensitive categories.</li>
+                        <li>Automated memory wiping of transient note buffers in the C engine upon closing notes.</li>
+                        <li>Sandboxed Android application storage isolating Nnotes data from other malicious software.</li>
+                    </ul>
+                </article>
+
+                <!-- Section 4: Real-Time Sync & Collaboration -->
+                <article id="realtime-sync" class="legal-card glass privacy-doc">
+                    <span class="section-tag">Privacy Policy • Section 4</span>
+                    <h2>4. Real-Time Sync & Peer-to-Peer Collaboration</h2>
+                    <p>
+                        When using Nnotes' collaboration features to work live with teammates, data payload packets are transmitted securely using TLS 1.3 encryption.
+                    </p>
+                    <div class="highlight-box">
+                        <span class="highlight-icon">⚡</span>
+                        <div class="highlight-text">
+                            <strong>Peer-to-Peer (P2P) Security:</strong> Collaborative sessions prioritize direct socket connections between authorized peers. No unauthorized central server maintains persistent access to your active session streams.
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Section 5: Device Permissions -->
+                <article id="device-permissions" class="legal-card glass privacy-doc">
+                    <span class="section-tag">Privacy Policy • Section 5</span>
+                    <h2>5. Android & System Permissions</h2>
+                    <p>Nnotes requests only essential device permissions on Android and desktop platforms:</p>
+                    <ul>
+                        <li><strong>Storage / Media:</strong> Required to save exported notes (.txt, .md, PDF) and load custom media attachments.</li>
+                        <li><strong>Network Access:</strong> Required strictly for real-time note synchronization and peer collaboration when enabled.</li>
+                        <li><strong>Notifications:</strong> Optional permission to display note reminders and collaboration invites.</li>
+                    </ul>
+                </article>
+
+                <!-- Section 6: User Rights & Data Control -->
+                <article id="user-rights" class="legal-card glass privacy-doc">
+                    <span class="section-tag">Privacy Policy • Section 6</span>
+                    <h2>6. Your Data Control & Data Wiping</h2>
+                    <p>
+                        Because your notes are stored locally on your device, you have complete control over your data:
+                    </p>
+                    <ul>
+                        <li><strong>Export:</strong> You can export your entire library at any time into standard open formats (JSON, Markdown, Plain Text).</li>
+                        <li><strong>Immediate Data Erasure:</strong> Clearing app storage or uninstalling the app permanently purges all local notes from device memory.</li>
+                    </ul>
+                </article>
+
+                <!-- Section 7: Acceptable Use -->
+                <article id="terms-acceptable-use" class="legal-card glass terms-doc">
+                    <span class="section-tag terms-tag">Terms of Service • Section 7</span>
+                    <h2>7. Terms of Service & Acceptable Use</h2>
+                    <p>By using the Nnotes application, you agree to comply with the following conditions:</p>
+                    <ul>
+                        <li>You will not use Nnotes to transmit illegal content, malicious scripts, or attempt to compromise peer devices during sync sessions.</li>
+                        <li>You will not reverse engineer or exploit collaboration socket protocols for unauthorized telemetry collection.</li>
+                    </ul>
+                </article>
+
+                <!-- Section 8: Intellectual Property -->
+                <article id="terms-intellectual-property" class="legal-card glass terms-doc">
+                    <span class="section-tag terms-tag">Terms of Service • Section 8</span>
+                    <h2>8. Intellectual Property & License</h2>
+                    <p>
+                        The Nnotes application code, logo, brand assets, and custom C-engine implementation are the intellectual property of <strong>Dr.N (Niti)</strong> and project co-developers.
+                    </p>
+                    <p>
+                        Your note content remains 100% your exclusive intellectual property. Nnotes claims zero copyright or ownership over any text, files, or ideas created within the application.
+                    </p>
+                </article>
+
+                <!-- Section 9: Disclaimer & Liability -->
+                <article id="terms-disclaimer" class="legal-card glass terms-doc">
+                    <span class="section-tag terms-tag">Terms of Service • Section 9</span>
+                    <h2>9. Disclaimers & Limitation of Liability</h2>
+                    <p>
+                        Nnotes is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind. While we rigorously test our C-engine memory safety and sync algorithms, the developers shall not be liable for data loss caused by hardware damage, system corruption, or third-party device failure. We strongly encourage regular backups.
+                    </p>
+                </article>
+
+                <!-- Section 10: Contact Info -->
+                <article id="contact-info" class="legal-card glass privacy-doc terms-doc">
+                    <span class="section-tag">Contact & Support • Section 10</span>
+                    <h2>10. Contact & Inquiries</h2>
+                    <p>
+                        If you have questions regarding this Privacy Policy, Terms of Service, or data security within Nnotes, feel free to reach out to the development team:
+                    </p>
+                    <div class="highlight-box">
+                        <span class="highlight-icon">📧</span>
+                        <div class="highlight-text">
+                            <strong>Development Team:</strong> Dr.N (Niti) & Harshita Doddagoudar<br>
+                            <strong>GitHub Repository:</strong> <a href="https://github.com/0014niti" target="_blank" style="color: var(--cyan);">github.com/0014niti</a><br>
+                            <strong>Portfolio:</strong> <a href="index.html" style="color: var(--cyan);">0014niti.github.io</a>
+                        </div>
+                    </div>
+                </article>
+
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-nav">
+                <a href="nnotes.html" class="footer-link">Nnotes Overview</a>
+                <a href="index.html" class="footer-link">Portfolio Home</a>
+                <a href="https://github.com/0014niti" target="_blank" class="footer-link">GitHub Profile</a>
+            </div>
+            <div class="footer-copy">
+                © 2026 Nnotes • Developed with passion by Dr.N (Niti) & Harshita Doddagoudar. All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+    <!-- Interactive Script -->
+    <script>
+        function switchTab(tab) {
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            const privacyDocs = document.querySelectorAll('.privacy-doc');
+            const termsDocs = document.querySelectorAll('.terms-doc');
+
+            if (tab === 'all') {
+                event.target.classList.add('active');
+                privacyDocs.forEach(el => el.style.display = 'block');
+                termsDocs.forEach(el => el.style.display = 'block');
+            } else if (tab === 'privacy') {
+                event.target.classList.add('active');
+                privacyDocs.forEach(el => el.style.display = 'block');
+                termsDocs.forEach(el => {
+                    if (!el.classList.contains('privacy-doc')) {
+                        el.style.display = 'none';
+                    }
+                });
+            } else if (tab === 'terms') {
+                event.target.classList.add('active');
+                termsDocs.forEach(el => el.style.display = 'block');
+                privacyDocs.forEach(el => {
+                    if (!el.classList.contains('terms-doc')) {
+                        el.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        // Highlight active sidebar TOC item on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.legal-card');
+            const navLinks = document.querySelectorAll('.toc-link');
+
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= sectionTop - 150) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

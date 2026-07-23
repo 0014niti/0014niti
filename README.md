@@ -40,7 +40,7 @@
 
 <table>
   <tr>
-    <td width="50%" valign="top">
+    <td width="33%" valign="top">
       <h3 align="center">🌐 p2pcompanion.com</h3>
       <p align="center">
         <a href="https://p2pcompanion.com">
@@ -55,10 +55,26 @@
         <img src="https://img.shields.io/badge/Next.js-000000?logo=next.js&logoColor=white" />
         <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white" />
         <img src="https://img.shields.io/badge/Web3-7B2FF7?logo=ethereum&logoColor=white" />
-        <img src="https://img.shields.io/badge/P2P-00D4FF?logo=network-wired&logoColor=white" />
       </p>
     </td>
-    <td width="50%" valign="top">
+    <td width="33%" valign="top">
+      <h3 align="center">📝 Nnotes</h3>
+      <p align="center">
+        <a href="https://0014niti.github.io/nnotes.html">
+          <img src="https://img.shields.io/badge/✨%20Showcase-00D4FF?style=for-the-badge&logo=appstore&logoColor=white" />
+        </a>
+        <a href="https://0014niti.github.io/nnotes-privacy.html">
+          <img src="https://img.shields.io/badge/🛡️%20Privacy-7B2FF7?style=for-the-badge&logo=shield&logoColor=white" />
+        </a>
+      </p>
+      <p align="center"><i>Local-first collaborative note-taking app engineered with C & Kotlin.</i></p>
+      <p align="center">
+        <img src="https://img.shields.io/badge/C-A8B9CC?logo=c&logoColor=black" />
+        <img src="https://img.shields.io/badge/Kotlin-7F52FF?logo=kotlin&logoColor=white" />
+        <img src="https://img.shields.io/badge/P2P%20Sync-00D4FF?logo=network-wired&logoColor=white" />
+      </p>
+    </td>
+    <td width="33%" valign="top">
       <h3 align="center">📱 p2p-mobile</h3>
       <p align="center">
         <a href="https://github.com/0014niti/p2p-mobile">
@@ -67,9 +83,8 @@
       </p>
       <p align="center"><i>Mobile version of p2pcompanion.com — P2P connectivity in your pocket.</i></p>
       <p align="center">
-        <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white" />
         <img src="https://img.shields.io/badge/React%20Native-61DAFB?logo=react&logoColor=black" />
-        <img src="https://img.shields.io/badge/Mobile-7B2FF7?logo=smartphone&logoColor=white" />
+        <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white" />
       </p>
     </td>
   </tr>
