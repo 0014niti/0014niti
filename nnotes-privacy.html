@@ -6,9 +6,9 @@
     <title>Privacy Policy & Terms of Service | Nnotes App</title>
     
     <!-- Meta & Social tags -->
-    <meta name="description" content="Official Privacy Policy and Terms of Service for Nnotes - Handwriting & Stylus Note-Taking App for Android built with Kotlin, Jetpack Compose & C/C++ Native Engine.">
+    <meta name="description" content="Official Privacy Policy and Terms of Service for Nnotes - Infinite Canvas, Auto-Beautify & 3D Mascot Notebook App for Android built with Kotlin & Jetpack Compose.">
     <meta property="og:title" content="Nnotes App | Privacy Policy & Terms of Service">
-    <meta property="og:description" content="Transparent data privacy, local-first storage, zero telemetry, and terms of use for Nnotes.">
+    <meta property="og:description" content="Transparent data privacy, local-first storage, zero telemetry, on-device Auto-Beautify, and terms of use for Nnotes.">
     <meta property="og:type" content="website">
 
     <!-- Fonts -->
@@ -49,7 +49,6 @@
             line-height: 1.7;
         }
 
-        /* Ambient Orbs */
         .orb {
             position: fixed;
             border-radius: 50%;
@@ -72,14 +71,8 @@
             animation: orbFloat2 26s ease-in-out infinite;
         }
 
-        @keyframes orbFloat1 {
-            0%, 100% { transform: translate(0,0) scale(1); }
-            50% { transform: translate(60px, 40px) scale(1.1); }
-        }
-        @keyframes orbFloat2 {
-            0%, 100% { transform: translate(0,0) scale(1); }
-            50% { transform: translate(-50px, -60px) scale(1.15); }
-        }
+        @keyframes orbFloat1 { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(60px, 40px) scale(1.1); } }
+        @keyframes orbFloat2 { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-50px, -60px) scale(1.15); } }
 
         .noise-overlay {
             position: fixed;
@@ -107,7 +100,6 @@
             z-index: 10;
         }
 
-        /* Header */
         header {
             display: flex;
             justify-content: space-between;
@@ -130,7 +122,6 @@
             background: linear-gradient(135deg, var(--cyan), var(--purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .logo-badge {
@@ -145,11 +136,7 @@
             text-transform: uppercase;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
+        .nav-links { display: flex; gap: 12px; align-items: center; }
 
         .nav-btn {
             padding: 10px 18px;
@@ -160,10 +147,7 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 0.85rem;
-            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+            transition: all 0.3s;
         }
         .nav-btn:hover {
             color: var(--text);
@@ -172,11 +156,7 @@
             transform: translateY(-2px);
         }
 
-        /* Hero */
-        .hero {
-            text-align: center;
-            padding: 50px 0 30px;
-        }
+        .hero { text-align: center; padding: 40px 0 20px; }
 
         .hero-badge {
             display: inline-flex;
@@ -190,7 +170,6 @@
             border: 1px solid rgba(0,212,255,0.2);
             color: var(--cyan);
             margin-bottom: 20px;
-            letter-spacing: 0.5px;
         }
 
         .hero-title {
@@ -201,478 +180,225 @@
             background: linear-gradient(135deg, var(--text) 0%, var(--cyan) 50%, var(--purple) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
             letter-spacing: -1.5px;
         }
 
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 680px;
-            margin: 0 auto 30px;
-        }
+        .hero-subtitle { font-size: 1.1rem; color: var(--text-secondary); max-width: 680px; margin: 0 auto 30px; }
 
-        .meta-pills {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
+        .meta-pills { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+        .meta-pill { padding: 6px 14px; border-radius: 100px; font-size: 0.75rem; font-family: var(--font-mono); background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-muted); }
 
-        .meta-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-family: var(--font-mono);
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-muted);
-        }
+        .tab-switcher { display: flex; justify-content: center; gap: 12px; margin-bottom: 50px; }
+        .tab-btn { padding: 12px 28px; border-radius: 14px; font-size: 0.9rem; font-weight: 700; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.03); color: var(--text-secondary); cursor: pointer; transition: all 0.3s; font-family: var(--font-body); }
+        .tab-btn.active { background: linear-gradient(135deg, var(--cyan), var(--purple)); color: var(--bg-deep); border-color: transparent; box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3); }
 
-        /* Tab Switcher */
-        .tab-switcher {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 50px;
-        }
+        .content-grid { display: grid; grid-template-columns: 280px 1fr; gap: 40px; margin-bottom: 80px; }
 
-        .tab-btn {
-            padding: 12px 28px;
-            border-radius: 14px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(255, 255, 255, 0.03);
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: var(--font-body);
-        }
+        .toc-sidebar { position: sticky; top: 40px; height: fit-content; padding: 24px; border-radius: 20px; }
+        .toc-title { font-size: 0.8rem; font-family: var(--font-mono); color: var(--cyan); text-transform: uppercase; margin-bottom: 16px; font-weight: 700; }
+        .toc-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .toc-link { display: block; padding: 8px 12px; border-radius: 10px; color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: all 0.2s; border-left: 2px solid transparent; }
+        .toc-link:hover, .toc-link.active { color: var(--cyan); background: rgba(0, 212, 255, 0.05); border-left-color: var(--cyan); }
 
-        .tab-btn.active {
-            background: linear-gradient(135deg, var(--cyan), var(--purple));
-            color: var(--bg-deep);
-            border-color: transparent;
-            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
-        }
+        .legal-content { display: flex; flex-direction: column; gap: 40px; }
+        .legal-card { padding: 36px; border-radius: 24px; }
+        .legal-card h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 16px; color: var(--text); }
+        .legal-card p { color: var(--text-secondary); margin-bottom: 16px; line-height: 1.75; }
+        .legal-card ul { margin-left: 20px; margin-bottom: 16px; color: var(--text-secondary); }
+        .legal-card li { margin-bottom: 8px; }
 
-        .tab-btn:hover:not(.active) {
-            background: rgba(255, 255, 255, 0.06);
-            color: var(--text);
-        }
+        .highlight-box { padding: 18px 24px; border-radius: 16px; background: rgba(0, 212, 255, 0.04); border: 1px solid rgba(0, 212, 255, 0.15); margin: 20px 0; display: flex; gap: 14px; align-items: flex-start; }
 
-        /* Layout Grid with Sidebar TOC */
-        .content-grid {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 40px;
-            margin-bottom: 80px;
-        }
+        footer { padding: 60px 0; border-top: 1px solid rgba(255, 255, 255, 0.05); text-align: center; }
+        .footer-nav { display: flex; justify-content: center; gap: 24px; margin-bottom: 24px; flex-wrap: wrap; }
+        .footer-link { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; }
+        .footer-link:hover { color: var(--cyan); }
+        .footer-copy { color: var(--text-muted); font-size: 0.8rem; }
 
-        /* Sticky Sidebar */
-        .toc-sidebar {
-            position: sticky;
-            top: 40px;
-            height: fit-content;
-            padding: 24px;
-            border-radius: 20px;
-        }
-
-        .toc-title {
-            font-size: 0.8rem;
-            font-family: var(--font-mono);
-            color: var(--cyan);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-            font-weight: 700;
-        }
-
-        .toc-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .toc-link {
-            display: block;
-            padding: 8px 12px;
-            border-radius: 10px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.2s;
-            border-left: 2px solid transparent;
-        }
-
-        .toc-link:hover, .toc-link.active {
-            color: var(--cyan);
-            background: rgba(0, 212, 255, 0.05);
-            border-left-color: var(--cyan);
-        }
-
-        /* Main Legal Content */
-        .legal-content {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-        }
-
-        .legal-card {
-            padding: 36px;
-            border-radius: 24px;
-            transition: border-color 0.3s;
-        }
-
-        .legal-card:hover {
-            border-color: rgba(0, 212, 255, 0.2);
-        }
-
-        .section-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 0.7rem;
-            font-family: var(--font-mono);
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            background: rgba(0, 212, 255, 0.08);
-            color: var(--cyan);
-            border: 1px solid rgba(0, 212, 255, 0.15);
-        }
-
-        .section-tag.terms-tag {
-            background: rgba(168, 85, 247, 0.08);
-            color: var(--purple);
-            border-color: rgba(168, 85, 247, 0.15);
-        }
-
-        .legal-card h2 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 16px;
-            color: var(--text);
-            letter-spacing: -0.5px;
-        }
-
-        .legal-card p {
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-            line-height: 1.75;
-        }
-
-        .legal-card p:last-child {
-            margin-bottom: 0;
-        }
-
-        .legal-card ul {
-            margin-left: 20px;
-            margin-bottom: 16px;
-            color: var(--text-secondary);
-        }
-
-        .legal-card li {
-            margin-bottom: 8px;
-        }
-
-        .highlight-box {
-            padding: 18px 24px;
-            border-radius: 16px;
-            background: rgba(0, 212, 255, 0.04);
-            border: 1px solid rgba(0, 212, 255, 0.15);
-            margin: 20px 0;
-            display: flex;
-            gap: 14px;
-            align-items: flex-start;
-        }
-
-        .highlight-icon {
-            font-size: 1.3rem;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        .highlight-text {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        .highlight-text strong {
-            color: var(--text);
-        }
-
-        /* Footer */
-        footer {
-            padding: 60px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            text-align: center;
-        }
-
-        .footer-nav {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-        }
-
-        .footer-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-
-        .footer-link:hover {
-            color: var(--cyan);
-        }
-
-        .footer-copy {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-            .toc-sidebar {
-                display: none;
-            }
-            header {
-                flex-direction: column;
-                gap: 16px;
-            }
-        }
+        @media (max-width: 900px) { .content-grid { grid-template-columns: 1fr; } .toc-sidebar { display: none; } header { flex-direction: column; gap: 16px; } }
     </style>
 </head>
 <body>
-    <!-- Gradient Orbs -->
     <div class="orb orb-cyan"></div>
     <div class="orb orb-purple"></div>
-
-    <!-- Noise Texture -->
     <div class="noise-overlay"></div>
 
     <div class="container">
-        <!-- Header -->
         <header>
             <a href="nnotes.html" class="logo-wrap">
                 <span class="logo">📝 Nnotes</span>
                 <span class="logo-badge">Privacy & Terms</span>
             </a>
             <nav class="nav-links">
-                <a href="nnotes.html" class="nav-btn">← Nnotes Showcase</a>
+                <a href="nnotes.html" class="nav-btn">← Nnotes Overview</a>
                 <a href="index.html" class="nav-btn">🌐 Portfolio Home</a>
             </nav>
         </header>
 
-        <!-- Hero -->
         <section class="hero">
             <div class="hero-badge">
-                <span>🛡️</span> Zero-Telemetry & Local-First Architecture
+                <span>🛡️</span> Zero Telemetry • Local SAF Storage • On-Device Processing
             </div>
             <h1 class="hero-title">Privacy Policy & Terms of Service</h1>
             <p class="hero-subtitle">
-                Official privacy, data handling, and legal terms for Nnotes — the handwriting-first, vector stroke notebook app for Android built with Kotlin, Jetpack Compose, and C/C++ Native Engine.
+                Official privacy, data protection, and terms of use for Nnotes — developed by <strong>Harshita</strong> (Lead Developer) and <strong>Dr.N</strong> (Co-Developer).
             </p>
             <div class="meta-pills">
-                <span class="meta-pill">📅 Last Updated: July 2026</span>
-                <span class="meta-pill">⚡ Engine: Kotlin & C/C++ (CMake/NDK)</span>
+                <span class="meta-pill">📅 Effective Date: July 2026</span>
+                <span class="meta-pill">⚡ Architecture: Kotlin & Jetpack Compose</span>
                 <span class="meta-pill">🔒 Storage: Android Storage Access Framework (SAF)</span>
             </div>
         </section>
 
-        <!-- Tab Switcher -->
         <div class="tab-switcher">
             <button class="tab-btn active" onclick="switchTab('all')">All Documentation</button>
             <button class="tab-btn" onclick="switchTab('privacy')">Privacy Policy</button>
             <button class="tab-btn" onclick="switchTab('terms')">Terms of Service</button>
         </div>
 
-        <!-- Main Grid Layout -->
         <div class="content-grid">
-            <!-- Sidebar Table of Contents -->
             <aside class="toc-sidebar glass">
                 <div class="toc-title">Table of Contents</div>
                 <ul class="toc-list">
-                    <li><a href="#privacy-philosophy" class="toc-link">1. Privacy Philosophy</a></li>
+                    <li><a href="#privacy-overview" class="toc-link">1. Privacy Philosophy</a></li>
                     <li><a href="#data-collection" class="toc-link">2. Zero Telemetry Policy</a></li>
-                    <li><a href="#storage-saf" class="toc-link">3. Local File Storage & SAF</a></li>
-                    <li><a href="#native-engine" class="toc-link">4. C/C++ Vector Engine Safety</a></li>
-                    <li><a href="#pdf-annotation" class="toc-link">5. PDF Processing & Inversion</a></li>
-                    <li><a href="#network-permissions" class="toc-link">6. Network & Permissions</a></li>
-                    <li><a href="#mit-license" class="toc-link">7. Open Source License Notice</a></li>
-                    <li><a href="#terms-use" class="toc-link">8. Terms of Commercial Use</a></li>
-                    <li><a href="#liability-disclaimer" class="toc-link">9. Disclaimer & Liability</a></li>
-                    <li><a href="#contact-support" class="toc-link">10. Contact & Support</a></li>
+                    <li><a href="#autobeautify-privacy" class="toc-link">3. Auto-Beautify On-Device Processing</a></li>
+                    <li><a href="#storage-saf" class="toc-link">4. Local File Storage & SAF</a></li>
+                    <li><a href="#mascot-assets" class="toc-link">5. 3D Mascots & Offline Assets</a></li>
+                    <li><a href="#mit-license" class="toc-link">6. Open Source License Notice</a></li>
+                    <li><a href="#terms-use" class="toc-link">7. Commercial Terms of Use</a></li>
+                    <li><a href="#disclaimer" class="toc-link">8. Disclaimer & Liability</a></li>
+                    <li><a href="#contact" class="toc-link">9. Developer Contact</a></li>
                 </ul>
             </aside>
 
-            <!-- Main Legal Content -->
             <main class="legal-content">
-                
-                <!-- Section 1: Privacy Philosophy -->
-                <article id="privacy-philosophy" class="legal-card glass privacy-doc">
-                    <span class="section-tag">Privacy Policy • Section 1</span>
-                    <h2>1. Privacy Philosophy & Local-First Design</h2>
+                <!-- Section 1 -->
+                <article id="privacy-overview" class="legal-card glass privacy-doc">
+                    <span style="color:var(--cyan); font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase;">Privacy Policy • Section 1</span>
+                    <h2 style="margin-top:8px;">1. Privacy Philosophy & Local-First Design</h2>
                     <p>
-                        Nnotes is engineered by <strong>Dr.N (Niti)</strong> and <strong>Harshita Doddagoudar</strong> around a strict <strong>local-first, private-by-default</strong> model. We believe your handwritten notes, mathematical derivations, medical diagrams, and annotated PDFs contain sensitive personal intellectual property that should never be monitored, mined, or uploaded without your explicit command.
+                        Engineered by <strong>Harshita</strong> (Lead Developer) and <strong>Dr.N</strong> (Co-Developer), Nnotes is built around a strict <strong>local-first, private-by-default</strong> model under the motto <strong>Cure. Code. Create.</strong> We believe your handwritten notes, diagrams, and ideas belong exclusively to you.
                     </p>
                     <div class="highlight-box">
-                        <span class="highlight-icon">🔒</span>
-                        <div class="highlight-text">
-                            <strong>No Account Requirement & No Tracking:</strong> Nnotes requires no user login, no cloud profile creation, and includes zero tracking SDKs, analytics, or advertising frameworks.
+                        <span style="font-size:1.3rem;">🔒</span>
+                        <div style="font-size:0.9rem; color:var(--text-secondary);">
+                            <strong>Zero Tracking & No Account Requirement:</strong> You can use Nnotes completely offline. No user registration, no email sign-ups, and zero tracking frameworks are embedded in the app.
                         </div>
                     </div>
                 </article>
 
-                <!-- Section 2: Zero Telemetry Policy -->
+                <!-- Section 2 -->
                 <article id="data-collection" class="legal-card glass privacy-doc">
-                    <span class="section-tag">Privacy Policy • Section 2</span>
-                    <h2>2. Zero Telemetry & Data Collection</h2>
-                    <p>When you use Nnotes on Android, your data processing is entirely self-contained on your device:</p>
+                    <span style="color:var(--cyan); font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase;">Privacy Policy • Section 2</span>
+                    <h2 style="margin-top:8px;">2. Zero Telemetry & Data Collection</h2>
+                    <p>Nnotes collects zero telemetry. Your notes, handwriting strokes, and imported media remain 100% on your Android device:</p>
                     <ul>
-                        <li><strong>Note Vector Data (.nnote):</strong> Every pen stroke, highlighter mark, and vector shape remains stored locally on your device storage.</li>
-                        <li><strong>No Server Analytics:</strong> We do not log your stroke metrics, stroke count, document titles, or active session duration.</li>
-                        <li><strong>No Third-Party Analytics:</strong> No Google Firebase Analytics, Mixpanel, or ad identifiers are linked or embedded in Nnotes binaries.</li>
+                        <li><strong>Note Contents & Drawings:</strong> Saved locally on your device in open editable vector format.</li>
+                        <li><strong>No Server Logs:</strong> We do not log stroke metrics, canvas dimensions, or active session duration.</li>
+                        <li><strong>No Advertising SDKs:</strong> No third-party ad networks or analytics trackers are integrated into Nnotes.</li>
                     </ul>
                 </article>
 
-                <!-- Section 3: Storage & SAF -->
+                <!-- Section 3 -->
+                <article id="autobeautify-privacy" class="legal-card glass privacy-doc">
+                    <span style="color:var(--cyan); font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase;">Privacy Policy • Section 3</span>
+                    <h2 style="margin-top:8px;">3. On-Device Auto-Beautify Engine</h2>
+                    <p>
+                        Nnotes' flagship **Magical Auto-Beautify** feature converts messy handwriting into styled digital text:
+                    </p>
+                    <ul>
+                        <li><strong>100% On-Device Parsing:</strong> All stroke analysis and handwriting-to-text recognition are performed locally on your device CPU/GPU.</li>
+                        <li><strong>No Cloud Uploads:</strong> Your handwritten text is never sent to external AI servers or remote recognition APIs.</li>
+                    </ul>
+                </article>
+
+                <!-- Section 4 -->
                 <article id="storage-saf" class="legal-card glass privacy-doc">
-                    <span class="section-tag">Privacy Policy • Section 3</span>
-                    <h2>3. Local File Storage & Android SAF Isolation</h2>
+                    <span style="color:var(--cyan); font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase;">Privacy Policy • Section 4</span>
+                    <h2 style="margin-top:8px;">4. Local File Storage & Storage Access Framework (SAF)</h2>
                     <p>
-                        Nnotes integrates directly with Android's <strong>Storage Access Framework (SAF)</strong>. This privacy feature ensures:
+                        Nnotes integrates with Android's native **Storage Access Framework (SAF)**:
                     </p>
                     <ul>
-                        <li><strong>Zero Broad Storage Permissions:</strong> Nnotes does not require `READ_EXTERNAL_STORAGE` or `WRITE_EXTERNAL_STORAGE` broad access to your photo library or personal folders.</li>
-                        <li><strong>User-Granted Directory Isolation:</strong> Files are read and written strictly in directories you select via the system document picker.</li>
-                        <li><strong>Unflattened Vector Precision:</strong> Notes saved in vector formats retain full editability without flattening stroke data into permanent raster bitmaps.</li>
+                        <li><strong>No Broad File Access Needed:</strong> Nnotes does not ask for broad `READ_EXTERNAL_STORAGE` or `WRITE_EXTERNAL_STORAGE` permissions to access your photos or files.</li>
+                        <li><strong>Isolated Directory Access:</strong> Files are read and written strictly in folders you grant access to via the system document picker.</li>
                     </ul>
                 </article>
 
-                <!-- Section 4: C/C++ Vector Engine Safety -->
-                <article id="native-engine" class="legal-card glass privacy-doc">
-                    <span class="section-tag">Privacy Policy • Section 4</span>
-                    <h2>4. C/C++ Native Engine & Memory Safety</h2>
+                <!-- Section 5 -->
+                <article id="mascot-assets" class="legal-card glass privacy-doc">
+                    <span style="color:var(--cyan); font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase;">Privacy Policy • Section 5</span>
+                    <h2 style="margin-top:8px;">5. 3D Companion Mascots & Local Assets</h2>
                     <p>
-                        Nnotes utilizes a custom native C/C++ rendering pipeline (compiled with Android NDK) for off-thread deep zoom, high-resolution stroke interpolation, and live multiply blending:
+                        Our interactive 3D profession companions (Doctor, Student, Engineer, Artist) are bundled locally within the app installation package. No external servers or network connections are established when choosing or interacting with your companion.
                     </p>
-                    <div class="highlight-box">
-                        <span class="highlight-icon">⚡</span>
-                        <div class="highlight-text">
-                            <strong>Memory Buffer Recycling:</strong> Off-screen viewports and stroke tree buffers generated during pan & zoom actions are discarded from RAM immediately upon redrawing, preventing memory leakage and unauthorized cache persistence.
-                        </div>
-                    </div>
                 </article>
 
-                <!-- Section 5: PDF Processing -->
-                <article id="pdf-annotation" class="legal-card glass privacy-doc">
-                    <span class="section-tag">Privacy Policy • Section 5</span>
-                    <h2>5. PDF Annotation & On-Device Color Inversion</h2>
-                    <p>
-                        When annotating PDFs or applying Nnotes' smart night-mode PDF color inversion:
-                    </p>
-                    <ul>
-                        <li>PDF parsing and rendering are processed <strong>100% on-device</strong> using optimized local rendering libraries (PDFBox Android).</li>
-                        <li>PDF files opened in Nnotes are never transmitted to remote OCR, conversion, or preview servers.</li>
-                    </ul>
-                </article>
-
-                <!-- Section 6: Network Permissions -->
-                <article id="network-permissions" class="legal-card glass privacy-doc">
-                    <span class="section-tag">Privacy Policy • Section 6</span>
-                    <h2>6. Network Permissions & Presentation Server</h2>
-                    <p>Nnotes includes `android.permission.INTERNET` in its manifest strictly for optional features:</p>
-                    <ul>
-                        <li><strong>Local Presentation Server:</strong> Allows mirroring active note canvases over your local Wi-Fi network onto external displays or desktop companion browsers.</li>
-                        <li><strong>No External Phone-Home Connection:</strong> The network layer does not establish persistent background connections to central external servers.</li>
-                    </ul>
-                </article>
-
-                <!-- Section 7: MIT Open Source Notice -->
+                <!-- Section 6 -->
                 <article id="mit-license" class="legal-card glass terms-doc">
-                    <span class="section-tag terms-tag">Terms of Service • Section 7</span>
-                    <h2>7. Open Source Attribution & License Notice</h2>
+                    <span style="color:var(--purple); font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase;">Terms of Service • Section 6</span>
+                    <h2 style="margin-top:8px;">6. Open Source License Notice (MIT License)</h2>
                     <p>
-                        Nnotes incorporates modified foundational components from open-source projects licensed under the <strong>MIT License</strong>.
+                        Nnotes is inspired by the open-source **Xnote** app (repository: `https://github.com/shardulvs/xnotes-android`) and licensed under the **MIT License**.
                     </p>
                     <div class="highlight-box">
-                        <span class="highlight-icon">📜</span>
-                        <div class="highlight-text">
-                            <strong>MIT Permission Notice:</strong> Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files, to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, subject to retaining the original copyright notice and permission notice in all copies or substantial portions of the Software.
+                        <span style="font-size:1.3rem;">📜</span>
+                        <div style="font-size:0.9rem; color:var(--text-secondary);">
+                            <strong>MIT License Permission:</strong> Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files, to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software.
                         </div>
                     </div>
                 </article>
 
-                <!-- Section 8: Terms of Commercial Use -->
+                <!-- Section 7 -->
                 <article id="terms-use" class="legal-card glass terms-doc">
-                    <span class="section-tag terms-tag">Terms of Service • Section 8</span>
-                    <h2>8. Commercial Rights & User Responsibilities</h2>
-                    <p>By installing and using Nnotes (via direct build, APK release, or Google Play Store distribution):</p>
-                    <ul>
-                        <li>You retain 100% ownership over all handwritten notes, vector drawings, and annotated documents created using Nnotes.</li>
-                        <li>You agree not to modify or redistribute Nnotes installation binaries with embedded malware, spyware, or unauthorized telemetry hooks.</li>
-                    </ul>
-                </article>
-
-                <!-- Section 9: Disclaimer & Liability -->
-                <article id="liability-disclaimer" class="legal-card glass terms-doc">
-                    <span class="section-tag terms-tag">Terms of Service • Section 9</span>
-                    <h2>9. Disclaimers & Limitation of Liability</h2>
+                    <span style="color:var(--purple); font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase;">Terms of Service • Section 7</span>
+                    <h2 style="margin-top:8px;">7. Commercial Use & Intellectual Property</h2>
                     <p>
-                        Nnotes is provided "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+                        You retain 100% full ownership over all handwritten notes, sketches, and converted text created using Nnotes. Nnotes claims zero ownership over your personal creations.
                     </p>
                 </article>
 
-                <!-- Section 10: Contact & Support -->
-                <article id="contact-support" class="legal-card glass privacy-doc terms-doc">
-                    <span class="section-tag">Contact & Support • Section 10</span>
-                    <h2>10. Contact & Inquiries</h2>
+                <!-- Section 8 -->
+                <article id="disclaimer" class="legal-card glass terms-doc">
+                    <span style="color:var(--purple); font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase;">Terms of Service • Section 8</span>
+                    <h2 style="margin-top:8px;">8. Disclaimers & Limitation of Liability</h2>
                     <p>
-                        For technical inquiries, legal questions, or contribution feedback regarding Nnotes:
+                        Nnotes is provided "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. THE DEVELOPERS SHALL NOT BE LIABLE FOR ANY CLAIM, LOSS OF DATA, OR DAMAGES ARISING FROM DEVICE HARDWARE FAILURE OR SYSTEM CORRUPTION.
                     </p>
+                </article>
+
+                <!-- Section 9 -->
+                <article id="contact" class="legal-card glass privacy-doc terms-doc">
+                    <span style="color:var(--cyan); font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase;">Contact & Support • Section 9</span>
+                    <h2 style="margin-top:8px;">9. Developer Contact</h2>
+                    <p>For questions or support regarding Nnotes:</p>
                     <div class="highlight-box">
-                        <span class="highlight-icon">📧</span>
-                        <div class="highlight-text">
-                            <strong>Lead Developers:</strong> Dr.N (Niti) & Harshita Doddagoudar<br>
-                            <strong>GitHub Repository:</strong> <a href="https://github.com/0014niti" target="_blank" style="color: var(--cyan);">github.com/0014niti</a><br>
-                            <strong>Portfolio:</strong> <a href="index.html" style="color: var(--cyan);">0014niti.github.io</a>
+                        <span style="font-size:1.3rem;">📧</span>
+                        <div style="font-size:0.9rem; color:var(--text-secondary);">
+                            <strong>Lead Developer:</strong> Harshita<br>
+                            <strong>Co-Developer:</strong> Dr.N<br>
+                            <strong>GitHub:</strong> <a href="https://github.com/0014niti" target="_blank" style="color:var(--cyan);">github.com/0014niti</a><br>
+                            <strong>Website:</strong> <a href="index.html" style="color:var(--cyan);">0014niti.github.io</a>
                         </div>
                     </div>
                 </article>
-
             </main>
         </div>
 
-        <!-- Footer -->
         <footer>
             <div class="footer-nav">
                 <a href="nnotes.html" class="footer-link">Nnotes Showcase</a>
                 <a href="index.html" class="footer-link">Portfolio Home</a>
                 <a href="https://github.com/0014niti" target="_blank" class="footer-link">GitHub Profile</a>
             </div>
+            <div style="font-size: 1.3rem; font-weight: 800; color: var(--cyan); margin-bottom: 8px;">Cure. Code. Create.</div>
             <div class="footer-copy">
-                © 2026 Nnotes • Engineered by Dr.N (Niti) & Harshita Doddagoudar.
+                © 2026 Nnotes • Developed by Lead Developer Harshita & Co-Developer Dr.N.
             </div>
         </footer>
     </div>
 
-    <!-- Interactive Script -->
     <script>
         function switchTab(tab) {
             const buttons = document.querySelectorAll('.tab-btn');
@@ -689,41 +415,16 @@
                 event.target.classList.add('active');
                 privacyDocs.forEach(el => el.style.display = 'block');
                 termsDocs.forEach(el => {
-                    if (!el.classList.contains('privacy-doc')) {
-                        el.style.display = 'none';
-                    }
+                    if (!el.classList.contains('privacy-doc')) el.style.display = 'none';
                 });
             } else if (tab === 'terms') {
                 event.target.classList.add('active');
                 termsDocs.forEach(el => el.style.display = 'block');
                 privacyDocs.forEach(el => {
-                    if (!el.classList.contains('terms-doc')) {
-                        el.style.display = 'none';
-                    }
+                    if (!el.classList.contains('terms-doc')) el.style.display = 'none';
                 });
             }
         }
-
-        // Highlight active sidebar TOC item on scroll
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('.legal-card');
-            const navLinks = document.querySelectorAll('.toc-link');
-
-            let currentSection = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (window.scrollY >= sectionTop - 150) {
-                    currentSection = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + currentSection) {
-                    link.classList.add('active');
-                }
-            });
-        });
     </script>
 </body>
 </html>

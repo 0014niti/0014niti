@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nnotes | Handwriting & Stylus Notebook for Android</title>
+    <title>Nnotes | Infinite Canvas, Auto-Beautify & 3D Mascot Notebook</title>
 
     <!-- Social Meta -->
-    <meta property="og:title" content="Nnotes - Handwriting-First Android Notebook">
-    <meta property="og:description" content="A handwriting-first, vector stroke notebook for Android built for stylus & pen. Powered by Kotlin, Jetpack Compose, and a high-performance C/C++ native engine.">
+    <meta property="og:title" content="Nnotes - Infinite Canvas, Auto-Beautify & 3D Mascots">
+    <meta property="og:description" content="The ultimate Android handwriting & sketching app built with Kotlin & Jetpack Compose. Infinite canvas, magical Auto-Beautify handwriting to text, 3D profession companions, and soft Claymorphism UI.">
     <meta property="og:url" content="https://0014niti.github.io/nnotes.html">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Nnotes - Handwriting-First Stylus Notebook">
-    <meta name="twitter:description" content="Handwriting-first notebook for Android built for pen and stylus with C/C++ vector stroke rendering.">
+    <meta name="twitter:title" content="Nnotes - Smart Infinite Notes & Sketch">
+    <meta name="twitter:description" content="Infinite canvas, Auto-Beautify handwriting to text, floating drag-and-drop tool palette, and 3D mascots!">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -28,8 +28,8 @@
             --purple-glow: rgba(168, 85, 247, 0.3);
             --rose: #F43F5E;
             --rose-glow: rgba(244, 63, 94, 0.3);
-            --green: #22C55E;
             --amber: #FBBF24;
+            --green: #22C55E;
             --text: #F8FAFC;
             --text-secondary: #94A3B8;
             --text-muted: #64748B;
@@ -71,16 +71,8 @@
             animation: orbFloat2 25s ease-in-out infinite;
         }
 
-        @keyframes orbFloat1 {
-            0%, 100% { transform: translate(0,0) scale(1); }
-            33% { transform: translate(80px, 50px) scale(1.15); }
-            66% { transform: translate(-40px, -60px) scale(0.9); }
-        }
-        @keyframes orbFloat2 {
-            0%, 100% { transform: translate(0,0) scale(1); }
-            33% { transform: translate(-60px, -40px) scale(1.2); }
-            66% { transform: translate(50px, 80px) scale(0.85); }
-        }
+        @keyframes orbFloat1 { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(60px, 40px) scale(1.1); } }
+        @keyframes orbFloat2 { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-50px, -60px) scale(1.15); } }
 
         .noise-overlay {
             position: fixed;
@@ -100,14 +92,17 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
-        .glass-hover {
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        .clay-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 2px 2px 4px rgba(255,255,255,0.08);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        .glass-hover:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(0, 212, 255, 0.25);
-            transform: translateY(-6px) scale(1.01);
-            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.1);
+        .clay-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.15), inset 2px 2px 6px rgba(255,255,255,0.15);
         }
 
         .container {
@@ -123,7 +118,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 24px 0;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
@@ -133,7 +128,6 @@
             background: linear-gradient(135deg, var(--cyan), var(--purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -167,26 +161,26 @@
         }
 
         .hero {
-            min-height: 55vh;
+            min-height: 50vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 40px 0 60px;
+            padding: 30px 0 50px;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 24px;
+            padding: 8px 20px;
             border-radius: 100px;
             font-size: 0.8rem;
             font-weight: 600;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(168,85,247,0.08));
-            border: 1px solid rgba(0,212,255,0.2);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(168,85,247,0.1));
+            border: 1px solid rgba(0,212,255,0.25);
             color: var(--cyan);
         }
 
@@ -194,19 +188,18 @@
             font-size: clamp(2.8rem, 6vw, 4.8rem);
             font-weight: 800;
             line-height: 1.1;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             background: linear-gradient(135deg, var(--text) 0%, var(--cyan) 40%, var(--purple) 80%, var(--rose) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
             letter-spacing: -2px;
         }
 
         .hero-subtitle {
             font-size: 1.2rem;
             color: var(--text-secondary);
-            margin-bottom: 36px;
-            max-width: 680px;
+            margin-bottom: 32px;
+            max-width: 700px;
             line-height: 1.7;
         }
 
@@ -215,14 +208,14 @@
             gap: 16px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 14px 30px;
+            padding: 14px 28px;
             border-radius: 16px;
             font-weight: 600;
             font-size: 0.95rem;
@@ -252,281 +245,166 @@
         .btn-glass:hover {
             background: rgba(255, 255, 255, 0.08);
             border-color: rgba(0, 212, 255, 0.3);
-            transform: translateY(-3px) scale(1.02);
+            transform: translateY(-3px);
         }
 
-        /* ========== INTERACTIVE VECTOR CANVAS SIMULATOR ========== */
-        .demo-section {
-            margin: 20px 0 80px;
-        }
+        .demo-section { margin: 20px 0 80px; }
 
         .demo-window {
-            border-radius: 24px;
+            border-radius: 28px;
             overflow: hidden;
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.25);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            background: #09090E;
         }
 
-        .demo-header-bar {
-            background: rgba(15, 23, 42, 0.8);
-            padding: 14px 20px;
+        .demo-bar {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 14px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .window-controls {
-            display: flex;
-            gap: 8px;
-        }
-
-        .control-dot {
-            width: 12px; height: 12px;
-            border-radius: 50%;
-        }
-        .dot-red { background: #FF5F56; }
-        .dot-yellow { background: #FFBD2E; }
-        .dot-green { background: #27C93F; }
-
-        .demo-title-bar {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .status-indicator {
-            width: 8px; height: 8px;
-            border-radius: 50%;
-            background: var(--green);
-            box-shadow: 0 0 10px var(--green);
-        }
-
-        .demo-canvas-area {
+        .demo-canvas-body {
             position: relative;
-            background: #09090D;
-            min-height: 380px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            min-height: 420px;
             padding: 24px;
+            background-size: 20px 20px;
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
         }
 
-        .canvas-toolbar {
+        .floating-palette {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 20;
+            background: rgba(20, 24, 38, 0.85);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 10px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 1px 1px 2px rgba(255,255,255,0.1);
             display: flex;
-            gap: 12px;
+            gap: 8px;
             align-items: center;
-            background: rgba(255, 255, 255, 0.04);
-            padding: 8px 16px;
-            border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            width: fit-content;
+            cursor: move;
         }
 
         .tool-btn {
-            padding: 6px 14px;
-            border-radius: 8px;
-            background: transparent;
+            width: 40px; height: 40px;
+            border-radius: 12px;
             border: 1px solid transparent;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-family: var(--font-body);
         }
+
         .tool-btn.active, .tool-btn:hover {
-            background: rgba(0, 212, 255, 0.12);
-            color: var(--cyan);
-            border-color: rgba(0, 212, 255, 0.25);
+            background: rgba(0, 212, 255, 0.15);
+            border-color: var(--cyan);
+            box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+            transform: scale(1.05);
         }
 
-        .canvas-interactive {
-            width: 100%;
-            height: 240px;
-            border-radius: 16px;
-            border: 1px dashed rgba(255, 255, 255, 0.1);
-            background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.03) 0%, transparent 80%);
+        .mascot-companion {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(168, 85, 247, 0.12);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 20px;
+            padding: 12px 18px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            position: relative;
-            cursor: crosshair;
+            gap: 12px;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .mascot-companion:hover {
+            transform: translateY(-4px) scale(1.03);
+            background: rgba(168, 85, 247, 0.22);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.2);
         }
 
-        .canvas-hint {
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            pointer-events: none;
-        }
+        .mascot-avatar { font-size: 2rem; animation: bounceMascot 2.5s ease-in-out infinite; }
+        @keyframes bounceMascot { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
-        /* Features */
-        .section {
-            padding: 80px 0;
-            position: relative;
-        }
+        .mascot-text { display: flex; flex-direction: column; }
+        .mascot-name { font-size: 0.85rem; font-weight: 700; color: var(--purple); }
+        .mascot-quote { font-size: 0.75rem; color: var(--text-secondary); font-style: italic; }
 
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            margin-bottom: 40px;
-            text-align: center;
-            letter-spacing: -1px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin-bottom: 60px;
-        }
-
-        .feature-card {
-            padding: 36px;
-            border-radius: 24px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s;
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 16px;
-        }
-
-        .feature-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .feature-desc {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        .tech-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .tech-item {
-            padding: 28px;
+        .beautify-box {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 85%;
+            max-width: 580px;
+            background: rgba(15, 23, 42, 0.95);
             border-radius: 20px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            text-align: left;
+            padding: 24px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            text-align: center;
         }
 
-        .tech-name {
-            font-size: 1.2rem;
+        .beautify-toggle-btn {
+            margin-top: 16px;
+            padding: 10px 24px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            color: var(--bg-deep);
             font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--cyan);
-            font-family: var(--font-mono);
-        }
-
-        .tech-desc {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        .contributors {
-            text-align: center;
-            padding: 40px;
-            border-radius: 24px;
-            background: rgba(0, 212, 255, 0.04);
-            border: 1px solid rgba(0, 212, 255, 0.15);
-        }
-
-        .contributors h3 {
-            font-size: 1.4rem;
-            margin-bottom: 24px;
-            font-weight: 800;
-        }
-
-        .contributor-list {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .contributor {
-            text-align: center;
-        }
-
-        .contributor-icon {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-
-        .contributor-name {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 4px;
-        }
-
-        .contributor-role {
+            border: none;
+            cursor: pointer;
             font-size: 0.85rem;
-            color: var(--text-secondary);
+            transition: transform 0.2s;
         }
+        .beautify-toggle-btn:hover { transform: scale(1.04); }
 
-        footer {
-            text-align: center;
-            padding: 60px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
-        }
+        .section { padding: 80px 0; position: relative; }
+        .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 40px; text-align: center; letter-spacing: -1px; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 60px; }
+        .feature-card { padding: 32px; }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 16px; }
+        .feature-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 10px; }
+        .feature-desc { color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; }
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
+        .tools-table-container { border-radius: 24px; padding: 32px; margin-bottom: 60px; }
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .tool-guide-card { padding: 20px; border-radius: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); }
+        .tool-guide-title { font-size: 1.05rem; font-weight: 700; color: var(--cyan); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
 
-        .footer-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
-        .footer-link:hover {
-            color: var(--cyan);
-        }
+        .contributors { text-align: center; padding: 40px; border-radius: 24px; background: rgba(0, 212, 255, 0.04); border: 1px solid rgba(0, 212, 255, 0.15); }
+        .contributors h3 { font-size: 1.4rem; margin-bottom: 24px; font-weight: 800; }
+        .contributor-list { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+        .contributor-name { font-weight: 700; font-size: 1.1rem; margin-bottom: 4px; }
+        .contributor-role { font-size: 0.85rem; color: var(--text-secondary); }
 
-        .footer-text {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
+        footer { text-align: center; padding: 60px 0; border-top: 1px solid rgba(255, 255, 255, 0.04); }
+        .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap; }
+        .footer-link { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-link:hover { color: var(--cyan); }
+        .footer-text { color: var(--text-muted); font-size: 0.85rem; }
 
-        @media (max-width: 768px) {
-            .hero { min-height: 45vh; padding: 30px 0; }
-            .features-grid { grid-template-columns: 1fr; }
-            .tech-section { grid-template-columns: 1fr; }
-            header { flex-direction: column; gap: 16px; }
-        }
+        @media (max-width: 768px) { .hero { min-height: 45vh; padding: 30px 0; } .features-grid { grid-template-columns: 1fr; } header { flex-direction: column; gap: 16px; } .floating-palette { position: relative; top:0; left:0; margin-bottom:16px; } }
     </style>
 </head>
 <body>
-    <!-- Gradient Orbs -->
     <div class="orb orb-cyan"></div>
     <div class="orb orb-purple"></div>
 
-    <!-- Noise Texture -->
     <div class="noise-overlay"></div>
 
     <div class="container">
-        <!-- Header -->
         <header>
             <a href="nnotes.html" class="logo">
                 <span>📝 Nnotes</span>
@@ -537,116 +415,111 @@
             </div>
         </header>
 
-        <!-- Hero Section -->
         <section class="hero">
             <div class="hero-badge">
-                <span>🖊️</span> Handwriting-First Android Notebook
+                <span>✨</span> Cure. Code. Create. • Auto-Beautify • 3D Mascots
             </div>
             <h1 class="hero-title">Nnotes</h1>
             <p class="hero-subtitle">
-                A handwriting-first notebook app for Android built for pen & stylus. Engineered with Jetpack Compose, Kotlin, and a high-performance C/C++ vector engine for infinite deep zoom.
+                The ultimate infinite-canvas handwriting, sketching, and digital note-taking companion for Android developed by <strong>Harshita</strong> (Lead Developer) and <strong>Dr.N</strong> (Co-Developer).
             </p>
             <div class="cta-buttons">
-                <a href="#interactive-demo" class="btn btn-primary">⚡ Try Vector Canvas Demo</a>
-                <a href="nnotes-privacy.html" class="btn btn-glass">🛡️ Read Privacy Policy</a>
+                <a href="#interactive-demo" class="btn btn-primary">⚡ Try Auto-Beautify Demo</a>
+                <a href="nnotes-privacy.html" class="btn btn-glass">🛡️ Privacy Policy & Terms</a>
                 <a href="https://github.com/0014niti" target="_blank" class="btn btn-glass">📁 GitHub Repo</a>
             </div>
         </section>
 
-        <!-- Interactive Vector Canvas Simulator -->
         <section id="interactive-demo" class="demo-section">
-            <h2 class="section-title">Interactive Vector Stroke Sandbox</h2>
-            <div class="demo-window glass">
-                <div class="demo-header-bar">
-                    <div class="window-controls">
-                        <span class="control-dot dot-red"></span>
-                        <span class="control-dot dot-yellow"></span>
-                        <span class="control-dot dot-green"></span>
+            <h2 class="section-title">Interactive Claymorphism Canvas Demo</h2>
+            <div class="demo-window">
+                <div class="demo-bar">
+                    <div style="display:flex; gap:8px;">
+                        <span style="width:12px;height:12px;border-radius:50%;background:#FF5F56;"></span>
+                        <span style="width:12px;height:12px;border-radius:50%;background:#FFBD2E;"></span>
+                        <span style="width:12px;height:12px;border-radius:50%;background:#27C93F;"></span>
                     </div>
-                    <div class="demo-title-bar">
-                        <span class="status-indicator"></span>
-                        C/C++ Off-Main-Thread Vector Ink Renderer (Simulated Canvas)
+                    <div style="font-family:var(--font-mono); font-size:0.8rem; color:var(--text-secondary);">
+                        Nnotes Infinite Canvas & Claymorphism Palette
                     </div>
-                    <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--cyan);">Vector Format: .nnote</div>
+                    <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--cyan);">Grid: Dots (Infinite)</div>
                 </div>
-                <div class="demo-canvas-area">
-                    <div class="canvas-toolbar">
-                        <button class="tool-btn active" onclick="setTool('pen', this)">✒️ Fountain Pen</button>
-                        <button class="tool-btn" onclick="setTool('highlighter', this)">🖍️ Multiply Highlighter</button>
-                        <button class="tool-btn" onclick="setTool('neon', this)">💡 Luminous Neon Pen</button>
-                        <button class="tool-btn" onclick="clearCanvas()">🗑️ Clear</button>
+
+                <div class="demo-canvas-body">
+                    <div class="floating-palette">
+                        <button class="tool-btn active" title="Standard Pen">🖋️</button>
+                        <button class="tool-btn" title="Calligraphy Pen">✒️</button>
+                        <button class="tool-btn" title="Speed & Taper Pen">🖌️</button>
+                        <button class="tool-btn" title="Smart Highlighter">🖍️</button>
+                        <button class="tool-btn" title="Auto-Beautify Magic Wand">✨</button>
+                        <button class="tool-btn" title="Lasso Select">✂️</button>
+                        <button class="tool-btn" title="Geometric Shape Snap">📐</button>
                     </div>
-                    <div class="canvas-interactive" id="canvas-area" onmousedown="startDraw(event)" onmousemove="draw(event)" onmouseup="stopDraw()">
-                        <svg id="svg-canvas" style="position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none;"></svg>
-                        <div class="canvas-hint" id="canvas-hint">✏️ Click & drag inside canvas to sketch vector ink strokes</div>
+
+                    <div class="beautify-box">
+                        <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--cyan); margin-bottom:8px;">
+                            ✨ MAGICAL AUTO-BEAUTIFY ENGINE
+                        </div>
+                        <div id="handwriting-display" style="font-size:1.4rem; font-weight:700; color:var(--text); min-height:45px; transition:all 0.4s;">
+                            "mEsSy hAnDwRiTiNg nOtEs..."
+                        </div>
+                        <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:8px;">
+                            Click the button below to test Auto-Beautify transforming messy handwriting strokes into styled digital typography!
+                        </p>
+                        <button class="beautify-toggle-btn" onclick="toggleBeautify()">
+                            ✨ Convert to Beautified Text
+                        </button>
                     </div>
-                    <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">
-                        <span>Stylus Pressure: Simulated (100%)</span>
-                        <span>Off-Thread Zoom Redraw: Crisp Vector</span>
+
+                    <div class="mascot-companion" onclick="triggerMascotQuote()">
+                        <div class="mascot-avatar">🩺</div>
+                        <div class="mascot-text">
+                            <span class="mascot-name">Dr. Niti Mascot</span>
+                            <span class="mascot-quote" id="mascot-speech">"Focus & keep building! You can do it!"</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Features Section -->
+        <!-- Core Features -->
         <section class="section">
-            <h2 class="section-title">Key Features</h2>
+            <h2 class="section-title">Core Features & USPs</h2>
             <div class="features-grid">
-                <div class="feature-card glass glass-hover">
-                    <div class="feature-icon">🔍</div>
-                    <div class="feature-title">Off-Main-Thread Deep Zoom</div>
-                    <p class="feature-desc">A background C/C++ engine redraws high-resolution viewports off the UI thread. Zoom in endlessly and ink strokes stay razor sharp.</p>
+                <div class="clay-card feature-card">
+                    <div class="feature-icon">✨</div>
+                    <div class="feature-title">Magical Auto-Beautify</div>
+                    <p class="feature-desc">Write naturally with your stylus or finger. Nnotes' intelligent engine automatically transforms messy handwriting into perfectly styled digital typography in real time or via Lasso selection.</p>
                 </div>
 
-                <div class="feature-card glass glass-hover">
-                    <div class="feature-icon">🖊️</div>
-                    <div class="feature-title">Stylus & Touch Aware</div>
-                    <p class="feature-desc">Pen and finger inputs are processed separately. Pan and pinch-zoom with your finger while drawing smoothly with your stylus.</p>
+                <div class="clay-card feature-card">
+                    <div class="feature-icon">🌌</div>
+                    <div class="feature-title">Limitless Infinite Canvas</div>
+                    <p class="feature-desc">Break free from page restrictions. Pan and pinch-zoom endlessly across a limitless canvas with customizable Dot, Ruled, Graph, and Plain background grids.</p>
                 </div>
 
-                <div class="feature-card glass glass-hover">
-                    <div class="feature-icon">🖍️</div>
-                    <div class="feature-title">Real Multiply Highlighting</div>
-                    <p class="feature-desc">Highlighters composite live every frame with true multiply blending, so overlapping strokes deepen naturally like real ink.</p>
+                <div class="clay-card feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <div class="feature-title">Claymorphism 3D UI</div>
+                    <p class="feature-desc">Experience a soft 3D 'Claymorphism' user interface that is easy on the eyes and deeply tactile to use, supporting seamless Light & Dark workspace themes.</p>
                 </div>
 
-                <div class="feature-card glass glass-hover">
-                    <div class="feature-icon">📄</div>
-                    <div class="feature-title">Smart PDF Dark Mode</div>
-                    <p class="feature-desc">Annotate PDFs with ease and invert page colors for comfortable night reading while leaving embedded photos untouched.</p>
+                <div class="clay-card feature-card">
+                    <div class="feature-icon">🧰</div>
+                    <div class="feature-title">Floating Drag & Drop Palette</div>
+                    <p class="feature-desc">A customizable floating toolbar that stays out of your way. Move it anywhere on screen, long-press to reorder tools, or switch between vertical, horizontal, and split layouts.</p>
                 </div>
 
-                <div class="feature-card glass glass-hover">
-                    <div class="feature-icon">🔒</div>
-                    <div class="feature-title">Local Storage (SAF) Privacy</div>
-                    <p class="feature-desc">No accounts, no cloud tracking, and zero telemetry. Uses Android's Storage Access Framework for complete file privacy.</p>
+                <div class="clay-card feature-card">
+                    <div class="feature-icon">🩺</div>
+                    <div class="feature-title">3D Interactive Mascots</div>
+                    <p class="feature-desc">Choose a profession-based 3D companion (Doctor, Student, Engineer, Artist) that hangs out on your toolbar and provides motivational boosts during long study sessions.</p>
                 </div>
 
-                <div class="feature-card glass glass-hover">
-                    <div class="feature-icon">⚡</div>
-                    <div class="feature-title">Open Vector (.nnote) Format</div>
-                    <p class="feature-desc">Strokes remain editable vector objects. Re-select, move, recolor, or erase any mark at any time without flattening to bitmaps.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tech Stack Section -->
-        <section class="section">
-            <h2 class="section-title">Technical Architecture</h2>
-            <div class="tech-section">
-                <div class="tech-item glass">
-                    <div class="tech-name">C / C++ Native Engine (NDK)</div>
-                    <div class="tech-desc">Custom C++ stroke trees, CMake build integration, and off-thread viewport rendering for low-latency ink response.</div>
-                </div>
-
-                <div class="tech-item glass">
-                    <div class="tech-name">Kotlin & Jetpack Compose</div>
-                    <div class="tech-desc">Modern declarative UI for Android 8.0+ targeting SDK 36, delivering smooth touch gestures and dark mode UI.</div>
-                </div>
-
-                <div class="tech-item glass">
-                    <div class="tech-name">PDFBox Android</div>
-                    <div class="tech-desc">On-device PDF rendering, vector layer compositing, and night-mode page color inversion.</div>
+                <div class="clay-card feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <div class="feature-title">Local-First SAF Privacy</div>
+                    <p class="feature-desc">No accounts required, no cloud tracking, zero telemetry. Files are managed locally using Android's Storage Access Framework for 100% data ownership.</p>
                 </div>
             </div>
         </section>
@@ -654,20 +527,23 @@
         <!-- Contributors Section -->
         <section class="section">
             <h2 class="section-title">Built By</h2>
-            <div class="contributors glass glass-hover">
-                <h3>Development Team</h3>
+            <div class="contributors clay-card">
+                <h3>Development Team & Inspiration</h3>
                 <div class="contributor-list">
                     <div class="contributor">
-                        <div class="contributor-icon">👨‍⚕️💻</div>
-                        <div class="contributor-name">Dr.N (Niti)</div>
-                        <div class="contributor-role">Lead Developer & Doctor</div>
+                        <div style="font-size:2.5rem; margin-bottom:8px;">👩‍💻</div>
+                        <div class="contributor-name">Harshita</div>
+                        <div class="contributor-role">Lead Developer</div>
                     </div>
                     <div class="contributor">
-                        <div class="contributor-icon">🚀</div>
-                        <div class="contributor-name">Harshita Doddagoudar</div>
+                        <div style="font-size:2.5rem; margin-bottom:8px;">👨‍⚕️</div>
+                        <div class="contributor-name">Dr.N</div>
                         <div class="contributor-role">Co-Developer</div>
                     </div>
                 </div>
+                <p style="margin-top:20px; font-size:0.85rem; color:var(--text-secondary);">
+                    Inspired by open-source Xnote under the <strong>MIT License</strong>.
+                </p>
             </div>
         </section>
 
@@ -678,75 +554,40 @@
                 <a href="index.html" class="footer-link">Portfolio Home</a>
                 <a href="https://github.com/0014niti" target="_blank" class="footer-link">GitHub Repository</a>
             </div>
+            <div style="font-size: 1.3rem; font-weight: 800; color: var(--cyan); margin-bottom: 8px;">Cure. Code. Create.</div>
             <div class="footer-text">
-                © 2026 Nnotes • Engineered by Dr.N & Harshita Doddagoudar.
+                © 2026 Nnotes • Developed by Lead Developer Harshita & Co-Developer Dr.N.
             </div>
         </footer>
     </div>
 
-    <!-- Interactive Drawing Canvas Script -->
     <script>
-        let currentTool = 'pen';
-        let isDrawing = false;
-        const svg = document.getElementById('svg-canvas');
-        let currentPath = null;
-
-        function setTool(tool, btn) {
-            currentTool = tool;
-            document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        }
-
-        function startDraw(e) {
-            isDrawing = true;
-            document.getElementById('canvas-hint').style.display = 'none';
-            const rect = e.currentTarget.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            currentPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            let color = '#00D4FF';
-            let strokeWidth = '3';
-            let opacity = '1';
-
-            if (currentTool === 'highlighter') {
-                color = '#A855F7';
-                strokeWidth = '14';
-                opacity = '0.4';
-            } else if (currentTool === 'neon') {
-                color = '#22C55E';
-                strokeWidth = '4';
-                opacity = '1';
-                currentPath.setAttribute('filter', 'drop-shadow(0 0 6px #22C55E)');
+        let beautified = false;
+        function toggleBeautify() {
+            const display = document.getElementById('handwriting-display');
+            if (!beautified) {
+                display.style.fontFamily = 'var(--font-mono)';
+                display.style.color = 'var(--cyan)';
+                display.textContent = '✨ "Messy handwriting notes converted!"';
+                beautified = true;
+            } else {
+                display.style.fontFamily = 'var(--font-body)';
+                display.style.color = 'var(--text)';
+                display.textContent = '"mEsSy hAnDwRiTiNg nOtEs..."';
+                beautified = false;
             }
-
-            currentPath.setAttribute('stroke', color);
-            currentPath.setAttribute('stroke-width', strokeWidth);
-            currentPath.setAttribute('stroke-linecap', 'round');
-            currentPath.setAttribute('stroke-linejoin', 'round');
-            currentPath.setAttribute('fill', 'none');
-            currentPath.setAttribute('opacity', opacity);
-            currentPath.setAttribute('d', `M ${x} ${y}`);
-            svg.appendChild(currentPath);
         }
 
-        function draw(e) {
-            if (!isDrawing || !currentPath) return;
-            const rect = e.currentTarget.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const d = currentPath.getAttribute('d');
-            currentPath.setAttribute('d', `${d} L ${x} ${y}`);
-        }
-
-        function stopDraw() {
-            isDrawing = false;
-            currentPath = null;
-        }
-
-        function clearCanvas() {
-            svg.innerHTML = '';
-            document.getElementById('canvas-hint').style.display = 'block';
+        const mascotQuotes = [
+            '"Focus & keep building! You can do it!"',
+            '"Great notes make great ideas!"',
+            '"Never stop learning & creating!"',
+            '"Take a quick break and hydrate!"'
+        ];
+        let quoteIdx = 0;
+        function triggerMascotQuote() {
+            quoteIdx = (quoteIdx + 1) % mascotQuotes.length;
+            document.getElementById('mascot-speech').textContent = mascotQuotes[quoteIdx];
         }
     </script>
 </body>
