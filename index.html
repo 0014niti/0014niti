@@ -114,7 +114,7 @@
             opacity: 0.025;
             z-index: 2;
             pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' seed='2'/%3E%3C/filter%3E%3Crect width='256' height='256' fill='%23fff' filter='url(%23noise)'/%3E%3C/svg%3E");
         }
 
         /* ========== APPLE-STYLE GLASSMORPHISM ========== */
@@ -998,132 +998,108 @@
                         <span class="about-icon">🎯</span>
                         <div class="about-content">
                             <span class="about-key">Mission</span>
-                            <span class="about-value">"Healing through medicine, empowering through code"</span>
-                        </div>
-                    </div>
-                    <div class="about-item">
-                        <span class="about-icon">🔭</span>
-                        <div class="about-content">
-                            <span class="about-key">Building</span>
-                            <span class="about-value">p2pcompanion.com, Med Reminder, Med Assist</span>
-                        </div>
-                    </div>
-                    <div class="about-item">
-                        <span class="about-icon">⚡</span>
-                        <div class="about-content">
-                            <span class="about-key">Interests</span>
-                            <span class="about-value">HealthTech, Web3, Open Source, P2P, Medical Innovation</span>
+                            <span class="about-value">Build scalable healthcare & Web3 solutions that make a difference</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Live Projects -->
+        <!-- Projects -->
         <section class="section" id="projects">
             <div class="section-header reveal">
-                <div class="section-label">Portfolio</div>
-                <h2 class="section-title">Live Projects</h2>
-                <p class="section-desc">Real-world applications built with modern technologies and deployed to production.</p>
+                <div class="section-label">Creations</div>
+                <h2 class="section-title">Projects & Collaborations</h2>
+                <p class="section-desc">Building products that bridge medicine, technology, and innovation.</p>
             </div>
 
             <div class="projects-grid">
+                <!-- p2pcompanion -->
                 <div class="project-card glass glass-hover live reveal">
                     <div class="project-header">
                         <div>
                             <div class="project-icon-main">🌐</div>
-                            <div class="project-title">p2pcompanion.com</div>
+                            <div class="project-title">p2pcompanion</div>
                         </div>
-                        <span class="project-status status-live">Live</span>
+                        <span class="project-status status-live">🟢 LIVE</span>
                     </div>
-                    <p class="project-desc">A peer-to-peer companion Terminal helping crypto P2P traders and connecting people through decentralized networks. Built with modern Nostr and future Web3 integration.</p>
+                    <p class="project-desc">A revolutionary peer-to-peer platform connecting people with shared interests and experiences. Building community through meaningful connections.</p>
                     <div class="project-tags">
-                        <span class="tag">Next.js</span>
-                        <span class="tag">TypeScript</span>
                         <span class="tag">Web3</span>
+                        <span class="tag">Community</span>
                         <span class="tag">P2P</span>
+                        <span class="tag">Social</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://p2pcompanion.com" class="project-link" target="_blank">🚀 Visit Site</a>
-                        <a href="https://github.com/0014niti/web" class="project-link" target="_blank">📁 Repo</a>
+                        <a href="https://p2pcompanion.com" class="project-link" target="_blank">Visit Site →</a>
+                        <a href="https://github.com/0014niti" class="project-link" target="_blank">Explore →</a>
                     </div>
                 </div>
 
+                <!-- Med Reminder -->
                 <div class="project-card glass glass-hover live reveal">
-                    <div class="project-header">
-                        <div>
-                            <div class="project-icon-main">📱</div>
-                            <div class="project-title">p2p-mobile</div>
-                        </div>
-                        <span class="project-status status-live">Live</span>
-                    </div>
-                    <p class="project-desc">Mobile version of p2pcompanion.com — bringing P2P connectivity to your pocket. Cross-platform mobile experience.</p>
-                    <div class="project-tags">
-                        <span class="tag">TypeScript</span>
-                        <span class="tag">React Native</span>
-                        <span class="tag">Mobile</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://play.google.com/store/apps/details?id=p2p.mobile" class="project-link" target="_blank">🚀 Playstore</a>
-                        <a href="https://github.com/0014niti/p2p-mobile" class="project-link" target="_blank">📁 Repo</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Coming Soon -->
-        <section class="section">
-            <div class="section-header reveal">
-                <div class="section-label">Roadmap</div>
-                <h2 class="section-title">HealthTech Suite</h2>
-                <p class="section-desc">The next generation of medical applications designed by a doctor who understands real patient needs.</p>
-            </div>
-
-            <div class="coming-banner reveal">🚧 Building the Future of HealthTech</div>
-
-            <div class="projects-grid">
-                <div class="project-card glass glass-hover reveal">
                     <div class="project-header">
                         <div>
                             <div class="project-icon-main">💊</div>
                             <div class="project-title">Med Reminder</div>
                         </div>
-                        <span class="project-status status-dev">In Dev</span>
+                        <span class="project-status status-live">🟢 LIVE</span>
                     </div>
-                    <p class="project-desc">Smart medication tracking & reminder system designed by a doctor who truly understands patient needs. Never miss a dose again.</p>
+                    <p class="project-desc">Smart medication reminder app designed to help patients stay on top of their health. Never miss a dose with intelligent notifications and tracking.</p>
                     <div class="project-tags">
                         <span class="tag">HealthTech</span>
-                        <span class="tag">Notifications</span>
-                        <span class="tag">Schedule</span>
-                        <span class="tag">Caregiver Alerts</span>
+                        <span class="tag">Mobile</span>
+                        <span class="tag">Healthcare</span>
+                        <span class="tag">App</span>
                     </div>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.04);">
-                        🩺 Intelligent scheduling, dosage tracking, and caregiver alerts.
-                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/0014niti/Med" class="project-link" target="_blank">GitHub →</a>
+                        <a href="https://github.com/0014niti/Med" class="project-link" target="_blank">Learn More →</a>
+                    </div>
                 </div>
 
-                <div class="project-card glass glass-hover reveal">
+                <!-- Med Assist -->
+                <div class="project-card glass glass-hover live reveal">
                     <div class="project-header">
                         <div>
                             <div class="project-icon-main">🏥</div>
                             <div class="project-title">Med Assist</div>
                         </div>
-                        <span class="project-status status-dev">In Dev</span>
+                        <span class="project-status status-dev">🟡 IN PROGRESS</span>
                     </div>
-                    <p class="project-desc">AI-powered medical assistant for preliminary diagnostics, symptom checking, and health guidance. Your pocket doctor.</p>
-                   
+                    <p class="project-desc">Comprehensive medical assistant tool providing health insights, symptom checking, and personalized health recommendations using AI technology.</p>
                     <div class="project-tags">
-                        <span class="tag">AI</span>
-                        <span class="tag">Chatbot</span>
-                        <span class="tag">Diagnostics</span>
-                        <span class="tag">Health Records</span>
+                        <span class="tag">AI/ML</span>
+                        <span class="tag">HealthTech</span>
+                        <span class="tag">Assistant</span>
+                        <span class="tag">In Progress</span>
                     </div>
-                    <div class="project-links">          
-                        <a href="https://github.com/0014niti/med" class="project-link" target="_blank">📁 Repo</a>        
+                    <div class="project-links">
+                        <a href="https://github.com/0014niti" class="project-link" target="_blank">GitHub →</a>
+                        <a href="https://github.com/0014niti" class="project-link" target="_blank">View →</a>
                     </div>
-                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.04);">
-                        🤖 Symptom analysis, health records, and smart recommendations.
-                    </p>
+                </div>
+
+                <!-- Nnotes -->
+                <div class="project-card glass glass-hover live reveal">
+                    <div class="project-header">
+                        <div>
+                            <div class="project-icon-main">📝</div>
+                            <div class="project-title">Nnotes</div>
+                        </div>
+                        <span class="project-status status-live">🟢 LIVE</span>
+                    </div>
+                    <p class="project-desc">A collaborative note-taking application developed with Harshita. Built with C & Kotlin, featuring seamless syncing and real-time collaboration capabilities for efficient note management.</p>
+                    <div class="project-tags">
+                        <span class="tag">C</span>
+                        <span class="tag">Kotlin</span>
+                        <span class="tag">Collaboration</span>
+                        <span class="tag">Notes</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/HarshitaDoddagoudar/Nnotes" class="project-link" target="_blank">GitHub →</a>
+                        <a href="https://github.com/HarshitaDoddagoudar/Nnotes" class="project-link" target="_blank">Explore →</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1131,31 +1107,51 @@
         <!-- Tech Stack -->
         <section class="section" id="tech">
             <div class="section-header reveal">
-                <div class="section-label">Toolkit</div>
-                <h2 class="section-title">Tech Arsenal</h2>
-                <p class="section-desc">The technologies and tools I use to bring ideas to life.</p>
+                <div class="section-label">Arsenal</div>
+                <h2 class="section-title">Tech Stack</h2>
+                <p class="section-desc">Tools and technologies I use to bring ideas to life.</p>
             </div>
 
-            <div class="glass glass-hover reveal" style="border-radius: 32px; padding: 48px;">
-                <div class="tech-grid">
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="tech-icon-img" alt="HTML"><span class="tech-name">HTML</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="tech-icon-img" alt="CSS"><span class="tech-name">CSS</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="tech-icon-img" alt="JS"><span class="tech-name">JS</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" class="tech-icon-img" alt="TS"><span class="tech-name">TS</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="tech-icon-img" alt="React"><span class="tech-name">React</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" class="tech-icon-img" alt="Next.js"><span class="tech-name">Next.js</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="tech-icon-img" alt="Node"><span class="tech-name">Node</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="tech-icon-img" alt="Python"><span class="tech-name">Python</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="tech-icon-img" alt="Git"><span class="tech-name">Git</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" class="tech-icon-img" alt="GitHub"><span class="tech-name">GitHub</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" class="tech-icon-img" alt="VSCode"><span class="tech-name">VSCode</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="tech-icon-img" alt="Docker"><span class="tech-name">Docker</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" class="tech-icon-img" alt="Linux"><span class="tech-name">Linux</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" class="tech-icon-img" alt="MongoDB"><span class="tech-name">MongoDB</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="tech-icon-img" alt="PostgreSQL"><span class="tech-name">PostgreSQL</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" class="tech-icon-img" alt="Figma"><span class="tech-name">Figma</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="tech-icon-img" alt="Tailwind"><span class="tech-name">Tailwind</span></div>
-                    <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ethereum/ethereum-original.svg" class="tech-icon-img" alt="Web3"><span class="tech-name">Web3</span></div>
+            <div class="tech-grid">
+                <div class="tech-item reveal">
+                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" class="tech-icon-img">
+                    <span class="tech-name">JavaScript</span>
+                </div>
+                <div class="tech-item reveal">
+                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/react/react-original.svg" alt="React" class="tech-icon-img">
+                    <span class="tech-name">React</span>
+                </div>
+                <div class="tech-item reveal">
+                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js" class="tech-icon-img">
+                    <span class="tech-name">Node.js</span>
+                </div>
+                <div class="tech-item reveal">
+                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/python/python-original.svg" alt="Python" class="tech-icon-img">
+                    <span class="tech-name">Python</span>
+                </div>
+                <div class="tech-item reveal">
+                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/web3js/web3js-original.svg" alt="Web3" class="tech-icon-img">
+                    <span class="tech-name">Web3</span>
+                </div>
+                <div class="tech-item reveal">
+                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/solidity/solidity-original.svg" alt="Solidity" class="tech-icon-img">
+                    <span class="tech-name">Solidity</span>
+                </div>
+                <div class="tech-item reveal">
+                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/html5/html5-original.svg" alt="HTML5" class="tech-icon-img">
+                    <span class="tech-name">HTML5</span>
+                </div>
+                <div class="tech-item reveal">
+                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/css3/css3-original.svg" alt="CSS3" class="tech-icon-img">
+                    <span class="tech-name">CSS3</span>
+                </div>
+                <div class="tech-item reveal">
+                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/kotlin/kotlin-original.svg" alt="Kotlin" class="tech-icon-img">
+                    <span class="tech-name">Kotlin</span>
+                </div>
+                <div class="tech-item reveal">
+                    <img src="https://cdn.jsdelivr.net/npm/devicon@latest/icons/c/c-original.svg" alt="C" class="tech-icon-img">
+                    <span class="tech-name">C</span>
                 </div>
             </div>
         </section>
@@ -1163,41 +1159,35 @@
         <!-- Connect -->
         <section class="section" id="connect">
             <div class="section-header reveal">
-                <div class="section-label">Let's Talk</div>
-                <h2 class="section-title">Connect With Me</h2>
-                <p class="section-desc">Open to collaborations, HealthTech discussions, and Web3 opportunities.</p>
+                <div class="section-label">Connect</div>
+                <h2 class="section-title">Let's Build Together</h2>
+                <p class="section-desc">Reach out to collaborate, discuss ideas, or just say hello.</p>
             </div>
 
-            <div class="connect-grid reveal">
-                <a href="https://p2pcompanion.com" class="connect-card glass glass-hover" target="_blank">
-                    <div class="connect-icon-box">🌐</div>
-                    <div class="connect-text">
-                        <span class="connect-label">Website</span>
-                        <span class="connect-name">p2pcompanion.com</span>
-                    </div>
-                    <span class="connect-arrow">→</span>
-                </a>
-                <a href="https://github.com/0014niti" class="connect-card glass glass-hover" target="_blank">
+            <div class="connect-grid">
+                <a href="https://github.com/0014niti" class="connect-card glass glass-hover reveal" target="_blank">
                     <div class="connect-icon-box">⚡</div>
                     <div class="connect-text">
-                        <span class="connect-label">Code</span>
-                        <span class="connect-name">GitHub</span>
+                        <span class="connect-label">GitHub</span>
+                        <span class="connect-name">@0014niti</span>
                     </div>
                     <span class="connect-arrow">→</span>
                 </a>
-                <a href="https://in.linkedin.com/in/drnitz" class="connect-card glass glass-hover" target="_blank">
-                    <div class="connect-icon-box">💼</div>
+
+                <a href="https://in.linkedin.com/in/drnitz" class="connect-card glass glass-hover reveal" target="_blank">
+                    <div class="connect-icon-box">🔗</div>
                     <div class="connect-text">
-                        <span class="connect-label">Professional</span>
-                        <span class="connect-name">LinkedIn</span>
+                        <span class="connect-label">LinkedIn</span>
+                        <span class="connect-name">Dr.N</span>
                     </div>
                     <span class="connect-arrow">→</span>
                 </a>
-                <a href="https://x.com/14itishD" class="connect-card glass glass-hover" target="_blank">
-                    <div class="connect-icon-box">🐦</div>
+
+                <a href="https://twitter.com/14itishD" class="connect-card glass glass-hover reveal" target="_blank">
+                    <div class="connect-icon-box">𝕏</div>
                     <div class="connect-text">
-                        <span class="connect-label">Social</span>
-                        <span class="connect-name">Twitter / X</span>
+                        <span class="connect-label">Twitter</span>
+                        <span class="connect-name">@14itishD</span>
                     </div>
                     <span class="connect-arrow">→</span>
                 </a>
@@ -1205,206 +1195,121 @@
         </section>
 
         <!-- Footer -->
-        <footer class="footer reveal">
-            <p class="footer-quote">"Healing through medicine, empowering through code"</p>
-            <p class="footer-tagline">Cure. Code. Create. 🚀</p>
-            <p class="footer-copy">© 2026 Dr.N · Built with precision & passion</p>
-        </footer>
+        <section class="footer reveal">
+            <div class="footer-quote">Cure & Code</div>
+            <div class="footer-tagline">Building solutions that heal and empower humanity through technology.</div>
+            <div class="footer-copy">© 2024 Dr.N. All rights reserved. Crafted with passion for innovation.</div>
+        </section>
     </div>
 
     <script>
-        // ========== TYPING ANIMATION ==========
-        const texts = [
-            "Building p2pcompanion.com 🚀",
-            "Crafting Med Reminder & Med Assist 🩺",
-            "Bridging Medicine & Technology 💻",
-            "Open Source | Web3 | HealthTech 🌟"
+        // Typing effect
+        const messages = [
+            'Building HealthTech solutions...',
+            'Exploring Web3 innovation...',
+            'Connecting minds & ideas...',
+            'Healing through code...',
+            'Creating the future...'
         ];
-        let textIndex = 0, charIndex = 0, isDeleting = false;
-        const typingEl = document.getElementById('typing');
+        let currentMessage = 0;
+        let currentChar = 0;
+        const typingElement = document.getElementById('typing');
 
         function type() {
-            const current = texts[textIndex];
-            typingEl.textContent = isDeleting 
-                ? current.substring(0, charIndex - 1) 
-                : current.substring(0, charIndex + 1);
-
-            let speed = isDeleting ? 40 : 90;
-
-            if (!isDeleting && charIndex === current.length) {
-                speed = 2000;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                textIndex = (textIndex + 1) % texts.length;
-                speed = 400;
+            if (currentChar < messages[currentMessage].length) {
+                typingElement.textContent += messages[currentMessage][currentChar];
+                currentChar++;
+                setTimeout(type, 50);
+            } else {
+                setTimeout(erase, 3000);
             }
-
-            charIndex += isDeleting ? -1 : 1;
-            setTimeout(type, speed);
         }
+
+        function erase() {
+            if (currentChar > 0) {
+                typingElement.textContent = messages[currentMessage].substring(0, currentChar - 1);
+                currentChar--;
+                setTimeout(erase, 30);
+            } else {
+                currentMessage = (currentMessage + 1) % messages.length;
+                setTimeout(type, 500);
+            }
+        }
+
+        // Start typing effect
         type();
 
-        // ========== INTERACTIVE PARTICLE CANVAS ==========
+        // Reveal animations on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        function revealOnScroll() {
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const revealTop = el.getBoundingClientRect().top;
+                const revealPoint = 150;
+                if (revealTop < windowHeight - revealPoint) {
+                    el.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Check on load
+
+        // Particle canvas animation
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
         let particles = [];
-        let mouse = { x: null, y: null };
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        });
-
-        window.addEventListener('mouseleave', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
+        const particleCount = 50;
 
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = (Math.random() - 0.5) * 0.4;
-                this.speedY = (Math.random() - 0.5) * 0.4;
-                this.color = Math.random() > 0.5 ? 'rgba(0, 212, 255, ' : 'rgba(168, 85, 247, ';
-                this.opacity = Math.random() * 0.4 + 0.1;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.2;
             }
 
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
 
-                if (mouse.x != null) {
-                    const dx = mouse.x - this.x;
-                    const dy = mouse.y - this.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < 180) {
-                        const force = (180 - distance) / 180;
-                        this.x -= dx * force * 0.015;
-                        this.y -= dy * force * 0.015;
-                    }
-                }
-
-                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
             }
 
             draw() {
+                ctx.fillStyle = `rgba(0, 212, 255, ${this.opacity})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color + this.opacity + ')';
                 ctx.fill();
             }
         }
 
-        function initParticles() {
-            particles = [];
-            const count = Math.min(window.innerWidth / 10, 100);
-            for (let i = 0; i < count; i++) {
-                particles.push(new Particle());
-            }
-        }
-        initParticles();
-
-        function connectParticles() {
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < 140) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(0, 212, 255, ${0.06 * (1 - distance / 140)})`;
-                        ctx.lineWidth = 0.4;
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-
-                if (mouse.x != null) {
-                    const dx = particles[i].x - mouse.x;
-                    const dy = particles[i].y - mouse.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < 220) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(168, 85, 247, ${0.12 * (1 - distance / 220)})`;
-                        ctx.lineWidth = 0.6;
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(mouse.x, mouse.y);
-                        ctx.stroke();
-                    }
-                }
-            }
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
         }
 
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => { p.update(); p.draw(); });
-            connectParticles();
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
             requestAnimationFrame(animateParticles);
         }
+
         animateParticles();
 
-        // ========== SCROLL REVEAL ==========
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // ========== SMOOTH SCROLL FOR DOCK ==========
-        document.querySelectorAll('.dock-item').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = document.querySelector(link.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // ========== DOCK MAGNIFICATION EFFECT ==========
-        const dock = document.getElementById('navdock');
-        const dockItems = dock.querySelectorAll('.dock-item');
-
-        dock.addEventListener('mousemove', (e) => {
-            const dockRect = dock.getBoundingClientRect();
-            const mouseX = e.clientX - dockRect.left;
-
-            dockItems.forEach(item => {
-                const itemRect = item.getBoundingClientRect();
-                const itemCenter = itemRect.left + itemRect.width / 2 - dockRect.left;
-                const distance = Math.abs(mouseX - itemCenter);
-                const maxDist = 150;
-
-                if (distance < maxDist) {
-                    const scale = 1 + (1 - distance / maxDist) * 0.3;
-                    item.style.transform = `scale(${scale})`;
-                } else {
-                    item.style.transform = 'scale(1)';
-                }
-            });
-        });
-
-        dock.addEventListener('mouseleave', () => {
-            dockItems.forEach(item => {
-                item.style.transform = 'scale(1)';
-            });
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         });
     </script>
 </body>
