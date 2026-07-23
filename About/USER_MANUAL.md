@@ -1,6 +1,6 @@
-# Nnotes User Manual 📝
+# Nnotes User Manual 📖
 
-Welcome to **Nnotes**, your ultimate infinite-canvas handwriting, sketching, and note-taking companion! This manual is designed to help you understand every feature of the app so you can maximize your productivity and creativity.
+Welcome to **Nnotes**, your ultimate infinite-canvas handwriting, sketching, and note-taking companion! Developed by Lead Developer **Harshita** and Co-Developer **Dr.N** under the motto **Cure. Code. Create.** This manual is designed to help you understand every feature of the app so you can maximize your productivity and creativity.
 
 ---
 
@@ -23,52 +23,36 @@ Your primary hub for all drawing and selection tools is the **Floating Toolbar**
 
 ---
 
-## 3. The 3D Interactive Mascot
-Nnotes features a unique motivational **Mascot System** to keep you focused!
+## 3. Drawing Tools & Pens
+Nnotes includes a comprehensive suite of digital pens:
 
-- **Choosing a Companion**: Go to Settings -> 'Your Companion' to select a mascot that fits your profession (e.g., Student, Doctor).
-- **Interactivity**: The mascot hangs out on your screen. Tap your mascot anytime for a motivational quote (e.g., 'Hi! Focus, you can do it!').
-- **Free Movement**: You can press and hold the mascot to drag it anywhere across your workspace.
-
----
-
-## 4. Complete Tool Guide
-Here is a breakdown of every tool available in your palette:
-
-### 🖋️ Drawing & Writing Tools
-- **Standard Pen**: Your go-to tool for regular handwriting and sketching. It responds naturally to your strokes.
-- **Calligraphy Pen**: Adds elegance to your writing by mimicking a flat nib calligraphy pen.
-- **Speed Pen**: Adjusts thickness dynamically based on how fast you move your stylus or finger.
-- **Taper Pen**: Automatically tapers the ends of your strokes for a natural brush-like finish.
-- **Dashed Pen**: Draws a dashed line—perfect for drawing boundaries or diagrams.
-- **Highlighter**: A translucent marker to emphasize important text. It automatically goes *behind* your ink so it doesn't obscure your writing.
-
-### ✨ Smart Features
-- **Auto-Beautify (Magic Wand)**: Turn on Auto-Beautify before you write. As you handwrite words, the app will automatically analyze your strokes and magically convert your messy handwriting into perfectly styled digital text! 
-  - *Tip*: You can change the 'Beautify Font' in the settings to customize the look of your recognized text.
-- **Select to Beautify**: You don't have to use Auto-Beautify while writing! You can also use the **Select** or **Lasso** tool to select a block of messy handwriting, then tap the ✨ (Sparkles) popup icon to magically convert the selected text.
-- **Shape Tool**: Select this to draw rough geometric shapes (circles, squares, triangles, lines). The app will automatically snap them into perfect geometric figures!
-
-### ✂️ Editing & Selection Tools
-- **Eraser**: Rub over any stroke to erase it.
-- **Select (Bounding Box)**: Tap or drag a box around items. Anything inside the box is selected, allowing you to move, resize, or delete multiple items at once.
-- **Lasso Tool**: For precise selection! Draw a freeform loop around the specific handwritten words or drawings you want to select. Only the items completely inside your drawn loop will be grabbed.
-
-### 🖼️ Media Tools
-- **Image Insertion**: Tap to import a photo from your gallery directly onto the canvas.
-- **Text Box**: Tap anywhere on the canvas to open the keyboard and type out digital text.
-
-### ↩️ Navigation Tools
-- **Undo / Redo**: Made a mistake? Tap Undo to reverse your last stroke or action. Tap Redo to bring it back.
-- **Pan Tool**: Locks the canvas so one-finger touches will drag the screen instead of drawing (great for navigating without accidentally writing).
+- **Standard Pen**: A reliable, smooth everyday pen for writing notes.
+- **Calligraphy Pen**: Responds to your stroke direction to produce elegant calligraphy text.
+- **Speed Pen**: Dynamically adjusts stroke width based on how fast your pen moves.
+- **Taper Pen**: Automatically tapers the beginning and end of each line for a realistic fountain pen effect.
+- **Highlighter**: A smart translucent stroke that renders behind your existing ink so your notes stay legible.
+- **Dashed Pen**: Perfect for diagrams, borders, or sewing patterns.
 
 ---
 
-## 5. Customizing Your Experience (Settings)
-Tap the **Gear Icon** to access the settings panel, which is designed with a modern, soft 3D 'Claymorphism' aesthetic.
+## 4. Magical Auto-Beautify ✨
+Transform messy handwriting into neat digital text effortlessly!
 
-- **Appearance**: Toggle between Light Mode, Dark Mode, or system default.
-- **Stylus Configuration**: Adjust palm rejection and sensitivity if you are using an active stylus (like an S-Pen or Apple Pencil).
-- **Tool Customization**: Change ink colors, stroke thicknesses, and default fonts right from the main interface.
+- **Real-Time Beautify**: Enable this mode to automatically convert your strokes into styled text as you write.
+- **Lasso Beautify**: Select any block of handwritten text using the Lasso tool, then tap the Sparkles (✨) button to convert it instantly into clean digital typography.
 
-Enjoy building your ideas without boundaries with Nnotes!
+---
+
+## 5. Selection & Shape Tools
+- **Geometric Shape Snap**: Draw a rough circle, square, or line, and hold for a split second to automatically snap it into a clean geometric shape.
+- **Lasso & Bounding Box**: Select multiple strokes or drawings to move, resize, rotate, or delete them as a group.
+
+---
+
+## 6. 3D Companion Mascots 🤖
+Keep study sessions engaging with 3D profession companions (Doctor, Student, Engineer, Artist). Mascots hang on your canvas or toolbar and provide motivational quotes when tapped!
+
+---
+
+## 7. Storage & Privacy 🔒
+Nnotes uses Android's Storage Access Framework (SAF) to store all your notes locally on your device. Your data stays 100% private without cloud tracking or external telemetry.
