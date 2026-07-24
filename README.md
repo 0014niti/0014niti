@@ -20,6 +20,8 @@
 
 ## 🩺 About Dr.N
 
+> *"Medicine is my full-time vocation, while coding is my fun sandbox. I'm definitely not a master developer — I'm a passionate enthusiast who learns by building real tools, experimenting with AI, and relying heavily on brilliant co-developers like Lead Developer Harshita to make things actually work reliably!"*
+
 ```yaml
 👤 name: Dr.N
 🎓 profession: Full-time Medical Doctor (GP)
@@ -29,6 +31,7 @@
 🌐 website: https://p2pcompanion.com
 🎯 motto: "Cure. Code. Create."
 🔭 flagship_projects:
+  - MedEdu Clinic (Free Clinical Knowledge 📚)
   - Nnotes (Lead Dev: Harshita | Co-Dev: Dr.N 🚀)
   - p2pcompanion.com (Live Terminal ⚡)
   - Med Reminder (In Development 💊)
@@ -40,16 +43,27 @@
 
 <table>
   <tr>
-    <td width="33%" valign="top">
+    <td width="50%" valign="top">
+      <h3 align="center">📚 MedEdu Clinic</h3>
+      <p align="center">
+        <a href="https://0014niti.github.io/mededu.html">
+          <img src="https://img.shields.io/badge/🩺%20Open%20Clinic-00D4FF?style=for-the-badge&logo=google-chrome&logoColor=white" />
+        </a>
+      </p>
+      <p align="center"><i>A unified clinical education initiative. Free, high-yield clinical notes and video breakdowns on various diseases, bridging the knowledge gap.</i></p>
+    </td>
+    <td width="50%" valign="top">
       <h3 align="center">🌐 p2pcompanion.com</h3>
       <p align="center">
         <a href="https://p2pcompanion.com">
           <img src="https://img.shields.io/badge/🚀%20LIVE-00D4FF?style=for-the-badge&logo=rocket&logoColor=white" />
         </a>
       </p>
-      <p align="center"><i>P2P Companion Terminal — Real-time data terminal aggregating live USDT crypto P2P rates, arbitrage spreads, and OTC trading across Binance, OKX, and Bybit for 50+ fiat currencies.</i></p>
+      <p align="center"><i>P2P Companion Terminal — Real-time data terminal aggregating live USDT crypto P2P rates, arbitrage spreads, and OTC trading.</i></p>
     </td>
-    <td width="33%" valign="top">
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
       <h3 align="center">📝 Nnotes</h3>
       <p align="center">
         <a href="https://0014niti.github.io/nnotes.html">
@@ -61,14 +75,14 @@
       </p>
       <p align="center"><i>Infinite canvas handwriting, Auto-Beautify, and 3D mascot notebook app. Lead Dev: <b>Harshita</b> | Co-Dev: <b>Dr.N</b>.</i></p>
     </td>
-    <td width="33%" valign="top">
-      <h3 align="center">📱 p2p-mobile</h3>
+    <td width="50%" valign="top">
+      <h3 align="center">💊 Med Reminder</h3>
       <p align="center">
-        <a href="https://github.com/0014niti/p2p-mobile">
-          <img src="https://img.shields.io/badge/📁%20Repo-181717?style=for-the-badge&logo=github&logoColor=white" />
+        <a href="https://github.com/0014niti/Med">
+          <img src="https://img.shields.io/badge/📁%20Prototype-181717?style=for-the-badge&logo=github&logoColor=white" />
         </a>
       </p>
-      <p align="center"><i>Mobile app version of p2pcompanion.com — P2P financial data terminal in your pocket.</i></p>
+      <p align="center"><i>A practical medication tracking and dosage reminder app prototype designed from a physician's perspective for daily regimen adherence.</i></p>
     </td>
   </tr>
 </table>
