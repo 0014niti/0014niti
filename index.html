@@ -155,7 +155,10 @@
         /* --- Hero Section --- */
         header.hero {
             padding: 200px 0 100px;
-            text-align: left;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .status-pill {
@@ -251,6 +254,32 @@
         .author-info p {
             font-size: 0.85rem;
             color: var(--text-muted);
+        }
+
+        /* --- Medical Animations --- */
+        .medical-pulse {
+            animation: heartbeat 1.5s infinite;
+            border-color: var(--accent-blue);
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(102, 252, 241, 0.7); }
+            14% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(102, 252, 241, 0); }
+            28% { transform: scale(1); box-shadow: 0 0 0 0 rgba(102, 252, 241, 0); }
+            42% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(102, 252, 241, 0); }
+            70% { transform: scale(1); }
+        }
+
+        .motto-anim span {
+            animation: neon-glow 3s infinite alternate;
+        }
+        .motto-anim span:nth-child(1) { animation-delay: 0s; color: var(--accent-teal); }
+        .motto-anim span:nth-child(2) { animation-delay: 1s; color: var(--text-main); }
+        .motto-anim span:nth-child(3) { animation-delay: 2s; color: var(--accent-blue); }
+
+        @keyframes neon-glow {
+            0%, 100% { text-shadow: none; opacity: 0.7; }
+            50% { text-shadow: 0 0 10px currentColor; opacity: 1; }
         }
 
         /* --- Sandbox / Projects --- */
@@ -471,10 +500,10 @@
                 "Medicine is my full-time vocation, while coding is my fun sandbox. I'm definitely not a master developer — I'm a passionate enthusiast who learns by building real tools, experimenting with AI, and <span>relying heavily on brilliant co-developers like Lead Developer Harshita</span> to make things actually work reliably!"
             </div>
             <div class="manifesto-author">
-                <img src="drn_avatar.png" alt="Dr. N" class="author-avatar" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzIyMiIvPjx0ZXh0IHg9IjUwIiB5PSI1NCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiM2NkZDRjEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGFsaWdubWVudC1iYXNlbGluZT0ibWlkZGxlIj5Eck48L3RleHQ+PC9zdmc+'">
+                <img src="drn_avatar.png" alt="Dr. N" class="author-avatar medical-pulse" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzIyMiIvPjx0ZXh0IHg9IjUwIiB5PSI1NCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiM2NkZDRjEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGFsaWdubWVudC1iYXNlbGluZT0ibWlkZGxlIj5Eck48L3RleHQ+PC9zdmc+'">
                 <div class="author-info">
                     <h4>Dr. N</h4>
-                    <p>Cure. Code. Create.</p>
+                    <p class="motto-anim"><span>Cure.</span> <span>Code.</span> <span>Create.</span></p>
                 </div>
             </div>
         </div>
