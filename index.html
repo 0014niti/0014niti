@@ -74,8 +74,7 @@
             transform: translate(-50%, -50%);
             height: 110vh; /* Scaled large to fill background */
             z-index: -1;
-            mix-blend-mode: screen;
-            opacity: 0.25; /* Subtle ghosting effect */
+            opacity: 0.15; /* Subtle watermark effect */
             pointer-events: none;
             transition: transform 0.1s ease-out; /* Smooth Parallax */
             filter: drop-shadow(0 0 20px rgba(102, 252, 241, 0.3));
@@ -574,7 +573,7 @@
     <div id="vanta-bg"></div>
 
     <!-- Dynamic Anatomy Figure -->
-    <img src="anatomy_bg.png" alt="Dynamic Anatomy" id="anatomy-figure">
+    <img src="anatomy_bg.png?v=3" alt="Dynamic Anatomy" id="anatomy-figure">
 
     <!-- Interactive Bottom Dock -->
     <nav class="side-dock">

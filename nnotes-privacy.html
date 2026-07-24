@@ -12,6 +12,7 @@
     <meta property="og:type" content="website">
 
     <!-- Fonts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -109,9 +110,48 @@
         .footer-copy { color: var(--text-muted); font-size: 0.8rem; }
 
         @media (max-width: 900px) { .content-grid { grid-template-columns: 1fr; } .toc-sidebar { display: none; } header { flex-direction: column; gap: 16px; } }
+
+        /* --- Bottom Dock Navigation (Clay Style) --- */
+        .side-dock {
+            position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 100;
+            display: flex; flex-direction: row; gap: 12px;
+            background: var(--clay-base); padding: 8px 12px; border-radius: 100px;
+            border: 2px solid rgba(255,255,255,0.5);
+            box-shadow: 10px 10px 20px rgba(163,177,198,0.5), -5px -5px 15px rgba(255,255,255,0.8);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .side-dock a {
+            text-decoration: none; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+            width: 38px; height: 38px; border-radius: 50%; filter: grayscale(80%) opacity(0.6);
+            background: var(--clay-base); position: relative; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: inset 2px 2px 5px rgba(255,255,255,0.8), inset -2px -2px 5px rgba(163,177,198,0.4);
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+        .side-dock a:hover {
+            transform: scale(1.15) translateY(-4px); filter: grayscale(0%) opacity(1);
+            background: var(--clay-light); z-index: 2;
+            box-shadow: 6px 6px 15px rgba(163,177,198,0.4), -4px -4px 10px rgba(255,255,255,0.8);
+        }
+        .side-dock a::after {
+            content: attr(title); position: absolute; top: -45px; left: 50%; transform: translateX(-50%) translateY(10px);
+            background: var(--clay-base); color: var(--text); padding: 4px 12px; border-radius: 6px;
+            font-size: 0.8rem; font-weight: 600; border: 2px solid rgba(255,255,255,0.4); opacity: 0; pointer-events: none;
+            box-shadow: 4px 4px 10px rgba(163,177,198,0.3);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap;
+        }
+        .side-dock a:hover::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+        @media (max-width: 768px) { .side-dock a::after { display: none; } }
     </style>
 </head>
 <body>
+    <!-- Bottom Dock -->
+    <nav class="side-dock">
+        <a href="index.html" title="Home">🏠</a>
+        <a href="mededu.html" title="MedEdu">📚</a>
+        <a href="index.html#sandbox" title="The Sandbox">🔬</a>
+        <a href="nnotes.html" title="Nnotes App">📝</a>
+        <a href="https://p2pcompanion.com" target="_blank" title="P2P Terminal">⚡</a>
+    </nav>
     <div class="container">
         <header>
             <a href="nnotes.html" class="logo-wrap">
@@ -314,6 +354,16 @@
                 });
             }
         }
+
+        let lastScrollY = window.scrollY;
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                gsap.to(".side-dock", { y: 150, duration: 0.4, ease: "power2.out", overwrite: "auto" });
+            } else {
+                gsap.to(".side-dock", { y: 0, duration: 0.4, ease: "power2.out", overwrite: "auto" });
+            }
+            lastScrollY = window.scrollY;
+        });
     </script>
 </body>
 </html>
