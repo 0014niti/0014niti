@@ -47,6 +47,17 @@
             line-height: 1.65;
             -webkit-font-smoothing: antialiased;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Interactive Mouse Glow Background */
+        .mouse-glow {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            background: radial-gradient(600px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh), rgba(0, 212, 255, 0.05), transparent 40%);
         }
 
         .container {
@@ -108,9 +119,22 @@
             text-decoration: none;
             font-size: 0.88rem;
             font-weight: 500;
-            transition: color 0.2s;
+            position: relative;
+            padding: 4px 8px;
+            overflow: hidden;
+            transition: color 0.3s;
         }
-        .nav-link:hover { color: var(--cyan); }
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 2px;
+            background: var(--cyan);
+            transform: translateX(-101%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link:hover { color: var(--text-primary); }
+        .nav-link:hover::before { transform: translateX(0); }
 
         /* Interactive Sound & Fun Toggles */
         .fun-btn {
@@ -123,11 +147,26 @@
             font-family: var(--font-mono);
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .fun-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-20deg);
+            transition: all 0.6s ease;
         }
         .fun-btn:hover {
             background: rgba(0, 212, 255, 0.18);
-            transform: scale(1.05);
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+        }
+        .fun-btn:hover::after {
+            left: 150%;
         }
 
         /* Hero Section */
@@ -266,13 +305,28 @@
             font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .toy-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.2), transparent);
+            transform: skewX(-20deg);
+            transition: all 0.6s ease;
         }
         .toy-btn:hover {
             background: rgba(0, 212, 255, 0.12);
             border-color: var(--cyan);
             color: var(--cyan);
-            transform: translateY(-2px);
+            transform: scale(1.03) translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 212, 255, 0.15);
+        }
+        .toy-btn:hover::after {
+            left: 150%;
         }
 
         .prescription-result {
@@ -309,29 +363,59 @@
             color: var(--text-muted);
         }
 
-        /* Project Cards */
+        /* 3D Flip Project Cards */
         .projects-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .flip-card-wrapper {
+            background: transparent;
+            min-height: 280px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: left;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card-wrapper:hover .flip-card-inner, .flip-card-wrapper.force-flip .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            padding: 32px;
+        }
+
+        .flip-card-front {
+            background: var(--bg-card);
+            z-index: 2;
             display: flex;
             flex-direction: column;
-            gap: 20px;
         }
 
-        .project-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 32px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-            display: block;
-        }
-
-        .project-card:hover {
+        .flip-card-back {
             background: var(--bg-card-hover);
-            border-color: var(--border-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+            transform: rotateY(180deg);
+            border-color: var(--cyan);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 12px 32px rgba(0, 212, 255, 0.1);
         }
 
         .card-top {
@@ -509,6 +593,7 @@
     </style>
 </head>
 <body>
+    <div class="mouse-glow"></div>
     <div class="container">
         <!-- Top Navigation Bar -->
         <header>
@@ -594,67 +679,91 @@
                 <span class="section-sub">Simple, functional projects</span>
             </div>
 
+            <!-- Exploration Canvas -->
+            <div style="text-align: center; margin-bottom: 24px;">
+                <canvas id="exploration-canvas" width="600" height="80" style="background: rgba(255,255,255,0.02); border: 1px dashed var(--border); border-radius: 12px; max-width: 100%; display: block; margin: 0 auto; cursor: crosshair;"></canvas>
+                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 8px; font-family: var(--font-mono);">⌨️ WASD/Arrows to Explore | Walk to the trigger zones (🟦) to reveal cards</div>
+            </div>
+
             <div class="projects-list">
-                <!-- Nnotes Card -->
-                <a href="nnotes.html" class="project-card">
-                    <div class="card-top">
-                        <div class="card-title">
-                            <span>📝</span> Nnotes
+                <!-- Nnotes Flip Card -->
+                <div class="flip-card-wrapper" id="card-1">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="card-top">
+                                <div class="card-title">
+                                    <span>📝</span> Nnotes
+                                </div>
+                                <span class="card-tag">Android App</span>
+                            </div>
+                            <p class="card-desc">
+                                An infinite canvas handwriting and sketching notebook for Android built with Kotlin & Jetpack Compose.
+                            </p>
+                            <div class="card-meta">
+                                <span>👩‍💻 Lead Developer: Harshita</span>
+                            </div>
                         </div>
-                        <span class="card-tag">Android App</span>
+                        <div class="flip-card-back">
+                            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 16px;">
+                                Features on-device Auto-Beautify handwriting-to-text, customizable floating toolbar, and 3D profession mascots.
+                            </p>
+                            <a href="nnotes.html" class="fun-btn" style="text-decoration:none;">Explore App Showcase →</a>
+                        </div>
                     </div>
-                    <p class="card-desc">
-                        An infinite canvas handwriting and sketching notebook for Android built with Kotlin & Jetpack Compose. Features on-device Auto-Beautify handwriting-to-text, customizable floating toolbar, and 3D profession mascots.
-                    </p>
-                    <div class="card-meta">
-                        <span>👩‍💻 Lead Developer: Harshita (The Real Brains)</span>
-                        <span>👨‍⚕️ Co-Developer: Dr.N</span>
-                    </div>
-                    <div class="card-link-btn" style="margin-top: 14px;">
-                        Explore App Showcase & Live Demo →
-                    </div>
-                </a>
+                </div>
 
-                <!-- p2pcompanion.com Card -->
-                <a href="https://p2pcompanion.com" target="_blank" class="project-card">
-                    <div class="card-top">
-                        <div class="card-title">
-                            <span>🌐</span> p2pcompanion.com
+                <!-- p2pcompanion.com Flip Card -->
+                <div class="flip-card-wrapper" id="card-2">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="card-top">
+                                <div class="card-title">
+                                    <span>🌐</span> p2pcompanion
+                                </div>
+                                <span class="card-tag" style="background: rgba(34, 197, 94, 0.12); color: #4ADE80; border-color: rgba(34, 197, 94, 0.3);">🟢 Live Site</span>
+                            </div>
+                            <p class="card-desc">
+                                P2P Companion Terminal — A real-time data terminal aggregating live USDT peer-to-peer crypto rates.
+                            </p>
+                            <div class="card-meta">
+                                <span>USDT Spreads</span>
+                                <span>50+ Fiats</span>
+                            </div>
                         </div>
-                        <span class="card-tag" style="background: rgba(34, 197, 94, 0.12); color: #4ADE80; border-color: rgba(34, 197, 94, 0.3);">🟢 Live Site</span>
+                        <div class="flip-card-back">
+                            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 16px;">
+                                Tracks arbitrage spreads and OTC trading across Binance, OKX, and Bybit for over 50 fiat currencies.
+                            </p>
+                            <a href="https://p2pcompanion.com" target="_blank" class="fun-btn" style="text-decoration:none;">Visit P2P Terminal →</a>
+                        </div>
                     </div>
-                    <p class="card-desc">
-                        P2P Companion Terminal — A 100% free, real-time data terminal aggregating live USDT peer-to-peer crypto rates, arbitrage spreads, and OTC trading across Binance, OKX, and Bybit for over 50 fiat currencies.
-                    </p>
-                    <div class="card-meta">
-                        <span>USDT Spreads</span>
-                        <span>50+ Fiats</span>
-                        <span>Arbitrage Scanner</span>
-                    </div>
-                    <div class="card-link-btn" style="margin-top: 14px;">
-                        Visit P2P Terminal Website →
-                    </div>
-                </a>
+                </div>
 
-                <!-- Med Reminder Card -->
-                <a href="https://github.com/0014niti/Med" target="_blank" class="project-card">
-                    <div class="card-top">
-                        <div class="card-title">
-                            <span>💊</span> Med Reminder
+                <!-- Med Reminder Flip Card -->
+                <div class="flip-card-wrapper" id="card-3">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="card-top">
+                                <div class="card-title">
+                                    <span>💊</span> Med Reminder
+                                </div>
+                                <span class="card-tag" style="background: rgba(251, 191, 36, 0.12); color: #FBBF24; border-color: rgba(251, 191, 36, 0.3);">Building</span>
+                            </div>
+                            <p class="card-desc">
+                                A practical medication tracking and dosage reminder app prototype designed from a physician's perspective.
+                            </p>
+                            <div class="card-meta">
+                                <span>HealthTech</span>
+                            </div>
                         </div>
-                        <span class="card-tag" style="background: rgba(251, 191, 36, 0.12); color: #FBBF24; border-color: rgba(251, 191, 36, 0.3);">Building</span>
+                        <div class="flip-card-back">
+                            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 16px;">
+                                Assists patients with daily regimen adherence. Open source on GitHub.
+                            </p>
+                            <a href="https://github.com/0014niti/Med" target="_blank" class="fun-btn" style="text-decoration:none;">View GitHub Repo →</a>
+                        </div>
                     </div>
-                    <p class="card-desc">
-                        A practical medication tracking and dosage reminder app prototype designed from a physician's perspective to assist patients with daily regimen adherence.
-                    </p>
-                    <div class="card-meta">
-                        <span>HealthTech</span>
-                        <span>Mobile Adherence</span>
-                    </div>
-                    <div class="card-link-btn" style="margin-top: 14px;">
-                        View GitHub Repository →
-                    </div>
-                </a>
+                </div>
             </div>
         </section>
 
@@ -729,6 +838,82 @@
     </div>
 
     <script>
+        // Interactive Mouse Glow Tracker
+        document.addEventListener('mousemove', (e) => {
+            document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+            document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+        });
+
+        // 2D Exploration Canvas
+        const canvas = document.getElementById('exploration-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let docX = 30;
+        let docY = 40;
+        const speed = 4;
+        const keys = {};
+
+        // Trigger Zones
+        const zones = [
+            { id: 'card-1', x: 150, y: 20, w: 40, h: 40, color: 'rgba(0, 212, 255, 0.2)', label: '📝' },
+            { id: 'card-2', x: 300, y: 20, w: 40, h: 40, color: 'rgba(34, 197, 94, 0.2)', label: '🌐' },
+            { id: 'card-3', x: 450, y: 20, w: 40, h: 40, color: 'rgba(251, 191, 36, 0.2)', label: '💊' }
+        ];
+
+        document.addEventListener('keydown', e => { keys[e.key.toLowerCase()] = true; });
+        document.addEventListener('keyup', e => { keys[e.key.toLowerCase()] = false; });
+
+        function updateCanvas() {
+            if (keys['w'] || keys['arrowup']) docY -= speed;
+            if (keys['s'] || keys['arrowdown']) docY += speed;
+            if (keys['a'] || keys['arrowleft']) docX -= speed;
+            if (keys['d'] || keys['arrowright']) docX += speed;
+
+            // Bounds
+            docX = Math.max(15, Math.min(canvas.width - 15, docX));
+            docY = Math.max(15, Math.min(canvas.height - 15, docY));
+
+            // Draw
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Zones
+            zones.forEach(z => {
+                ctx.fillStyle = z.color;
+                ctx.fillRect(z.x, z.y, z.w, z.h);
+                ctx.font = '20px sans-serif';
+                ctx.fillText(z.label, z.x + 10, z.y + 28);
+                
+                // Collision Detection
+                const docRect = { x: docX - 15, y: docY - 15, w: 30, h: 30 };
+                const intersecting = (docRect.x < z.x + z.w && docRect.x + docRect.w > z.x &&
+                                      docRect.y < z.y + z.h && docRect.y + docRect.h > z.y);
+                
+                const card = document.getElementById(z.id);
+                if (intersecting) {
+                    card.classList.add('force-flip');
+                    ctx.strokeStyle = '#00D4FF';
+                    ctx.strokeRect(z.x - 2, z.y - 2, z.w + 4, z.h + 4);
+                } else {
+                    card.classList.remove('force-flip');
+                }
+            });
+
+            // Draw Doctor
+            ctx.font = '24px sans-serif';
+            ctx.fillText('👨‍⚕️', docX - 12, docY + 8);
+
+            requestAnimationFrame(updateCanvas);
+        }
+        
+        // Start game loop when canvas is visible
+        const observer = new IntersectionObserver(entries => {
+            if(entries[0].isIntersecting) {
+                updateCanvas();
+                observer.disconnect();
+            }
+        });
+        observer.observe(canvas);
+
         // Sarcastic Quote Array
         const sarcasticQuotes = [
             '"I diagnose patients by day, and diagnose NullPointerExceptions by night. (The patients usually recover faster)."',
