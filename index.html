@@ -58,10 +58,43 @@
             transform: translateY(30px);
             transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
+        }
         .reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* --- Animated Cursor --- */
+        .cursor-dot {
+            width: 8px; height: 8px;
+            background: var(--accent-blue);
+            position: fixed; border-radius: 50%;
+            pointer-events: none; z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
+        }
+        .cursor-ring {
+            width: 32px; height: 32px;
+            border: 1px solid rgba(102, 252, 241, 0.5);
+            position: fixed; border-radius: 50%;
+            pointer-events: none; z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, top 0.1s, left 0.1s, background 0.2s;
+        }
+
+        /* --- Canvas Background --- */
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1; opacity: 0.6;
+        }
+
+        /* --- Typing Effect --- */
+        .typing-text::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
 
         .container {
             max-width: 1000px;
@@ -254,9 +287,10 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: box-shadow 0.4s ease, border-color 0.4s ease; /* Remove transform transition for smooth JS tilt */
             position: relative;
             overflow: hidden;
+            transform-style: preserve-3d;
         }
 
         .project-card::before {
@@ -270,7 +304,6 @@
         }
 
         .project-card:hover {
-            transform: translateY(-8px);
             border-color: rgba(102, 252, 241, 0.3);
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
@@ -399,6 +432,10 @@
     </style>
 </head>
 <body>
+    <!-- Animated Interactive Background & Cursor -->
+    <canvas id="bg-canvas"></canvas>
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
 
     <!-- Navigation -->
     <nav>
@@ -420,7 +457,7 @@
         </div>
         <h1>
             Full-time Doctor.<br>
-            <span class="highlight">Part-time Technologist.</span>
+            <span class="highlight typing-text" id="typewriter">Part-time Technologist.</span>
         </h1>
         <p>Exploring the intersection of medicine and technology, learning by building, and relying on brilliant minds to bring ideas to production.</p>
     </header>
@@ -531,6 +568,166 @@
 
     <!-- Scripts -->
     <script>
+        // Custom Cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorRing = document.querySelector('.cursor-ring');
+        let mouseX = 0, mouseY = 0;
+        let ringX = 0, ringY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX; mouseY = e.clientY;
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
+        });
+
+        function animateCursor() {
+            ringX += (mouseX - ringX) * 0.15;
+            ringY += (mouseY - ringY) * 0.15;
+            cursorRing.style.left = `${ringX}px`;
+            cursorRing.style.top = `${ringY}px`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        document.querySelectorAll('a, button, .project-card').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorRing.style.width = '48px';
+                cursorRing.style.height = '48px';
+                cursorRing.style.background = 'rgba(102, 252, 241, 0.1)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorRing.style.width = '32px';
+                cursorRing.style.height = '32px';
+                cursorRing.style.background = 'transparent';
+            });
+        });
+
+        // 3D Card Tilt Effect
+        const cards = document.querySelectorAll('.project-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -8;
+                const rotateY = ((x - centerX) / centerX) * 8;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                card.style.transition = 'transform 0.5s ease';
+            });
+            
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'none';
+            });
+        });
+
+        // Typewriter Effect
+        const words = ["Part-time Technologist.", "AI Explorer.", "Enthusiast Coder."];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterEl = document.getElementById('typewriter');
+
+        function type() {
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                typewriterEl.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterEl.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                typeSpeed = 2000; // Pause at end
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 500; // Pause before new word
+            }
+            setTimeout(type, typeSpeed);
+        }
+        setTimeout(type, 1000);
+
+        // Network Particle Background
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles = [];
+
+        function initCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        initCanvas();
+        window.addEventListener('resize', initCanvas);
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 2;
+            }
+            update() {
+                this.x += this.vx; this.y += this.vy;
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(69, 162, 158, 0.5)';
+                ctx.fill();
+            }
+        }
+
+        const numParticles = window.innerWidth < 768 ? 30 : 80;
+        for (let i = 0; i < numParticles; i++) particles.push(new Particle());
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+            
+            particles.forEach((p, index) => {
+                p.update();
+                p.draw();
+                
+                const distMouse = Math.hypot(p.x - mouseX, p.y - mouseY);
+                if (distMouse < 150) {
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(mouseX, mouseY);
+                    ctx.strokeStyle = `rgba(102, 252, 241, ${1 - distMouse/150})`;
+                    ctx.stroke();
+                }
+
+                for (let j = index + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < 100) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(69, 162, 158, ${0.2 * (1 - dist/100)})`;
+                        ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
         // Scroll Reveal Animation using IntersectionObserver
         const revealElements = document.querySelectorAll('.reveal');
         
