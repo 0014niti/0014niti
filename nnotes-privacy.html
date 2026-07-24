@@ -17,22 +17,14 @@
 
     <style>
         :root {
-            --bg-deep: #050508;
-            --bg-glass: rgba(255, 255, 255, 0.03);
-            --bg-glass-hover: rgba(255, 255, 255, 0.06);
-            --border-glass: rgba(255, 255, 255, 0.08);
-            --border-glow: rgba(0, 212, 255, 0.25);
-            --cyan: #00D4FF;
-            --cyan-glow: rgba(0, 212, 255, 0.3);
-            --purple: #A855F7;
-            --purple-glow: rgba(168, 85, 247, 0.3);
-            --rose: #F43F5E;
-            --rose-glow: rgba(244, 63, 94, 0.3);
-            --green: #22C55E;
-            --amber: #FBBF24;
-            --text: #F8FAFC;
-            --text-secondary: #94A3B8;
-            --text-muted: #64748B;
+            --bg-deep: #E0E5EC;
+            --clay-base: #E0E5EC;
+            --clay-light: #F4F7FB;
+            --cyan: #00B4D8;
+            --purple: #9D4EDD;
+            --text: #2D3748;
+            --text-secondary: #718096;
+            --text-muted: #A0AEC0;
             --font-body: 'Plus Jakarta Sans', sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
         }
@@ -49,169 +41,70 @@
             line-height: 1.7;
         }
 
-        .orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(120px);
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.35;
-            mix-blend-mode: screen;
-        }
-        .orb-cyan {
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, var(--cyan-glow) 0%, transparent 70%);
-            top: -15%; left: -10%;
-            animation: orbFloat1 22s ease-in-out infinite;
-        }
-        .orb-purple {
-            width: 700px; height: 700px;
-            background: radial-gradient(circle, var(--purple-glow) 0%, transparent 70%);
-            bottom: -20%; right: -15%;
-            animation: orbFloat2 26s ease-in-out infinite;
+        .clay-card {
+            background: var(--clay-base);
+            border-radius: 24px;
+            box-shadow: 
+                15px 15px 35px rgba(163, 177, 198, 0.5), 
+                -10px -10px 25px rgba(255, 255, 255, 0.8), 
+                inset 4px 4px 10px rgba(255, 255, 255, 0.9), 
+                inset -4px -4px 10px rgba(163, 177, 198, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.4);
         }
 
-        @keyframes orbFloat1 { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(60px, 40px) scale(1.1); } }
-        @keyframes orbFloat2 { 0%, 100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-50px, -60px) scale(1.15); } }
-
-        .noise-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            opacity: 0.025;
-            z-index: 2;
-            pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='256' height='256' fill='%23fff' filter='url(%23noise)'/%3E%3C/svg%3E");
-        }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(40px) saturate(180%);
-            -webkit-backdrop-filter: blur(40px) saturate(180%);
-            border: 1px solid var(--border-glass);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
-            position: relative;
-            z-index: 10;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 24px 0;
-            margin-bottom: 40px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .logo-wrap {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--cyan), var(--purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .logo-badge {
-            font-size: 0.65rem;
-            padding: 4px 10px;
-            border-radius: 100px;
-            background: rgba(0, 212, 255, 0.1);
-            color: var(--cyan);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            font-family: var(--font-mono);
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 10; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; margin-bottom: 40px; border-bottom: 2px solid rgba(255, 255, 255, 0.5); }
+        .logo-wrap { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo { font-size: 1.8rem; font-weight: 800; color: var(--text); }
+        .logo-badge { font-size: 0.65rem; padding: 4px 10px; border-radius: 100px; background: rgba(0, 180, 216, 0.1); color: var(--cyan); border: 2px solid rgba(255,255,255,0.4); font-family: var(--font-mono); font-weight: 600; text-transform: uppercase; }
         .nav-links { display: flex; gap: 12px; align-items: center; }
 
         .nav-btn {
-            padding: 10px 18px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: all 0.3s;
+            padding: 10px 18px; border-radius: 12px;
+            background: var(--clay-base); color: var(--text-secondary); text-decoration: none; font-weight: 600; font-size: 0.85rem; transition: all 0.3s;
+            border: 2px solid rgba(255,255,255,0.4);
+            box-shadow: 6px 6px 15px rgba(163,177,198,0.5), -4px -4px 12px rgba(255,255,255,0.8);
         }
         .nav-btn:hover {
-            color: var(--text);
-            background: rgba(0, 212, 255, 0.08);
-            border-color: rgba(0, 212, 255, 0.25);
-            transform: translateY(-2px);
+            color: var(--cyan); transform: translateY(-2px);
+            box-shadow: 8px 8px 20px rgba(163,177,198,0.5), -6px -6px 15px rgba(255,255,255,0.9);
         }
 
         .hero { text-align: center; padding: 40px 0 20px; }
-
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 20px;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(168,85,247,0.08));
-            border: 1px solid rgba(0,212,255,0.2);
-            color: var(--cyan);
-            margin-bottom: 20px;
+            display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border-radius: 100px; font-size: 0.75rem; font-weight: 600;
+            background: var(--clay-base); border: 2px solid rgba(255,255,255,0.5); color: var(--text-secondary); margin-bottom: 20px;
+            box-shadow: 4px 4px 10px rgba(163,177,198,0.4), -2px -2px 8px rgba(255,255,255,0.8);
         }
-
-        .hero-title {
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, var(--text) 0%, var(--cyan) 50%, var(--purple) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1.5px;
-        }
-
+        .hero-title { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.15; margin-bottom: 16px; color: var(--text); letter-spacing: -1.5px; }
         .hero-subtitle { font-size: 1.1rem; color: var(--text-secondary); max-width: 680px; margin: 0 auto 30px; }
-
+        
         .meta-pills { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
-        .meta-pill { padding: 6px 14px; border-radius: 100px; font-size: 0.75rem; font-family: var(--font-mono); background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); color: var(--text-muted); }
+        .meta-pill { padding: 6px 14px; border-radius: 100px; font-size: 0.75rem; font-family: var(--font-mono); background: var(--clay-light); border: 2px solid rgba(255,255,255,0.5); color: var(--text-secondary); box-shadow: 4px 4px 8px rgba(163,177,198,0.3), -2px -2px 6px rgba(255,255,255,0.6); }
 
         .tab-switcher { display: flex; justify-content: center; gap: 12px; margin-bottom: 50px; }
-        .tab-btn { padding: 12px 28px; border-radius: 14px; font-size: 0.9rem; font-weight: 700; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.03); color: var(--text-secondary); cursor: pointer; transition: all 0.3s; font-family: var(--font-body); }
-        .tab-btn.active { background: linear-gradient(135deg, var(--cyan), var(--purple)); color: var(--bg-deep); border-color: transparent; box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3); }
+        .tab-btn { padding: 12px 28px; border-radius: 16px; font-size: 0.9rem; font-weight: 700; border: 2px solid rgba(255, 255, 255, 0.4); background: var(--clay-base); color: var(--text-secondary); cursor: pointer; transition: all 0.3s; font-family: var(--font-body); box-shadow: 6px 6px 15px rgba(163,177,198,0.5), -4px -4px 12px rgba(255,255,255,0.8); }
+        .tab-btn.active { color: var(--cyan); box-shadow: inset 4px 4px 10px rgba(163,177,198,0.5), inset -4px -4px 10px rgba(255,255,255,0.8); transform: translateY(2px); }
 
         .content-grid { display: grid; grid-template-columns: 280px 1fr; gap: 40px; margin-bottom: 80px; }
-
         .toc-sidebar { position: sticky; top: 40px; height: fit-content; padding: 24px; border-radius: 20px; }
         .toc-title { font-size: 0.8rem; font-family: var(--font-mono); color: var(--cyan); text-transform: uppercase; margin-bottom: 16px; font-weight: 700; }
         .toc-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-        .toc-link { display: block; padding: 8px 12px; border-radius: 10px; color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: all 0.2s; border-left: 2px solid transparent; }
-        .toc-link:hover, .toc-link.active { color: var(--cyan); background: rgba(0, 212, 255, 0.05); border-left-color: var(--cyan); }
+        .toc-link { display: block; padding: 8px 12px; border-radius: 10px; color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; transition: all 0.2s; border-left: 3px solid transparent; }
+        .toc-link:hover, .toc-link.active { color: var(--cyan); background: rgba(255,255,255,0.5); border-left-color: var(--cyan); box-shadow: inset 2px 2px 5px rgba(163,177,198,0.2); }
 
         .legal-content { display: flex; flex-direction: column; gap: 40px; }
-        .legal-card { padding: 36px; border-radius: 24px; }
+        .legal-card { padding: 36px; }
         .legal-card h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 16px; color: var(--text); }
         .legal-card p { color: var(--text-secondary); margin-bottom: 16px; line-height: 1.75; }
         .legal-card ul { margin-left: 20px; margin-bottom: 16px; color: var(--text-secondary); }
         .legal-card li { margin-bottom: 8px; }
 
-        .highlight-box { padding: 18px 24px; border-radius: 16px; background: rgba(0, 212, 255, 0.04); border: 1px solid rgba(0, 212, 255, 0.15); margin: 20px 0; display: flex; gap: 14px; align-items: flex-start; }
+        .highlight-box { padding: 18px 24px; border-radius: 16px; background: var(--clay-light); border: 2px solid rgba(255,255,255,0.5); margin: 20px 0; display: flex; gap: 14px; align-items: flex-start; box-shadow: inset 3px 3px 6px rgba(163,177,198,0.3), inset -3px -3px 6px rgba(255,255,255,0.8); }
 
-        footer { padding: 60px 0; border-top: 1px solid rgba(255, 255, 255, 0.05); text-align: center; }
+        footer { padding: 60px 0; border-top: 2px solid rgba(255, 255, 255, 0.5); text-align: center; }
         .footer-nav { display: flex; justify-content: center; gap: 24px; margin-bottom: 24px; flex-wrap: wrap; }
-        .footer-link { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; }
+        .footer-link { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 600; }
         .footer-link:hover { color: var(--cyan); }
         .footer-copy { color: var(--text-muted); font-size: 0.8rem; }
 
@@ -219,10 +112,6 @@
     </style>
 </head>
 <body>
-    <div class="orb orb-cyan"></div>
-    <div class="orb orb-purple"></div>
-    <div class="noise-overlay"></div>
-
     <div class="container">
         <header>
             <a href="nnotes.html" class="logo-wrap">
@@ -237,7 +126,7 @@
 
         <section class="hero">
             <div class="hero-badge">
-                <span>🛡️</span> Zero Telemetry • Local SAF Storage • On-Device Processing
+                <span>🛡️</span> Private Notes • Local Storage • Ad-Supported
             </div>
             <h1 class="hero-title">Privacy Policy & Terms of Service</h1>
             <p class="hero-subtitle">
@@ -257,11 +146,11 @@
         </div>
 
         <div class="content-grid">
-            <aside class="toc-sidebar glass">
+            <aside class="toc-sidebar clay-card">
                 <div class="toc-title">Table of Contents</div>
                 <ul class="toc-list">
                     <li><a href="#privacy-overview" class="toc-link">1. Privacy Philosophy</a></li>
-                    <li><a href="#data-collection" class="toc-link">2. Zero Telemetry Policy</a></li>
+                    <li><a href="#data-collection" class="toc-link">2. Data Collection & Ad Integration</a></li>
                     <li><a href="#autobeautify-privacy" class="toc-link">3. Auto-Beautify On-Device Processing</a></li>
                     <li><a href="#storage-saf" class="toc-link">4. Local File Storage & SAF</a></li>
                     <li><a href="#mascot-assets" class="toc-link">5. 3D Mascots & Offline Assets</a></li>
@@ -274,7 +163,7 @@
 
             <main class="legal-content">
                 <!-- Section 1 -->
-                <article id="privacy-overview" class="legal-card glass privacy-doc">
+                <article id="privacy-overview" class="legal-card clay-card privacy-doc">
                     <span style="color:var(--cyan); font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase;">Privacy Policy • Section 1</span>
                     <h2 style="margin-top:8px;">1. Privacy Philosophy & Local-First Design</h2>
                     <p>
@@ -283,25 +172,25 @@
                     <div class="highlight-box">
                         <span style="font-size:1.3rem;">🔒</span>
                         <div style="font-size:0.9rem; color:var(--text-secondary);">
-                            <strong>Zero Tracking & No Account Requirement:</strong> You can use Nnotes completely offline. No user registration, no email sign-ups, and zero tracking frameworks are embedded in the app.
+                            <strong>Zero Note Tracking & No Account Requirement:</strong> You can use Nnotes completely offline. No user registration, no email sign-ups, and zero note tracking frameworks are embedded in the app.
                         </div>
                     </div>
                 </article>
 
                 <!-- Section 2 -->
-                <article id="data-collection" class="legal-card glass privacy-doc">
+                <article id="data-collection" class="legal-card clay-card privacy-doc">
                     <span style="color:var(--cyan); font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase;">Privacy Policy • Section 2</span>
-                    <h2 style="margin-top:8px;">2. Zero Telemetry & Data Collection</h2>
-                    <p>Nnotes collects zero telemetry. Your notes, handwriting strokes, and imported media remain 100% on your Android device:</p>
+                    <h2 style="margin-top:8px;">2. Data Collection & Advertising Integration (AdSense & AdMob)</h2>
+                    <p>While your notes and drawings remain completely private and stored locally on your device, Nnotes utilizes third-party advertising services to support the continued development of the application:</p>
                     <ul>
-                        <li><strong>Note Contents & Drawings:</strong> Saved locally on your device in open editable vector format.</li>
-                        <li><strong>No Server Logs:</strong> We do not log stroke metrics, canvas dimensions, or active session duration.</li>
-                        <li><strong>No Advertising SDKs:</strong> No third-party ad networks or analytics trackers are integrated into Nnotes.</li>
+                        <li><strong>Google AdMob & AdSense:</strong> We integrate Google's advertising networks to serve relevant ads. These services may collect and process device identifiers, IP addresses, and generalized location data to provide personalized advertising.</li>
+                        <li><strong>Ad Personalization:</strong> Depending on your device settings and region (such as GDPR/CCPA consent forms), Google may use cookies or mobile ad identifiers (like Android Advertising ID) to track your interaction with ads.</li>
+                        <li><strong>Strict Separation:</strong> Advertising SDKs <strong>do not</strong> have access to your handwritten notes, canvas data, or files saved via the Storage Access Framework.</li>
                     </ul>
                 </article>
 
                 <!-- Section 3 -->
-                <article id="autobeautify-privacy" class="legal-card glass privacy-doc">
+                <article id="autobeautify-privacy" class="legal-card clay-card privacy-doc">
                     <span style="color:var(--cyan); font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase;">Privacy Policy • Section 3</span>
                     <h2 style="margin-top:8px;">3. On-Device Auto-Beautify Engine</h2>
                     <p>
@@ -314,7 +203,7 @@
                 </article>
 
                 <!-- Section 4 -->
-                <article id="storage-saf" class="legal-card glass privacy-doc">
+                <article id="storage-saf" class="legal-card clay-card privacy-doc">
                     <span style="color:var(--cyan); font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase;">Privacy Policy • Section 4</span>
                     <h2 style="margin-top:8px;">4. Local File Storage & Storage Access Framework (SAF)</h2>
                     <p>
@@ -327,7 +216,7 @@
                 </article>
 
                 <!-- Section 5 -->
-                <article id="mascot-assets" class="legal-card glass privacy-doc">
+                <article id="mascot-assets" class="legal-card clay-card privacy-doc">
                     <span style="color:var(--cyan); font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase;">Privacy Policy • Section 5</span>
                     <h2 style="margin-top:8px;">5. 3D Companion Mascots & Local Assets</h2>
                     <p>
@@ -336,7 +225,7 @@
                 </article>
 
                 <!-- Section 6 -->
-                <article id="mit-license" class="legal-card glass terms-doc">
+                <article id="mit-license" class="legal-card clay-card terms-doc">
                     <span style="color:var(--purple); font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase;">Terms of Service • Section 6</span>
                     <h2 style="margin-top:8px;">6. Open Source License Notice (MIT License)</h2>
                     <p>
@@ -351,7 +240,7 @@
                 </article>
 
                 <!-- Section 7 -->
-                <article id="terms-use" class="legal-card glass terms-doc">
+                <article id="terms-use" class="legal-card clay-card terms-doc">
                     <span style="color:var(--purple); font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase;">Terms of Service • Section 7</span>
                     <h2 style="margin-top:8px;">7. Commercial Use & Intellectual Property</h2>
                     <p>
@@ -360,7 +249,7 @@
                 </article>
 
                 <!-- Section 8 -->
-                <article id="disclaimer" class="legal-card glass terms-doc">
+                <article id="disclaimer" class="legal-card clay-card terms-doc">
                     <span style="color:var(--purple); font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase;">Terms of Service • Section 8</span>
                     <h2 style="margin-top:8px;">8. Disclaimers & Limitation of Liability</h2>
                     <p>
@@ -369,7 +258,7 @@
                 </article>
 
                 <!-- Section 9 -->
-                <article id="contact" class="legal-card glass privacy-doc terms-doc">
+                <article id="contact" class="legal-card clay-card privacy-doc terms-doc">
                     <span style="color:var(--cyan); font-family:var(--font-mono); font-size:0.75rem; text-transform:uppercase;">Contact & Support • Section 9</span>
                     <h2 style="margin-top:8px;">9. Developer Contact</h2>
                     <p>For questions or support regarding Nnotes:</p>
