@@ -1,6 +1,6 @@
 <!-- 3D ANIMATED HEADER -->
 <p align="center">
-  <img src="https://raw.githubusercontent.com/0014niti/0014niti/main/medical-animation.svg" width="100%" alt="3D Medical Animation" />
+  <img src="https://raw.githubusercontent.com/drnitz/drnitz/main/medical-animation.svg" width="100%" alt="3D Medical Animation" />
 </p>
 
 <!-- TYPING ANIMATION -->
@@ -13,7 +13,7 @@
   <a href="https://p2pcompanion.com" target="_blank">
     <img src="https://img.shields.io/badge/🌐_p2pcompanion.com-00D4FF?style=for-the-badge&logo=google-chrome&logoColor=white&labelColor=111010" alt="Website" />
   </a>
-  <img src="https://komarev.com/ghpvc/?username=0014niti&label=👁️%20Profile%20Views&color=7B2FF7&style=for-the-badge" alt="Profile Views" />
+  <img src="https://komarev.com/ghpvc/?username=drnitz&label=👁️%20Profile%20Views&color=7B2FF7&style=for-the-badge" alt="Profile Views" />
 </p>
 
 ---
@@ -46,7 +46,7 @@
     <td width="50%" valign="top">
       <h3 align="center">📚 MedEdu Clinic</h3>
       <p align="center">
-        <a href="https://0014niti.github.io/mededu.html">
+        <a href="https://drnitz.github.io/mededu.html">
           <img src="https://img.shields.io/badge/🩺%20Open%20Clinic-00D4FF?style=for-the-badge&logo=google-chrome&logoColor=white" />
         </a>
       </p>
@@ -66,10 +66,10 @@
     <td width="50%" valign="top">
       <h3 align="center">📝 Nnotes</h3>
       <p align="center">
-        <a href="https://0014niti.github.io/nnotes.html">
+        <a href="https://drnitz.github.io/nnotes.html">
           <img src="https://img.shields.io/badge/✨%20Showcase-00D4FF?style=for-the-badge&logo=appstore&logoColor=white" />
         </a>
-        <a href="https://0014niti.github.io/nnotes-privacy.html">
+        <a href="https://drnitz.github.io/nnotes-privacy.html">
           <img src="https://img.shields.io/badge/🛡️%20Privacy-7B2FF7?style=for-the-badge&logo=shield&logoColor=white" />
         </a>
       </p>
@@ -78,7 +78,7 @@
     <td width="50%" valign="top">
       <h3 align="center">💊 Med Reminder</h3>
       <p align="center">
-        <a href="https://github.com/0014niti/Med">
+        <a href="https://github.com/drnitz/Med">
           <img src="https://img.shields.io/badge/📁%20Prototype-181717?style=for-the-badge&logo=github&logoColor=white" />
         </a>
       </p>
@@ -95,7 +95,7 @@
   <a href="https://p2pcompanion.com" target="_blank">
     <img src="https://img.shields.io/badge/🌐%20p2pcompanion.com-00D4FF?style=for-the-badge&logo=google-chrome&logoColor=white&labelColor=111010" />
   </a>
-  <a href="https://github.com/0014niti" target="_blank">
+  <a href="https://github.com/drnitz" target="_blank">
     <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" />
   </a>
 </p>
