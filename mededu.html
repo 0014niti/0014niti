@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedEdu | Dr.N</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Three.js and Vanta.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --bg-glass: rgba(11, 12, 16, 0.7);
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-main: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --accent-teal: #45A29E;
+            --accent-blue: #66FCF1;
+            
+            --font-display: 'Plus Jakarta Sans', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        #vanta-bg {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2;
+        }
+        
+        #anatomy-figure {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            height: 110vh; z-index: -1; mix-blend-mode: screen; opacity: 0.25; pointer-events: none;
+            filter: drop-shadow(0 0 20px rgba(102, 252, 241, 0.3));
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        /* --- Bottom Dock Navigation (macOS Style) --- */
+        .side-dock {
+            position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 100;
+            display: flex; flex-direction: row; gap: 12px;
+            background: var(--bg-glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            padding: 8px 12px; border-radius: 100px; border: 1px solid var(--border);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .side-dock:hover { box-shadow: 0 4px 40px rgba(102, 252, 241, 0.15); border-color: rgba(102, 252, 241, 0.2); }
+        .side-dock a {
+            text-decoration: none; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
+            width: 38px; height: 38px; border-radius: 50%; filter: grayscale(80%) opacity(0.6);
+            background: rgba(255,255,255,0.02); position: relative; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .side-dock a:hover {
+            transform: scale(1.35) translateY(-4px); filter: grayscale(0%) opacity(1);
+            background: rgba(102, 252, 241, 0.2); box-shadow: 0 0 15px rgba(102, 252, 241, 0.4); z-index: 2;
+        }
+        .side-dock a::after {
+            content: attr(title); position: absolute; top: -45px; left: 50%; transform: translateX(-50%) translateY(10px);
+            background: var(--bg-glass); color: var(--text-main); padding: 4px 12px; border-radius: 6px;
+            font-size: 0.8rem; font-weight: 600; border: 1px solid var(--border); opacity: 0; pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); white-space: nowrap;
+        }
+        .side-dock a:hover::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+        @media (max-width: 768px) { .side-dock a::after { display: none; } }
+
+        /* --- Header --- */
+        header { padding: 160px 0 60px; text-align: center; }
+        .badge {
+            display: inline-block; padding: 6px 16px; border-radius: 100px; font-size: 0.85rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;
+            background: rgba(102, 252, 241, 0.1); color: var(--accent-blue); border: 1px solid rgba(102, 252, 241, 0.3);
+            box-shadow: 0 0 20px rgba(102, 252, 241, 0.2);
+        }
+        h1 { font-family: var(--font-display); font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 24px; }
+        h1 span { color: var(--accent-teal); }
+        .desc { font-size: clamp(1.1rem, 2vw, 1.25rem); color: var(--text-muted); max-width: 700px; margin: 0 auto 40px; line-height: 1.6; }
+
+        /* --- Content Grid --- */
+        .content-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding-bottom: 120px;
+        }
+        
+        .resource-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 48px;
+            position: relative; overflow: hidden; backdrop-filter: blur(10px);
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+
+        .resource-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at top left, rgba(102, 252, 241, 0.03), transparent 60%); pointer-events: none;
+        }
+
+        .status-badge {
+            position: absolute; top: 24px; right: 24px; background: rgba(255, 255, 255, 0.1); color: var(--text-main);
+            padding: 6px 14px; border-radius: 100px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(4px);
+        }
+
+        .icon-box {
+            font-size: 3rem; margin-bottom: 24px; display: inline-block;
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.5px; }
+        .resource-card p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.7; margin-bottom: 32px; }
+
+        .notify-box {
+            background: rgba(0,0,0,0.4); border: 1px dashed rgba(102, 252, 241, 0.3); border-radius: 12px; padding: 24px; text-align: center;
+        }
+        .notify-box p { margin-bottom: 0; font-size: 0.9rem; color: var(--accent-blue); font-weight: 600; }
+
+        @media (max-width: 900px) {
+            .content-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="vanta-bg"></div>
+    <img src="anatomy_bg.png" alt="Anatomy" id="anatomy-figure">
+
+    <!-- Bottom Dock -->
+    <nav class="side-dock">
+        <a href="index.html" title="Home">🏠</a>
+        <a href="mededu.html" title="MedEdu">📚</a>
+        <a href="index.html#sandbox" title="The Sandbox">🔬</a>
+        <a href="nnotes.html" title="Nnotes App">📝</a>
+        <a href="https://p2pcompanion.com" target="_blank" title="P2P Terminal">⚡</a>
+    </nav>
+
+    <div class="container">
+        <header class="gsap-reveal">
+            <div class="badge">Open Clinic Initiative</div>
+            <h1>Clinical <span>MedEdu</span></h1>
+            <p class="desc">Bridging the knowledge gap. I will be releasing free, unified clinical notes and video breakdowns on various diseases. Designed to be technically rich for fellow doctors, yet clearly explained for the general public.</p>
+        </header>
+
+        <div class="content-grid">
+            
+            <!-- Video Breakdowns -->
+            <div class="resource-card gsap-reveal">
+                <div class="status-badge">Available Soon</div>
+                <div>
+                    <div class="icon-box">▶️</div>
+                    <h2>Video Breakdowns</h2>
+                    <p>Deep-dive visual lectures on pathophysiology, diagnostic criteria, and treatment modalities. I will break down complex diseases into digestible concepts using clear analogies alongside technical rigor.</p>
+                </div>
+                <div class="notify-box">
+                    <p>Curriculum currently in development.</p>
+                </div>
+            </div>
+
+            <!-- Clinical Notes -->
+            <div class="resource-card gsap-reveal">
+                <div class="status-badge">Available Soon</div>
+                <div>
+                    <div class="icon-box">📝</div>
+                    <h2>High-Yield Notes</h2>
+                    <p>Beautifully formatted, downloadable clinical notes summarizing disease etiology, presentation, and management. A unified resource that helps medical students review and helps patients understand.</p>
+                </div>
+                <div class="notify-box">
+                    <p>Notes are being compiled.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        VANTA.NET({
+          el: "#vanta-bg", mouseControls: true, touchControls: true, gyroControls: false,
+          minHeight: 200.00, minWidth: 200.00, scale: 1.00, scaleMobile: 1.00,
+          color: 0x45a29e, backgroundColor: 0x0b0c10, points: 12.00, maxDistance: 20.00, spacing: 16.00, showDots: true
+        });
+
+        const anatomyFig = document.getElementById('anatomy-figure');
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 40; 
+            const y = (e.clientY / window.innerHeight - 0.5) * 40;
+            anatomyFig.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+        });
+
+        gsap.set(".gsap-reveal", { y: 30, opacity: 0 });
+        gsap.to(".gsap-reveal", { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power3.out", delay: 0.2 });
+
+        let lastScrollY = window.scrollY;
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                gsap.to(".side-dock", { y: 150, duration: 0.4, ease: "power2.out", overwrite: "auto" });
+            } else {
+                gsap.to(".side-dock", { y: 0, duration: 0.4, ease: "power2.out", overwrite: "auto" });
+            }
+            lastScrollY = window.scrollY;
+        });
+    </script>
+</body>
+</html>

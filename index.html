@@ -15,6 +15,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- Three.js and Vanta.js (WebGL Backgrounds) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
+    <!-- GSAP (GreenSock) for Premium Scroll Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <style>
         :root {
             --bg-color: #0b0c10;
@@ -52,40 +60,25 @@
                 radial-gradient(circle at 85% 30%, rgba(102, 252, 241, 0.05), transparent 25%);
         }
 
-        /* --- Scroll Reveal Animation --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- Animated Cursor --- */
-        .cursor-dot {
-            width: 8px; height: 8px;
-            background: var(--accent-blue);
-            position: fixed; border-radius: 50%;
-            pointer-events: none; z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s;
-        }
-        .cursor-ring {
-            width: 32px; height: 32px;
-            border: 1px solid rgba(102, 252, 241, 0.5);
-            position: fixed; border-radius: 50%;
-            pointer-events: none; z-index: 9998;
-            transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, top 0.1s, left 0.1s, background 0.2s;
-        }
-
-        /* --- Canvas Background --- */
-        #bg-canvas {
+        /* --- Vanta WebGL Background --- */
+        #vanta-bg {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: -1; opacity: 0.6;
+            z-index: -2;
+        }
+
+        /* --- Anatomy Parallax Background --- */
+        #anatomy-figure {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            height: 110vh; /* Scaled large to fill background */
+            z-index: -1;
+            mix-blend-mode: screen;
+            opacity: 0.25; /* Subtle ghosting effect */
+            pointer-events: none;
+            transition: transform 0.1s ease-out; /* Smooth Parallax */
+            filter: drop-shadow(0 0 20px rgba(102, 252, 241, 0.3));
         }
 
         /* --- Typing Effect --- */
@@ -96,69 +89,170 @@
         @keyframes blink { 50% { opacity: 0; } }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
-        /* --- Navigation --- */
-        nav {
+        /* --- Bottom Dock Navigation (macOS Style) --- */
+        .side-dock {
             position: fixed;
-            top: 0; left: 0; right: 0;
+            bottom: 24px;
+            top: auto;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 100;
+            display: flex;
+            flex-direction: row; /* Horizontal */
+            gap: 12px;
             background: var(--bg-glass);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            padding: 20px 0;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 8px 12px; /* Thinner vertically */
+            border-radius: 100px; /* Pill shape */
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .brand {
-            font-family: var(--font-display);
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
+        /* Make entire dock glow on hover */
+        .side-dock:hover {
+            box-shadow: 0 4px 40px rgba(102, 252, 241, 0.15);
+            border-color: rgba(102, 252, 241, 0.2);
+        }
+
+        .side-dock a {
+            text-decoration: none;
+            font-size: 1.2rem; /* Smaller icons */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px; /* Smaller footprint */
+            height: 38px;
+            border-radius: 50%;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: grayscale(80%) opacity(0.6);
+            background: rgba(255,255,255,0.02);
+            position: relative;
+        }
+
+        .side-dock a:hover {
+            transform: scale(1.35) translateY(-4px); /* Pop up slightly */
+            filter: grayscale(0%) opacity(1);
+            background: rgba(102, 252, 241, 0.2);
+            box-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
+            z-index: 2;
+        }
+
+        /* Dock Tooltips */
+        .side-dock a::after {
+            content: attr(title);
+            position: absolute;
+            top: -45px; /* Above the icon */
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: var(--bg-glass);
             color: var(--text-main);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            white-space: nowrap;
         }
-        .brand span {
-            color: var(--accent-blue);
+        .side-dock a:hover::after {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
 
-        .nav-links {
-            display: flex;
-            gap: 32px;
-        }
-        
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-links a:hover {
-            color: var(--accent-blue);
+        @media (max-width: 768px) {
+            .side-dock {
+                top: auto;
+                bottom: 24px;
+            }
+            .side-dock a::after { display: none; } /* Hide tooltips on mobile */
         }
 
         /* --- Hero Section --- */
         header.hero {
-            padding: 200px 0 100px;
+            padding: 180px 0 100px;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        /* --- Hero Avatar & Boxy Animation --- */
+        .hero-avatar-wrapper {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .boxy-anim {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: 2px solid transparent;
+            /* Boxy gradient border animation */
+            background: linear-gradient(var(--bg-color), var(--bg-color)) padding-box,
+                        linear-gradient(45deg, var(--accent-teal), var(--accent-blue)) border-box;
+            border-radius: 12px;
+            animation: pulseBox 2s infinite alternate, rotateBox 8s linear infinite;
+        }
+
+        @keyframes rotateBox {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+        
+        @keyframes pulseBox {
+            0% { box-shadow: 0 0 10px rgba(102, 252, 241, 0.2); }
+            100% { box-shadow: 0 0 30px rgba(102, 252, 241, 0.6); }
+        }
+
+        .hero-avatar {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px; /* Slightly boxy */
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- Hero Slogan Bar --- */
+        .hero-slogan-bar {
+            background: rgba(102, 252, 241, 0.05);
+            border: 1px solid rgba(102, 252, 241, 0.3);
+            padding: 14px 40px;
+            border-radius: 8px;
+            margin-bottom: 32px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            box-shadow: 0 0 20px rgba(102, 252, 241, 0.1);
+            backdrop-filter: blur(4px);
+        }
+
+        .motto-anim span {
+            animation: neon-glow 3s infinite alternate;
+        }
+        .motto-anim span:nth-child(1) { animation-delay: 0s; color: var(--accent-teal); }
+        .motto-anim span:nth-child(2) { animation-delay: 1s; color: var(--text-main); }
+        .motto-anim span:nth-child(3) { animation-delay: 2s; color: var(--accent-blue); }
+
+        @keyframes neon-glow {
+            0%, 100% { text-shadow: none; opacity: 0.7; }
+            50% { text-shadow: 0 0 15px currentColor; opacity: 1; }
         }
 
         .status-pill {
@@ -172,7 +266,7 @@
             font-size: 0.85rem;
             font-weight: 600;
             color: var(--accent-blue);
-            margin-bottom: 32px;
+            margin-bottom: 24px;
             letter-spacing: 0.5px;
             text-transform: uppercase;
         }
@@ -182,6 +276,13 @@
             background: var(--accent-blue);
             border-radius: 50%;
             box-shadow: 0 0 10px var(--accent-blue);
+            animation: dotPulse 1.5s infinite;
+        }
+
+        @keyframes dotPulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .hero h1 {
@@ -211,6 +312,20 @@
             padding: 100px 0;
             border-top: 1px solid var(--border);
             position: relative;
+            background: linear-gradient(180deg, transparent, rgba(0,0,0,0.4));
+        }
+
+        .physiology-highlight {
+            color: var(--bg-color);
+            background: var(--accent-blue);
+            padding: 4px 16px;
+            border-radius: 4px;
+            box-shadow: 0 0 25px rgba(102, 252, 241, 0.6);
+            font-weight: 900;
+            display: inline-block;
+            transform: skew(-10deg);
+            margin-right: 8px;
+            letter-spacing: 1px;
         }
 
         .manifesto-quote {
@@ -221,70 +336,18 @@
             color: var(--text-main);
             max-width: 900px;
             position: relative;
+            text-align: center;
+            margin: 0 auto;
         }
 
         .manifesto-quote span {
             color: var(--accent-teal);
         }
 
-        .manifesto-author {
-            margin-top: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            gap: 16px;
-        }
-
-        .author-avatar {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            object-fit: cover;
-        }
-
-        .author-info h4 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        .author-info p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* --- Medical Animations --- */
-        .medical-pulse {
-            animation: heartbeat 1.5s infinite;
-            border-color: var(--accent-blue);
-        }
-
-        @keyframes heartbeat {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(102, 252, 241, 0.7); }
-            14% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(102, 252, 241, 0); }
-            28% { transform: scale(1); box-shadow: 0 0 0 0 rgba(102, 252, 241, 0); }
-            42% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(102, 252, 241, 0); }
-            70% { transform: scale(1); }
-        }
-
-        .motto-anim span {
-            animation: neon-glow 3s infinite alternate;
-        }
-        .motto-anim span:nth-child(1) { animation-delay: 0s; color: var(--accent-teal); }
-        .motto-anim span:nth-child(2) { animation-delay: 1s; color: var(--text-main); }
-        .motto-anim span:nth-child(3) { animation-delay: 2s; color: var(--accent-blue); }
-
-        @keyframes neon-glow {
-            0%, 100% { text-shadow: none; opacity: 0.7; }
-            50% { text-shadow: 0 0 10px currentColor; opacity: 1; }
-        }
-
         /* --- Sandbox / Projects --- */
         section.sandbox {
             padding: 100px 0;
+            border-top: 1px solid var(--border);
         }
 
         .section-title {
@@ -302,9 +365,10 @@
             max-width: 500px;
         }
 
+        /* Re-arranged 2x2 grid */
         .project-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 32px;
         }
 
@@ -312,16 +376,41 @@
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 24px;
-            padding: 48px;
+            padding: 40px;
             text-decoration: none;
             color: inherit;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            transition: box-shadow 0.4s ease, border-color 0.4s ease; /* Remove transform transition for smooth JS tilt */
+            transition: box-shadow 0.4s ease, border-color 0.4s ease;
             position: relative;
             overflow: hidden;
             transform-style: preserve-3d;
+            backdrop-filter: blur(10px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 160px;
+            object-fit: contain; /* ensures logo is visible */
+            border-radius: 12px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+            background: rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .fallback-img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--accent-blue);
+            background: radial-gradient(circle, rgba(69, 162, 158, 0.1), transparent);
+            text-shadow: 0 0 20px var(--accent-blue);
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.03);
         }
 
         .project-card::before {
@@ -345,24 +434,26 @@
 
         .project-header {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 24px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 20px;
             position: relative;
             z-index: 1;
+            min-height: 70px; /* Forces uniform height even if title wraps */
         }
 
         .project-title {
             font-family: var(--font-display);
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             letter-spacing: -0.5px;
         }
 
         .project-tag {
-            padding: 6px 16px;
+            padding: 6px 14px;
             border-radius: 100px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -376,14 +467,22 @@
             border-color: rgba(102, 252, 241, 0.3);
         }
 
+        .project-body {
+            flex-grow: 1;
+        }
+
         .project-body p {
             color: var(--text-muted);
             font-size: 1.05rem;
             line-height: 1.7;
-            max-width: 700px;
             margin-bottom: 32px;
             position: relative;
             z-index: 1;
+            text-align: justify; /* Aligns start and end perfectly */
+            display: -webkit-box;
+            -webkit-line-clamp: 4; /* Forces uniform 4-line height */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .project-footer {
@@ -398,8 +497,9 @@
 
         .tech-stack {
             display: flex;
-            gap: 16px;
-            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.8rem;
             color: var(--text-main);
             font-weight: 500;
         }
@@ -412,6 +512,7 @@
             align-items: center;
             gap: 8px;
             transition: gap 0.3s ease;
+            white-space: nowrap;
         }
 
         .project-card:hover .project-link-btn {
@@ -454,38 +555,57 @@
             color: rgba(255, 255, 255, 0.4);
         }
 
+        @media (max-width: 1024px) {
+            .project-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            header.hero { padding: 140px 0 60px; }
-            .project-card { padding: 32px; }
+            header.hero { padding: 100px 0 60px; }
+            .project-grid { grid-template-columns: 1fr; }
+            .project-card { padding: 24px; }
             .project-footer { flex-direction: column; align-items: flex-start; gap: 20px; }
+            #anatomy-figure { height: 100vh; }
         }
     </style>
 </head>
 <body>
-    <!-- Animated Interactive Background & Cursor -->
-    <canvas id="bg-canvas"></canvas>
-    <div class="cursor-dot"></div>
-    <div class="cursor-ring"></div>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="container nav-inner">
-            <a href="index.html" class="brand">Dr.<span>N</span></a>
-            <div class="nav-links">
-                <a href="#philosophy">Philosophy</a>
-                <a href="#sandbox">Sandbox</a>
-                <a href="nnotes.html">Nnotes</a>
-            </div>
-        </div>
+    <!-- WebGL Background Container -->
+    <div id="vanta-bg"></div>
+
+    <!-- Dynamic Anatomy Figure -->
+    <img src="anatomy_bg.png" alt="Dynamic Anatomy" id="anatomy-figure">
+
+    <!-- Interactive Bottom Dock -->
+    <nav class="side-dock">
+        <a href="index.html" title="Home">🏠</a>
+        <a href="mededu.html" title="MedEdu">📚</a>
+        <a href="#philosophy" title="Physiology & Philosophy">🧠</a>
+        <a href="#sandbox" title="The Sandbox">🔬</a>
+        <a href="nnotes.html" title="Nnotes App">📝</a>
+        <a href="https://p2pcompanion.com" target="_blank" title="P2P Terminal">⚡</a>
+        <a href="https://github.com/0014niti" target="_blank" title="GitHub">💻</a>
     </nav>
 
     <!-- Hero Section -->
-    <header class="hero container reveal">
+    <header class="hero container">
+        
+        <!-- User Requested Boxy Avatar -->
+        <div class="hero-avatar-wrapper">
+            <div class="boxy-anim"></div>
+            <img src="drn_avatar.png" alt="Dr. N" class="hero-avatar" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzIyMiIvPjx0ZXh0IHg9IjUwIiB5PSI1NCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiM2NkZDRjEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGFsaWdubWVudC1iYXNlbGluZT0ibWlkZGxlIj5Eck48L3RleHQ+PC9zdmc+'">
+        </div>
+
+        <!-- User Requested Main Animated Slogan Bar -->
+        <div class="hero-slogan-bar motto-anim">
+            <span>Cure.</span> <span>Code.</span> <span>Create.</span>
+        </div>
+
         <div class="status-pill">
             <div class="status-dot"></div>
             Preparing for Medical Residency & AHIMA CCS
         </div>
+
         <h1>
             Full-time Doctor.<br>
             <span class="highlight typing-text" id="typewriter">Part-time Technologist.</span>
@@ -495,33 +615,50 @@
 
     <!-- Manifesto / Bio Section -->
     <section id="philosophy" class="manifesto">
-        <div class="container reveal">
+        <div class="container">
+            <h2 class="section-title" style="text-align:center; margin-bottom: 40px;">
+                <!-- Highlighted Physiology Title -->
+                <span class="physiology-highlight">Physiology</span> & Philosophy
+            </h2>
             <div class="manifesto-quote">
                 "Medicine is my full-time vocation, while coding is my fun sandbox. I'm definitely not a master developer — I'm a passionate enthusiast who learns by building real tools, experimenting with AI, and <span>relying heavily on brilliant co-developers like Lead Developer Harshita</span> to make things actually work reliably!"
-            </div>
-            <div class="manifesto-author">
-                <img src="drn_avatar.png" alt="Dr. N" class="author-avatar medical-pulse" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzIyMiIvPjx0ZXh0IHg9IjUwIiB5PSI1NCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzAiIGZpbGw9IiM2NkZDRjEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGFsaWdubWVudC1iYXNlbGluZT0ibWlkZGxlIj5Eck48L3RleHQ+PC9zdmc+'">
-                <div class="author-info">
-                    <h4>Dr. N</h4>
-                    <p class="motto-anim"><span>Cure.</span> <span>Code.</span> <span>Create.</span></p>
-                </div>
             </div>
         </div>
     </section>
 
     <!-- Sandbox (Projects) Section -->
     <section id="sandbox" class="sandbox">
-        <div class="container reveal">
+        <div class="container">
             <h2 class="section-title">The Sandbox</h2>
             <p class="section-desc">Practical creations engineered for real-world utility, brought to life through collaboration and curiosity.</p>
 
             <div class="project-grid">
                 
+                <!-- MedEdu Project -->
+                <a href="mededu.html" class="project-card">
+                    <div class="project-image fallback-img" style="color: var(--accent-teal);">📚</div>
+                    <div class="project-header">
+                        <h3 class="project-title">MedEdu Clinic</h3>
+                    </div>
+                    <div class="project-body">
+                        <p>A unified clinical education initiative. Free, high-yield clinical notes and video breakdowns on various diseases, bridging the knowledge gap for both doctors and the general public.</p>
+                    </div>
+                    <div class="project-footer">
+                        <div class="tech-stack">
+                            <span>Clinical Notes</span>
+                            <span>Video Lectures</span>
+                        </div>
+                        <div class="project-link-btn">
+                            Visit Clinic <span>→</span>
+                        </div>
+                    </div>
+                </a>
+
                 <!-- Nnotes Project -->
-                <a href="nnotes.html" class="project-card reveal">
+                <a href="nnotes.html" class="project-card">
+                    <img src="image/nnotes_logo.png" alt="Nnotes Logo" class="project-image" onerror="this.style.display='none'">
                     <div class="project-header">
                         <h3 class="project-title">Nnotes</h3>
-                        <span class="project-tag">Android Application</span>
                     </div>
                     <div class="project-body">
                         <p>An infinite canvas handwriting and sketching notebook for Android. Features on-device Auto-Beautify handwriting-to-text, a customizable floating toolbar, and 3D profession mascots.</p>
@@ -529,41 +666,40 @@
                     <div class="project-footer">
                         <div class="tech-stack">
                             <span>Kotlin</span>
-                            <span>Jetpack Compose</span>
-                            <span>Lead Dev: Harshita</span>
+                            <span>Compose</span>
+                            <span>Dev: Harshita</span>
                         </div>
                         <div class="project-link-btn">
-                            Explore Showcase <span style="font-size: 1.2rem;">→</span>
+                            Showcase <span>→</span>
                         </div>
                     </div>
                 </a>
 
                 <!-- P2P Companion Project -->
-                <a href="https://p2pcompanion.com" target="_blank" class="project-card reveal">
+                <a href="https://p2pcompanion.com" target="_blank" class="project-card">
+                    <img src="image/icon.png" alt="P2P Companion" class="project-image" onerror="this.style.display='none'">
                     <div class="project-header">
-                        <h3 class="project-title">p2pcompanion.com</h3>
-                        <span class="project-tag tag-live">Live Terminal</span>
+                        <h3 class="project-title">P2P Companion</h3>
                     </div>
                     <div class="project-body">
                         <p>A 100% free, real-time data terminal aggregating live USDT peer-to-peer crypto rates, arbitrage spreads, and OTC trading across Binance, OKX, and Bybit for over 50 fiat currencies.</p>
                     </div>
                     <div class="project-footer">
                         <div class="tech-stack">
-                            <span>Arbitrage Scanner</span>
+                            <span>Arbitrage</span>
                             <span>Real-time Data</span>
-                            <span>Web Platform</span>
                         </div>
                         <div class="project-link-btn">
-                            Visit Terminal <span style="font-size: 1.2rem;">→</span>
+                            Terminal <span>→</span>
                         </div>
                     </div>
                 </a>
 
                 <!-- Med Reminder Project -->
-                <a href="https://github.com/0014niti/Med" target="_blank" class="project-card reveal">
+                <a href="https://github.com/0014niti/Med" target="_blank" class="project-card">
+                    <div class="project-image fallback-img">⚕️</div>
                     <div class="project-header">
                         <h3 class="project-title">Med Reminder</h3>
-                        <span class="project-tag">Prototype</span>
                     </div>
                     <div class="project-body">
                         <p>A practical medication tracking and dosage reminder app prototype designed from a physician's perspective to assist patients with daily regimen adherence.</p>
@@ -574,7 +710,7 @@
                             <span>Open Source</span>
                         </div>
                         <div class="project-link-btn">
-                            View GitHub <span style="font-size: 1.2rem;">→</span>
+                            GitHub <span>→</span>
                         </div>
                     </div>
                 </a>
@@ -585,7 +721,7 @@
 
     <!-- Footer -->
     <footer>
-        <div class="container reveal">
+        <div class="container">
             <div class="footer-logo">Cure. Code. <span>Create.</span></div>
             <div class="footer-links">
                 <a href="nnotes.html">Nnotes</a>
@@ -599,41 +735,33 @@
 
     <!-- Scripts -->
     <script>
-        // Custom Cursor
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorRing = document.querySelector('.cursor-ring');
-        let mouseX = 0, mouseY = 0;
-        let ringX = 0, ringY = 0;
+        // 1. Initialize Vanta.js WebGL Background with Strengthened Intensity
+        VANTA.NET({
+          el: "#vanta-bg",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.00,
+          minWidth: 200.00,
+          scale: 1.00,
+          scaleMobile: 1.00,
+          color: 0x45a29e,       // Medical Teal
+          backgroundColor: 0x0b0c10, // Dark background
+          points: 12.00,         // Strengthened density
+          maxDistance: 20.00,    // Strengthened connection distance
+          spacing: 16.00,
+          showDots: true
+        });
 
+        // 2. Dynamic Parallax for Anatomy Background
+        const anatomyFig = document.getElementById('anatomy-figure');
         document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX; mouseY = e.clientY;
-            cursorDot.style.left = `${mouseX}px`;
-            cursorDot.style.top = `${mouseY}px`;
+            const x = (e.clientX / window.innerWidth - 0.5) * 40; 
+            const y = (e.clientY / window.innerHeight - 0.5) * 40;
+            anatomyFig.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
         });
 
-        function animateCursor() {
-            ringX += (mouseX - ringX) * 0.15;
-            ringY += (mouseY - ringY) * 0.15;
-            cursorRing.style.left = `${ringX}px`;
-            cursorRing.style.top = `${ringY}px`;
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        document.querySelectorAll('a, button, .project-card').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorRing.style.width = '48px';
-                cursorRing.style.height = '48px';
-                cursorRing.style.background = 'rgba(102, 252, 241, 0.1)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursorRing.style.width = '32px';
-                cursorRing.style.height = '32px';
-                cursorRing.style.background = 'transparent';
-            });
-        });
-
-        // 3D Card Tilt Effect
+        // 3. 3D Card Tilt Effect (Physical Mouse Tracking)
         const cards = document.querySelectorAll('.project-card');
         cards.forEach(card => {
             card.addEventListener('mousemove', e => {
@@ -644,8 +772,8 @@
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
                 
-                const rotateX = ((y - centerY) / centerY) * -8;
-                const rotateY = ((x - centerX) / centerX) * 8;
+                const rotateX = ((y - centerY) / centerY) * -6;
+                const rotateY = ((x - centerX) / centerX) * 6;
                 
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
             });
@@ -660,7 +788,7 @@
             });
         });
 
-        // Typewriter Effect
+        // 4. Typewriter Effect
         const words = ["Part-time Technologist.", "AI Explorer.", "Enthusiast Coder."];
         let wordIndex = 0;
         let charIndex = 0;
@@ -680,102 +808,115 @@
             let typeSpeed = isDeleting ? 50 : 100;
 
             if (!isDeleting && charIndex === currentWord.length) {
-                typeSpeed = 2000; // Pause at end
+                typeSpeed = 2000;
                 isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 wordIndex = (wordIndex + 1) % words.length;
-                typeSpeed = 500; // Pause before new word
+                typeSpeed = 500;
             }
             setTimeout(type, typeSpeed);
         }
         setTimeout(type, 1000);
 
-        // Network Particle Background
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height, particles = [];
+        // 5. GSAP ScrollTrigger Animations
+        gsap.registerPlugin(ScrollTrigger);
 
-        function initCanvas() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-        initCanvas();
-        window.addEventListener('resize', initCanvas);
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.radius = Math.random() * 2;
-            }
-            update() {
-                this.x += this.vx; this.y += this.vy;
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(69, 162, 158, 0.5)';
-                ctx.fill();
-            }
-        }
-
-        const numParticles = window.innerWidth < 768 ? 30 : 80;
-        for (let i = 0; i < numParticles; i++) particles.push(new Particle());
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, width, height);
-            
-            particles.forEach((p, index) => {
-                p.update();
-                p.draw();
-                
-                const distMouse = Math.hypot(p.x - mouseX, p.y - mouseY);
-                if (distMouse < 150) {
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(mouseX, mouseY);
-                    ctx.strokeStyle = `rgba(102, 252, 241, ${1 - distMouse/150})`;
-                    ctx.stroke();
-                }
-
-                for (let j = index + 1; j < particles.length; j++) {
-                    const p2 = particles[j];
-                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if (dist < 100) {
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = `rgba(69, 162, 158, ${0.2 * (1 - dist/100)})`;
-                        ctx.stroke();
-                    }
-                }
-            });
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
-
-        // Scroll Reveal Animation using IntersectionObserver
-        const revealElements = document.querySelectorAll('.reveal');
-        
-        const revealObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target); // Only animate once
-                }
-            });
-        }, {
-            root: null,
-            threshold: 0.15, // Trigger when 15% visible
-            rootMargin: "0px 0px -50px 0px"
+        gsap.set(".hero > *, .manifesto-quote, .section-title, .section-desc, .project-card, footer > *", { 
+            opacity: 0,
+            y: 30
+        });
+        gsap.set(".side-dock", { 
+            opacity: 0,
+            y: -30,
+            xPercent: -50
         });
 
-        revealElements.forEach(el => revealObserver.observe(el));
+        // Dock Reveal
+        gsap.to(".side-dock", {
+            y: 0,
+            xPercent: -50,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            delay: 0.1
+        });
+
+        // Hero Section Reveal
+        gsap.to(".hero > *", {
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "power4.out",
+            delay: 0.1
+        });
+
+        // Manifesto Quote Reveal
+        gsap.to(".manifesto-quote", {
+            scrollTrigger: {
+                trigger: ".manifesto",
+                start: "top 80%",
+            },
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power3.out"
+        });
+
+        // Projects Header Reveal
+        gsap.to(".section-title, .section-desc", {
+            scrollTrigger: {
+                trigger: ".sandbox",
+                start: "top 80%",
+            },
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.15,
+            ease: "power3.out"
+        });
+
+        // 3D Cards Staggered Reveal
+        gsap.to(".project-card", {
+            scrollTrigger: {
+                trigger: ".project-grid",
+                start: "top 75%",
+            },
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "back.out(1.2)"
+        });
+
+        // Footer Reveal
+        gsap.to("footer > *", {
+            scrollTrigger: {
+                trigger: "footer",
+                start: "top 90%",
+            },
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.1,
+            ease: "power2.out"
+        });
+
+        // 6. Auto-hide Dock on Scroll Down
+        let lastScrollY = window.scrollY;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+            
+            if (currentScroll > lastScrollY && currentScroll > 100) {
+                // Scrolling down -> hide (slide down)
+                gsap.to(".side-dock", { y: 150, duration: 0.4, ease: "power2.out", overwrite: "auto" });
+            } else {
+                // Scrolling up -> show
+                gsap.to(".side-dock", { y: 0, duration: 0.4, ease: "power2.out", overwrite: "auto" });
+            }
+            lastScrollY = currentScroll;
+        });
     </script>
 </body>
 </html>
